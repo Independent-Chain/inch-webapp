@@ -1,0 +1,43 @@
+:root {
+	/* Font weights */
+	--headline-weight-1: 400; // Light
+	--headline-weight-2: 600; // Semibold
+	--headline-weight-3: 700; // Bold
+
+	/* Children colors */
+	--headline-color-white: rgba(255, 255, 255, 0.9);
+	--headline-color-gray: rgba(255, 255, 255, 0.384);
+	--headline-color-black: rgba(0, 0, 0, 1);
+}
+
+h5.headline {
+	font-family: var(--font);
+	font-size: 19px;
+
+	&.weight-1 {
+		font-weight: var(--headline-weight-1);
+	}
+	&.weight-2 {
+		font-weight: var(--headline-weight-2);
+	}
+	&.weight-3 {
+		font-weight: var(--headline-weight-3);
+	}
+
+	&.color-white {
+		color: var(--headline-color-white)
+	}
+	&.color-gray {
+		color: var(--headline-color-gray);
+	}
+	&.color-black {
+		color: var(--headline-color-black);
+	}
+
+	&.plain-false {
+		margin: auto;
+	}
+	&.plain-true {
+		margin: 0;
+	}
+}

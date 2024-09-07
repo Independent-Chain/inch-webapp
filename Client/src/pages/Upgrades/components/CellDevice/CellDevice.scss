@@ -1,0 +1,50 @@
+:root {
+	--cell-device-title-color: var(--text-1000);
+	--cell-device-description-color: var(--text-500);
+}
+
+div.cell-device {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 5px;
+
+	padding: var(--cell-vertical-padding) var(--cell-horizontal-padding);
+
+	border-radius: var(--cell-radius);
+
+	background-color: var(--background-900);
+
+	p.cell-device__title {
+		font-family: var(--font);
+		font-size: 2.4vh;
+		color: var(--cell-device-title-color);
+	}
+
+	p.cell-device__description {
+		font-family: var(--font);
+			font-size: 1.8vh;
+			color: var(--cell-device-description-color);
+	}
+
+	div.parameter {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 6px;
+	}
+}
+
+@keyframes cell-device-animation {
+	from {
+		display: hidden;
+		transform: translateY(200px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}	
+}

@@ -1,0 +1,23 @@
+:root {
+	--friends-counter-color: rgb(255, 255, 255, 0.9);
+	--friends-color: var(--accent-1000);
+}
+
+div.friends-counter {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	p {
+		font-family: var(--font);
+		font-size: 3.5vh;
+		font-weight: 500;
+
+		color: var(--friends-counter-color);
+
+		span {
+			color: var(--friends-color);
+		}
+	}
+}

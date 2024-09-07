@@ -1,0 +1,40 @@
+:root {
+	/* Font weights */
+	--text-weight-1: 400; // Light
+	--text-weight-2: 600; // Semibold
+	--text-weight-3: 700; // Bold
+
+	/* Children colors */
+	--text-color-white: rgba(255, 255, 255, 0.9);
+	--text-color-gray: rgba(255, 255, 255, 0.384);
+	--text-color-black: rgba(0, 0, 0, 1);
+}
+
+span.text {
+	font-family: var(--font);
+	font-size: 17px;
+
+	&.weight-1 {
+		font-weight: var(--text-weight-1);
+	}
+	&.weight-2 {
+		font-weight: var(--text-weight-2);
+	}
+	&.weight-3 {
+		font-weight: var(--text-weight-3);
+	}
+
+	&.color-white {
+		color: var(--text-color-white)
+	}
+	&.color-gray {
+		color: var(--text-color-gray);
+	}
+	&.color-black {
+		color: var(--text-color-black);
+	}
+
+	&.center-true {
+		text-align: center;
+	}
+}

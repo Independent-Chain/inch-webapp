@@ -1,0 +1,65 @@
+import React, { useEffect, useState } from 'react';
+
+// Custom hooks;
+import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
+import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
+import { useNotification } from '../../context/NotificationContext/NotificationProvider.tsx';
+
+// Custom helpers;
+import { switchLocale } from '../../api/api.switch-locale.js';
+
+// Custom components;
+import Button from '../../ui/Button/Button.tsx';
+
+// Icons;
+import IconStar from '../../icons/IconPremium.tsx';
+import IconTranslate from '../../icons/IconTranslate.tsx';
+
+// Included styles;
+import './Header.scss';
+
+interface ComponentProps {}
+
+const Header = ({ }: ComponentProps): JSX.Element => {
+	const [isFirstRender, setIsFirstRender] = useState(true);
+
+	const { webApp, token, contextData, updateContextData } = useAuth()
+	const { localization, updateLocalization } = useLocalization()
+	const showNotification = useNotification()
+
+	const translateApp = () => {
+		switchLocale(token, webApp, contextData.appData).then(responseData => {
+			updateContextData({ metaData: responseData.metaData, appData: responseData.appData })
+			updateLocalization(responseData.appData.locale)
+		}).catch(error => {
+			alert(error)
+		})
+	}
+
+	useEffect(() => {
+		if (!isFirstRender) {
+			showNotification('success', localization.notifications.success, localization.notifications.translated)
+		} else {
+			setIsFirstRender(false)
+		}
+	}, [localization])
+
+	return (
+		<div className="header">
+			<IconStar premium={ contextData.appData.premium } size={6} />
+			<span className="logo">
+				{ contextData.metaData.username} | {contextData.appData.uid }
+			</span>
+			<Button
+				before={ <IconTranslate size={6}/> }
+				mode="plain" 
+				size="medium" 
+				style={ { padding: '0 2vw' } }
+				onClick={ translateApp }
+				haptic={ ["notification", "success"] }
+			/>
+		</div>
+	)
+}
+
+export default Header;

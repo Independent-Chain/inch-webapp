@@ -1,0 +1,13 @@
+div.loading {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+}
+
+p.loading-text {
+	font-family: var(--font);
+	font-size: 20px;
+	color: white;
+}

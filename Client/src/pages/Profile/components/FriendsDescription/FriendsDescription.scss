@@ -1,0 +1,23 @@
+:root {
+	--friends-description-color: rgba(255, 255, 255, 0.384);
+}
+
+div.friends-description {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	p {
+		font-family: var(--font);
+		font-size: 1.6vh;
+		font-weight: 400;
+		text-align: center;
+
+		color: var(--friends-description-color);
+
+		span {
+			color: var(--accent-1000);
+		}
+	}
+}

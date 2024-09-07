@@ -1,0 +1,65 @@
+:root {
+	--cell-horizontal-padding: 4vw;
+	--cell-vertical-padding: 1.6vh;
+	--cell-radius: 14px;
+
+	/* Text colors */
+	--cell-subhead-color: var(--text-500);
+	--cell-title-color: var(--text-1000);
+	--cell-subtitle-color: var(--text-500);
+	--cell-description-color: var(--text-500);
+}
+
+div.cell {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 16px;
+
+	padding: var(--cell-vertical-padding) var(--cell-horizontal-padding);
+
+	border-radius: var(--cell-radius);
+
+	background-color: var(--background-900);
+}
+
+div.cell__body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	flex-grow: 1;
+	gap: 3px;
+}
+
+a.cell__link {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-end;
+	align-self: stretch;
+	flex-grow: 1;
+}
+
+span {
+	&.cell__subhead {
+		font-family: var(--font);
+		font-size: 1.5vh;
+		color: var(--cell-subhead-color);
+	}
+	&.cell__title {
+		font-family: var(--font);
+		font-size: 2vh;
+		color: var(--cell-title-color);
+	}
+	&.cell__subtitle {
+		font-family: var(--font);
+		font-size: 1.7vh;
+		color: var(--cell-subtitle-color);
+	}
+	&.cell__description {
+		font-family: var(--font);
+		font-size: 1.5vh;
+		color: var(--cell-description-color);
+	}
+}

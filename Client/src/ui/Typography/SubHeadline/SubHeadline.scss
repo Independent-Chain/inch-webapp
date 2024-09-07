@@ -1,0 +1,43 @@
+:root {
+	/* Font weights */
+	--subheadline-weight-1: 400; // Light
+	--subheadline-weight-2: 600; // Semibold
+	--subheadline-weight-3: 700; // Bold
+
+	/* Children colors */
+	--subheadline-color-white: rgba(255, 255, 255, 0.9);
+	--subheadline-color-gray: rgba(255, 255, 255, 0.384);
+	--subheadline-color-black: rgba(0, 0, 0, 1);
+}
+
+h6.subheadline {
+	font-family: var(--font);
+	font-size: 16px;
+
+	&.weight-1 {
+		font-weight: var(--subheadline-weight-1);
+	}
+	&.weight-2 {
+		font-weight: var(--subheadline-weight-2);
+	}
+	&.weight-3 {
+		font-weight: var(--subheadline-weight-3);
+	}
+
+	&.color-white {
+		color: var(--subheadline-color-white)
+	}
+	&.color-gray {
+		color: var(--subheadline-color-gray);
+	}
+	&.color-black {
+		color: var(--subheadline-color-black);
+	}
+
+	&.plain-false {
+		margin: auto;
+	}
+	&.plain-true {
+		margin: 0;
+	}
+}

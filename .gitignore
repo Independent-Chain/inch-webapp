@@ -1,0 +1,11 @@
+.vscode
+.eslintrc.cjs
+.eslintrc.js
+.env
+.prettierrc
+.$API.drawio.bkp
+API.drawio
+node_modules
+dist
+test
+

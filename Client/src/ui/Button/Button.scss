@@ -1,0 +1,137 @@
+:root {
+	/* Background colors */
+	--action-bezeled: rgba(183, 207, 174, 0.3);
+	--action-bezeled-selected: rgba(77, 84, 74, 0.6);
+
+	--action-filled: rgba(183, 207, 174, 1);
+	--action-filled-selected: rgba(183, 207, 174, 0.85);
+
+	--action-gray: rgb(17, 17, 17, 1);
+	--action-gray-selected: rgba(17, 17, 17, 0.452);
+
+	--action-outline: transparent;
+	--action-outline-selected: rgba(218, 218, 218, 0.381);
+
+	--action-plain: transparent;
+	--action-plain-selected: transparent;
+
+	--action-white: rgb(255, 255, 255, 1);
+	--action-white-selected: rgb(255, 255, 255, 0.85);
+
+	/* Children colors */
+	--action-bezeled-children: rgba(183, 207, 174, 0.9);
+	--action-filled-children: rgba(0, 0, 0, 0.9);
+	--action-gray-children: rgb(255, 255, 255, 0.9);
+	--action-outline-children: rgb(255, 255, 255, 0.9);
+	--action-plain-children: rgba(183, 207, 174, 0.9);
+	--action-white-children: rgb(0, 0, 0, 0.9);
+
+	/* Children size */
+	--children-small: 1.9vh;
+	--children-medium: 2.2vh;
+	--children-large: 2.4vh;
+}
+
+span.ripple {
+	position: absolute;
+	width: 3px;
+	height: 3px;
+
+	border-radius: 50%;
+
+	filter: brightness(50%) opacity(40%);
+
+	transform: scale(0);
+	animation: ripple-animation 0.5s linear;
+}
+
+button {
+	position: relative;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	align-self: stretch;
+	gap: 6px;
+
+	border: none;
+	outline: none;
+
+	font-family: var(--font);
+	font-weight: 500;
+
+	cursor: pointer;
+	overflow: hidden;
+	-webkit-tap-highlight-color: transparent;
+
+	&:disabled {
+		filter: opacity(50%);
+	}
+
+	/* Modes */
+	&.bezeled {
+		color: var(--action-bezeled-children);
+		background-color: var(--action-bezeled);
+		span.ripple {
+			background-color: var(--action-bezeled-selected);
+		}	
+	}
+	&.filled {
+		color: var(--action-filled-children);
+		background-color: var(--action-filled);
+		span.ripple {
+			background-color: var(--action-filled-selected);
+		}
+	}
+	&.gray {
+		color: var(--action-gray-children);
+		background-color: var(--action-gray);
+		span.ripple {
+			background-color: var(--action-gray-selected);
+		}
+	}
+	&.outline {
+		box-shadow: inset 0px 0px 0px 1px var(--border-color);
+		color: var(--action-outline-children);
+		background-color: var(--action-outline);
+		span.ripple {
+			background-color: var(--action-outline-selected);
+		}
+	}
+	&.plain {
+		color: var(--action-plain-children);
+		background-color: var(--action-plain);
+	}
+	&.white {
+		color: var(--action-white-children);
+		background-color: var(--action-white);
+		span.ripple {
+			background-color: var(--action-white-selected);
+		}
+	}
+
+	/* Sizes */
+	&.small {
+		padding: 12px 18px;
+		border-radius: 48px;
+		font-size: var(--children-small);
+	}
+	&.medium {
+		padding: 12px 20px;
+		border-radius: 10px;
+		font-size: var(--children-medium);
+	}
+	&.large {
+		padding: 14px 24px;
+		border-radius: 10px;
+		font-size: var(--children-large);
+	}
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(150);
+    opacity: 0;
+  }
+}

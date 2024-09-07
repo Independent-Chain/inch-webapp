@@ -1,0 +1,12 @@
+nav.navigation-panel {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+
+	padding: 3vh 5vw 5vh 5vw;
+
+	border-top: 1.2px solid var(--border-color);
+
+	background-color: var(--background-1000);
+}

@@ -1,0 +1,43 @@
+:root {
+	/* Font weights */
+	--largetitle-weight-1: 400; // Light
+	--largetitle-weight-2: 600; // Semibold
+	--largetitle-weight-3: 700; // Bold
+
+	/* Children colors */
+	--largetitle-color-white: rgba(255, 255, 255, 0.9);
+	--largetitle-color-gray: rgba(255, 255, 255, 0.384);
+	--largetitle-color-black: rgba(0, 0, 0, 1);
+}
+
+h1.largetitle {
+	font-family: var(--font);
+	font-size: 34px;
+
+	&.weight-1 {
+		font-weight: var(--largetitle-weight-1);
+	}
+	&.weight-2 {
+		font-weight: var(--largetitle-weight-2);
+	}
+	&.weight-3 {
+		font-weight: var(--largetitle-weight-3);
+	}
+
+	&.color-white {
+		color: var(--largetitle-color-white)
+	}
+	&.color-gray {
+		color: var(--largetitle-color-gray);
+	}
+	&.color-black {
+		color: var(--largetitle-color-black);
+	}
+
+	&.plain-false {
+		margin: auto;
+	}
+	&.plain-true {
+		margin: 0;
+	}
+}

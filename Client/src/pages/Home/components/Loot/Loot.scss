@@ -1,0 +1,19 @@
+:root {
+	--loot-color: rgb(255, 255, 255, 0.9);
+}
+
+span.loot {
+	font-family: var(--font);
+	font-size: 5.5vh;
+	color: var(--loot-color);
+}
+
+[data-motion-number] {
+	line-height: 0.9 !important;
+	padding: 0 20px;
+	display: flex;
+
+	font-family: var(--font);
+	font-size: 5.5vh;
+	color: var(--loot-color);
+}

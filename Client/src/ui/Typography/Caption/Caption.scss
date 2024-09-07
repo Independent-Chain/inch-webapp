@@ -1,0 +1,50 @@
+:root {
+	/* Font sizes */
+	--caption-level-1: 13px;
+	--caption-level-2: 11px;
+
+	/* Font weights */
+	--caption-weight-1: 400; // Light
+	--caption-weight-2: 600; // Semibold
+	--caption-weight-3: 700; // Bold
+
+	/* Children colors */
+	--caption-color-white: rgba(255, 255, 255, 0.9);
+	--caption-color-gray: rgba(255, 255, 255, 0.384);
+	--caption-color-black: rgba(0, 0, 0, 1);
+}
+
+span.caption {
+	font-family: var(--font);
+
+	&.level-1 {
+		font-size: var(--caption-level-1);
+	}
+	&.level-2 {
+		font-size: var(--caption-level-2);
+	}
+
+	&.weight-1 {
+		font-weight: var(--caption-weight-1);
+	}
+	&.weight-2 {
+		font-weight: var(--caption-weight-2);
+	}
+	&.weight-3 {
+		font-weight: var(--caption-weight-3);
+	}
+
+	&.color-white {
+		color: var(--caption-color-white)
+	}
+	&.color-gray {
+		color: var(--caption-color-gray);
+	}
+	&.color-black {
+		color: var(--caption-color-black);
+	}
+
+	&.center-true {
+		text-align: center;
+	}
+}

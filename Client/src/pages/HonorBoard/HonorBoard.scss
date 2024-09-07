@@ -1,0 +1,50 @@
+div.page#honor-board {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	p.honor-board__title {
+		padding: 4vh 10vw;
+
+		text-align: center;
+
+		font-family: var(--font);
+		font-size: 2vh;
+		font-weight: 500;
+		color: var(--text-1000);
+	}
+	
+	div.honor-board__section {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 4px;
+		
+		margin-bottom: 20px;
+	
+		p.honor-board__section-title {
+			font-family: var(--font);
+			font-size: 2vh;
+			font-weight: 500;
+			color: var(--text-1000);
+		}
+	
+		div.honor-board__members-list {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			
+			line-height: 14px;
+	
+			a.member {
+				margin-right: 10px;
+				text-decoration: underline;
+				font-family: var(--font);
+				font-size: 1.6vh;
+				color: var(--text-500);
+			}
+		}
+	}
+}

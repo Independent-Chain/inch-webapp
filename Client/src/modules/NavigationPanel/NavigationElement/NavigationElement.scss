@@ -1,0 +1,31 @@
+:root {
+	--navigation-element-font-size: 1.6vh;
+	--navigation-element-text-color: rgb(0, 0, 0);
+}
+
+div.navigation-element {
+
+	a {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1px;
+
+		text-decoration: none;
+
+		span.navigation-element__text {
+			font-family: var(--font);
+			font-size: var(--navigation-element-font-size);
+			font-weight: 500;
+			color: var(--navigation-element-text-color);
+		}
+
+		&.inactive {
+			filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(333deg) brightness(104%) contrast(101%) opacity(30%);
+		}
+		&.active {
+			filter: invert(100%) sepia(0%) saturate(7484%) hue-rotate(132deg) brightness(121%) contrast(88%);
+		}
+	}
+}

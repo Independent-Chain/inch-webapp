@@ -1,0 +1,61 @@
+:root {
+	/* Font sizes */
+	--title-level-1: 28px; // h2
+	--title-level-2: 24px; // h3
+	--title-level-3: 20px; // h4
+
+	/* Font weights */
+	--title-weight-1: 400; // Light
+	--title-weight-2: 600; // Semibold
+	--title-weight-3: 700; // Bold
+
+	/* Children colors */
+	--title-color-white: rgba(255, 255, 255, 0.9);
+	--title-color-gray: rgba(255, 255, 255, 0.384);
+	--title-color-black: rgba(0, 0, 0, 1);
+}
+
+h2.title {
+	font-family: var(--font);
+
+	&.level-1 {
+		font-size: var(--title-level-1);
+	}
+	&.level-2 {
+		font-size: var(--title-level-2);
+	}
+	&.level-3 {
+		font-size: var(--title-level-3);
+	}
+
+	&.weight-1 {
+		font-weight: var(--title-weight-1);
+	}
+	&.weight-2 {
+		font-weight: var(--title-weight-2);
+	}
+	&.weight-3 {
+		font-weight: var(--title-weight-3);
+	}
+
+	&.color-white {
+		color: var(--title-color-white)
+	}
+	&.color-gray {
+		color: var(--title-color-gray);
+	}
+	&.color-black {
+		color: var(--title-color-black);
+	}
+
+	&.center-true {
+		text-align: center;
+	}
+
+	&.plain-false {
+		margin: auto;
+	}
+	&.plain-true {
+		margin: 0;
+	}
+}

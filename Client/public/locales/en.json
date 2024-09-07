@@ -1,0 +1,70 @@
+{
+	"navigation": {
+		"home": "Home",
+		"upgrades": "Upgrades",
+		"tasks": "Tasks",
+		"profile": "Profile"
+	},
+	"notifications": {
+		"success": "Success",
+		"error": "Error",
+		"upgrades": {
+			"upgraded": "- level upgraded",
+			"not_upgraded": "- level not upgraded"
+		},
+		"translated": "Now the application will be in English"
+	},
+	"home": {
+		"action_buttons": {
+			"swap": "Swap",
+			"claim": "Claim",
+			"burn": "Burn"
+		},
+		"balance": {
+			"subhead": "Balance",
+			"title": "",
+			"description": "Total balance in $tINCH"
+		},
+		"booster": {
+			"subhead": "Booster",
+			"title": "Will be available in next updates",
+			"description": "Total multiplier"
+		},
+		"collection": {
+			"title": "Collection of boosters",
+			"description": "Collection of boosters will be available soon"
+		}
+	},
+	"upgrades": {
+		"device": {
+			"level": "level",
+			"upgrade": "Upgrade"
+		},
+		"reactor": {
+			"headline": "Reactor",
+			"description": "Reactor increase mining speed",
+			"attribute": "hour"
+		},
+		"storage": {
+			"headline": "Storage",
+			"description": "Storage increase mining time",
+			"attribute": "hours"
+		}
+	},
+	"tasks": {
+		"title": "Tasks will be available soon",
+		"cooperation": "For cooperation, you can contact the project support: "
+	},
+	"profile": {
+		"invite_button": "Invite friend",
+		"friends": "friends",
+		"description": "Invite friends and get 100 $tINCH for every invited friend. In the future, it will be possible to create your own teams. Start building your community now.",
+		"honor_roll_description": "Visit the honor board to see everyone who participated in the creation of this app"
+	},
+	"honor_roll": {
+		"description": "Many thanks to everyone from this list for participating in the development of this application",
+		"developers": "Developers",
+		"testers": "Testers",
+		"contributors": "Contributors"
+	}
+}
