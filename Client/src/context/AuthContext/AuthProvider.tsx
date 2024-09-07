@@ -4,7 +4,7 @@ import React, { ReactNode, createContext, useContext, useState } from 'react';
 import { createToken } from '../../api/api.create-token.js';
 
 interface AuthContextType {
-	webApp: object;
+	webApp: { [key: string]: any };
 	token: string | null;
 	contextData: { [key: string]: any };
 	updateContextData: (newData: any) => void;

@@ -13,6 +13,7 @@ import { getUser } from '../api/api.get-user.js';
 // Custom components;
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
 import DesktopSplashScreen from '../components/DesktopSplashScreen/DesktopSplashScreen.tsx';
+import Loading from '../components/Loading/Loading.tsx';
 import Header from '../modules/Header/Header.tsx'
 import Home from '../pages/Home/Home.tsx';
 import Upgrades from '../pages/Upgrades/Upgrades.tsx';
@@ -25,18 +26,17 @@ import NavigationPanel from '../modules/NavigationPanel/NavigationPanel.tsx';
 import '../main.scss';
 
 const App = (): JSX.Element => {
-  const [splashScreen, setSplashScreen] = useState<Boolean>(true)
-  const { setHeaderColor } = useThemeParams()
-  const { token, webApp, updateContextData } = useAuth()
-  const { updateLocalization } = useLocalization()
+  const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
   
-  // @ts-ignore
-  setHeaderColor('rgb(14, 14, 14)')
+  const { setHeaderColor } = useThemeParams();
+  const { token, webApp, updateContextData } = useAuth();
+  const { updateLocalization } = useLocalization();
+  
+  setHeaderColor('rgb(14, 14, 14)');
 
-  const hideSplashScreen = () => {
-    setTimeout(() => {
-      setSplashScreen(false)
-    }, 4000)
+  const debugMode: boolean = webApp.initDataUnsafe.start_param === 'debug';
+  if (debugMode) {
+    import('eruda').then(eruda => eruda.default.init());
   }
 
   useEffect(() => {
@@ -47,7 +47,9 @@ const App = (): JSX.Element => {
         getUser(token, webApp).then(response => {
           updateContextData(response)
           updateLocalization(response.appData.locale)
-          hideSplashScreen()
+          setTimeout(() => {
+            setLoadingStatus(false)
+          }, debugMode ? 1 : 4000)
         }).catch(error => {
           throw error
         })
@@ -55,11 +57,15 @@ const App = (): JSX.Element => {
     }
   }, [token])
 
-  if (splashScreen) {
-    return <SplashScreen />
+  if (loadingStatus) {
+    if (debugMode) {
+      return <Loading text="Debugging loading" />
+    } else {
+      return <SplashScreen />
+    }
   }
 
-	return (
+  return (
     <BrowserRouter>
       <Header /> 
       <Routes>
@@ -71,7 +77,7 @@ const App = (): JSX.Element => {
       </Routes>
       <NavigationPanel />
     </BrowserRouter>
-	)
+  )
 }
 
 export default App;
