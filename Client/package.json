@@ -15,6 +15,7 @@
     "@vkruglikov/react-telegram-web-app": "^2.1.9",
     "@zakarliuka/react-telegram-web-tools": "^1.0.1",
     "axios": "^1.7.5",
+    "eruda": "^3.2.3",
     "luxon": "^3.5.0",
     "module-alias": "^2.2.3",
     "moment": "^2.30.1",
