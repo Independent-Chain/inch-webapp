@@ -25,7 +25,7 @@ const Header = ({ }: ComponentProps): JSX.Element => {
 
 	const { webApp, token, contextData, updateContextData } = useAuth()
 	const { localization, updateLocalization } = useLocalization()
-	const showNotification = useNotification()
+	const { showNotification } = useNotification()
 
 	const translateApp = () => {
 		switchLocale(token, webApp, contextData.appData).then(responseData => {

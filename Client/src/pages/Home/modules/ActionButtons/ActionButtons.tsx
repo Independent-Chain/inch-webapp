@@ -21,7 +21,7 @@ const ActionButtons = ({}: ComponentProps): JSX.Element => {
 
 	const { token, webApp, updateContextData } = useAuth()
 	const { localization } = useLocalization()
-	const showNotification = useNotification()
+	const { showNotification } = useNotification()
 
 	const claim = () => {
 		setClaimButtonDisableStatus(true)

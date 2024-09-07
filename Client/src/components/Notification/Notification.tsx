@@ -8,7 +8,7 @@ interface ComponentProps {
 	type: 'success' | 'error' | string;
 	title: string;
 	text: string;
-	visible: boolean;
+	visible?: boolean;
 }
 
 const Notification = ({ type, title, text, visible }: ComponentProps): JSX.Element => {

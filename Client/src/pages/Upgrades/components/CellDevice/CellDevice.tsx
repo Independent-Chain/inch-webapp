@@ -34,7 +34,7 @@ interface ComponentProps {
 const CellDevice = ({ deviceId, headline, description, level, attribute, price }: ComponentProps): JSX.Element => {
   const { webApp, token, contextData, updateContextData } = useAuth();
   const { localization } = useLocalization();
-  const showNotification = useNotification();
+  const { showNotification } = useNotification();
 
   const iconSize: number = 3;
   const balance: number = contextData.appData.balance;
