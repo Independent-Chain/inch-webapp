@@ -34,7 +34,9 @@ const App = (): JSX.Element => {
   
   setHeaderColor('rgb(14, 14, 14)');
 
-  const debugMode: boolean = webApp.initDataUnsafe.start_param === 'debug';
+  const [ debug, debugToken ] = webApp.initDataUnsafe.start_param.split('_')
+  // @ts-ignore
+  const debugMode = debug === 'debug' && debugToken == import.meta.env.VITE_DEBUG_PASSWORD;
   if (debugMode) {
     import('eruda').then(eruda => eruda.default.init());
   }
