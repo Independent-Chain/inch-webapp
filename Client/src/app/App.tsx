@@ -54,8 +54,12 @@ const App = (): JSX.Element => {
           updateContextData(response)
           updateLocalization(response.appData.locale)
           setTimeout(() => {
-            if (device == 'mobile') {
+            if (debugMode) {
               setLoadingStatus(false)
+            } else {
+              if (device == 'mobile') {
+                setLoadingStatus(false)
+              }
             }
           }, debugMode ? 1 : 4000)
         }).catch(error => {
