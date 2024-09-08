@@ -6,9 +6,12 @@ import { useThemeParams } from "@zakarliuka/react-telegram-web-tools";
 import { useAuth } from '../context/AuthContext/AuthProvider.tsx';
 import { useLocalization } from '../context/LocaleContext/LocalizationProvider.tsx';
 
-// Custom helpers;
+// Custom API;
 import { createUser } from '../api/api.create-user.js';
 import { getUser } from '../api/api.get-user.js';
+
+// Custom helpers;
+import { detectDevice } from './helpers/detectDevice.js';
 
 // Custom components;
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
@@ -34,7 +37,7 @@ const App = (): JSX.Element => {
   
   setHeaderColor('rgb(14, 14, 14)');
 
-  const [ debug, debugToken ] = webApp.initDataUnsafe.start_param.split('_')
+  const [ debug, debugToken ] = webApp.initDataUnsafe.start_param ? webApp.initDataUnsafe.start_param.split('_') : [false, ''];
   // @ts-ignore
   const debugMode = debug === 'debug' && debugToken == import.meta.env.VITE_DEBUG_PASSWORD;
   if (debugMode) {
@@ -51,7 +54,7 @@ const App = (): JSX.Element => {
           updateLocalization(response.appData.locale)
           setTimeout(() => {
             setLoadingStatus(false)
-          }, debugMode ? 1 : 4000)
+          }, debugMode ? 1 : 400000)
         }).catch(error => {
           throw error
         })
@@ -63,7 +66,11 @@ const App = (): JSX.Element => {
     if (debugMode) {
       return <Loading text="Debugging loading" />
     } else {
-      return <SplashScreen />
+      if (detectDevice() == 'desktop') {
+        return <DesktopSplashScreen />
+      } else {
+        return <SplashScreen />
+      }
     }
   }
 
