@@ -42,12 +42,12 @@
 		},
 		"reactor": {
 			"headline": "Реактор",
-			"description": "Реактор повышает скорость добычи",
-			"attribute": "час"
+			"description": "Повышает скорость добычи",
+			"attribute": "в час"
 		},
 		"storage": {
 			"headline": "Хранилище",
-			"description": "Хранилище увеличивает время добычи",
+			"description": "Увеличивает время добычи",
 			"attribute": "час(ов)"
 		}
 	},

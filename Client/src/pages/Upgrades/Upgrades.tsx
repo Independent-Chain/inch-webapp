@@ -9,6 +9,7 @@ import CellDevice from './components/CellDevice/CellDevice.tsx';
 
 // Included styles;
 import '../page.scss';
+import HorizontalLayout from '../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
 
 interface ComponentProps {}
 
@@ -21,22 +22,24 @@ const Upgrades = ({}: ComponentProps): JSX.Element => {
 
 	return (
 		<div className="page" id="upgrades">
-			<CellDevice 
-				deviceId="reactor"
-				headline={ localization.upgrades.reactor.headline }
-				description={ localization.upgrades.reactor.description }
-				level={ contextData.appData.reactor }
-				attribute={ `${(contextData.appData.reactor * 0.001 * 3600).toFixed(2)}/${localization.upgrades.reactor.attribute}` }
-				price={ reactorPrice }
-			/>
-			<CellDevice 
-				deviceId="storage"
-				headline={ localization.upgrades.storage.headline } 
-				description={ localization.upgrades.storage.description }
-				level={ contextData.appData.storage }
-				attribute={ `${contextData.appData.storage} ${localization.upgrades.storage.attribute}` }
-				price={ storagePrice }
-			/>
+			<HorizontalLayout justify="center" align="center" gap={6}>
+				<CellDevice 
+					deviceId="reactor"
+					title={ localization.upgrades.reactor.headline }
+					description={ localization.upgrades.reactor.description }
+					level={ contextData.appData.reactor }
+					parameter={ `${(contextData.appData.reactor * 0.001 * 3600).toFixed(1)} (${localization.upgrades.reactor.attribute})` }
+					price={ reactorPrice }
+				/>
+				<CellDevice 
+					deviceId="storage"
+					title={ localization.upgrades.storage.headline } 
+					description={ localization.upgrades.storage.description }
+					level={ contextData.appData.storage }
+					parameter={ `${contextData.appData.storage} ${localization.upgrades.storage.attribute}` }
+					price={ storagePrice }
+				/>
+			</HorizontalLayout>
 		</div>
 	)
 }
