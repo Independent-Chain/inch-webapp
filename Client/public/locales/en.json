@@ -42,12 +42,12 @@
 		},
 		"reactor": {
 			"headline": "Reactor",
-			"description": "Increase mining speed",
+			"description": "Mining speed",
 			"attribute": "per hour"
 		},
 		"storage": {
 			"headline": "Storage",
-			"description": "Increase mining time",
+			"description": "Mining time",
 			"attribute": "hours"
 		}
 	},

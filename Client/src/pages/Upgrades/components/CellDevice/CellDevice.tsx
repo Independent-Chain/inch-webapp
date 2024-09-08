@@ -95,10 +95,10 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
       <div className="device__button-container">
         <Button 
             disabled={price > balance ? true : false} 
-            mode="gray" 
+            mode="white" 
             size="medium" 
             haptic={["impact", "soft"]} 
-            style={ {marginTop: '8px', padding: '12px', fontSize: '2.2vh', flexGrow: 1} }
+            style={ {marginTop: '8px', padding: '10px', fontSize: '2vh', flexGrow: 1} }
             onClick={ confirmUpgrade }
           >
             { localization.upgrades.device.upgrade }
