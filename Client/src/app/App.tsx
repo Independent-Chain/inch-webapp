@@ -30,6 +30,7 @@ import '../main.scss';
 
 const App = (): JSX.Element => {
   const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
+  const device: string = detectDevice()
   
   const { setHeaderColor } = useThemeParams();
   const { token, webApp, updateContextData } = useAuth();
@@ -53,8 +54,10 @@ const App = (): JSX.Element => {
           updateContextData(response)
           updateLocalization(response.appData.locale)
           setTimeout(() => {
-            setLoadingStatus(false)
-          }, debugMode ? 1 : 400000)
+            if (device == 'mobile') {
+              setLoadingStatus(false)
+            }
+          }, debugMode ? 1 : 4000)
         }).catch(error => {
           throw error
         })
@@ -66,7 +69,7 @@ const App = (): JSX.Element => {
     if (debugMode) {
       return <Loading text="Debugging loading" />
     } else {
-      if (detectDevice() == 'desktop') {
+      if (device == 'desktop') {
         return <DesktopSplashScreen />
       } else {
         return <SplashScreen />
