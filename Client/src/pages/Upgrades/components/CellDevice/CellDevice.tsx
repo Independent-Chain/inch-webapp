@@ -21,17 +21,18 @@ import IconParameter from '../../../../icons/IconParameter.tsx';
 
 // Included styles;
 import './CellDevice.scss';
+import { boolean } from '@telegram-apps/sdk';
 
 interface ComponentProps {
   deviceId: string;
-  headline: string;
+  title: string;
   description: string;
   level: number;
-  attribute: string;
+  parameter: string;
   price: number;
 }
 
-const CellDevice = ({ deviceId, headline, description, level, attribute, price }: ComponentProps): JSX.Element => {
+const CellDevice = ({ deviceId, title, description, level, parameter, price }: ComponentProps): JSX.Element => {
   const { webApp, token, contextData, updateContextData } = useAuth();
   const { localization } = useLocalization();
   const { showNotification } = useNotification();
@@ -39,12 +40,13 @@ const CellDevice = ({ deviceId, headline, description, level, attribute, price }
   const iconSize: number = 3;
   const balance: number = contextData.appData.balance;
   const upgradePrice: string = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+  const upgradeAvailable = balance >= price;
 
   const successUpgradeNotification = () => {
-    showNotification('success', localization.notifications.success, `${headline} ${localization.notifications.upgrades.upgraded}`)
+    showNotification('success', localization.notifications.success, `${title} ${localization.notifications.upgrades.upgraded}`)
   }
   const errorUpgradeNotification = () => {
-    showNotification('error', localization.notifications.error, `${headline} ${localization.notification.upgrades.not_upgraded}`)
+    showNotification('error', localization.notifications.error, `${title} ${localization.notification.upgrades.not_upgraded}`)
   }
 
   const upgrade = () => {
@@ -60,36 +62,48 @@ const CellDevice = ({ deviceId, headline, description, level, attribute, price }
 		})
   }
 
+  const confirmUpgrade = () => {
+    const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
+    webApp.showConfirm(
+      `Upgrade ${title} for ${formattedPrice} $tINCH?`, 
+      (callback: boolean) => {
+        if (callback) {
+          upgrade()
+        }
+      }
+    )
+  }
+
   return (
     <div className="cell-device">
-      <VerticalLayout justify="center" align="start">
-        <p className="cell-device__title">{ headline[0].toUpperCase() + headline.slice(1) }</p>
-        <p className="cell-device__description">{ description }</p>
-      </VerticalLayout>
-      <HorizontalLayout justify="start" align="center" gap={ 24 }>
-        <div className="parameter">
+      <p className="device-headline">{ title }</p>
+      <p className="device-description">{ description }</p>
+      <VerticalLayout justify="center" align="start" gap={6}>
+        <div className="device-attribute" id="level">
           <IconLevel size={ iconSize } />
-          <p className="cell-device__description">{ level } { localization.upgrades.device.level }</p>
+          <p className="device-attribute__text">{ level } { localization.upgrades.device.level }</p>
         </div>
-        <div className="parameter">
+        <div className="device-attribute" id="parameter">
           <IconParameter size={ iconSize } />
-          <p className="cell-device__description">{ attribute }</p>
+          <p className="device-attribute__text">{ parameter }</p>
         </div>
-        <div className="parameter">
+        <div className={`device-attribute available-${upgradeAvailable}`} id="price">
           <IconCoin size={ iconSize } />
-          <p className="cell-device__description">${ upgradePrice }</p>
+          <p className="device-attribute__text">${ upgradePrice }</p>
         </div>
-      </HorizontalLayout>
-      <Button 
-        disabled={price > balance ? true : false} 
-        mode="white" 
-        size="medium" 
-        haptic={["impact", "soft"]} 
-        style={ {marginTop: "6px", fontSize: "15px"} }
-        onClick={ () => upgrade() }
-      >
-        { localization.upgrades.device.upgrade }
-      </Button>
+      </VerticalLayout>
+      <div className="device__button-container">
+        <Button 
+            disabled={price > balance ? true : false} 
+            mode="gray" 
+            size="medium" 
+            haptic={["impact", "soft"]} 
+            style={ {marginTop: '8px', padding: '12px', fontSize: '2.2vh', flexGrow: 1} }
+            onClick={ confirmUpgrade }
+          >
+            { localization.upgrades.device.upgrade }
+        </Button>
+      </div>
     </div>
   );
 };
