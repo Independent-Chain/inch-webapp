@@ -1,0 +1,93 @@
+div.step-by-step {
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	&.hide-steps {
+		animation: hide-steps 1s ease forwards;
+	}
+
+	div.steps-indicators {
+		position: absolute;
+		width: 60%;
+		z-index: 1000;
+
+		bottom: 14vh;
+		left: 20%;
+		
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		align-self: stretch;
+		gap: 10px;
+
+		div.indicator {
+			height: 4px;
+
+			flex: 1;
+
+			border-radius: 20px;
+
+			background-color: rgb(82, 82, 82);
+
+			&.active-indicator {
+				background-color: var(--accent-1000);
+			}
+		}
+	}
+
+	button.next-step {
+		position: absolute;
+
+		bottom: 5vh;
+		left: 10%;
+
+		width: 80%;
+
+		padding: 2vh 0;
+
+		border-radius: 14px;
+		box-shadow: var(--background-1000) 0 0 100px 80px;
+
+		font-family: var(--font);
+		font-size: 2.4vh;
+		color: var(--action-white-children);
+
+		background-color: var(--action-white);
+	}
+}
+
+div.step {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	p.step-title {
+		margin-top: 10vh;
+		padding: 0 10vw;
+
+		text-align: center;
+		font-family: var(--font);
+		font-size: 3vh;
+		font-weight: 600;
+		color: var(--text-1000);
+	}
+
+	img.step-image {
+		width: 70vw;
+		margin-top: 14vh;
+	}
+}
+
+@keyframes hide-steps {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}

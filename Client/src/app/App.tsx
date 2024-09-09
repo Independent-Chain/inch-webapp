@@ -16,6 +16,7 @@ import { detectDevice } from './helpers/detectDevice.js';
 // Custom components;
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
 import DesktopSplashScreen from '../components/DesktopSplashScreen/DesktopSplashScreen.tsx';
+import StepByStep from '../modules/StepByStep/StepByStep.tsx';
 import Loading from '../components/Loading/Loading.tsx';
 import Header from '../modules/Header/Header.tsx'
 import Home from '../pages/Home/Home.tsx';
@@ -30,6 +31,7 @@ import '../main.scss';
 
 const App = (): JSX.Element => {
   const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
+  const [newUser, setNewUser] = useState(false)
   const device: string = detectDevice()
   
   const { setHeaderColor } = useThemeParams();
@@ -48,6 +50,7 @@ const App = (): JSX.Element => {
   useEffect(() => {
     if (token) {
       createUser(token, webApp).then(response => {
+        setNewUser(true)
         updateContextData(response)
       }).catch(error => {
         getUser(token, webApp).then(response => {
@@ -67,7 +70,7 @@ const App = (): JSX.Element => {
         })
       })
     }
-  }, [token])
+  }, [token, loadingStatus])
 
   if (loadingStatus) {
     if (debugMode) {
@@ -76,7 +79,11 @@ const App = (): JSX.Element => {
       if (device == 'desktop') {
         return <DesktopSplashScreen />
       } else {
-        return <SplashScreen />
+        if (newUser) {
+          return <StepByStep loading={ setLoadingStatus } />
+        } else {
+          return <SplashScreen />
+        }
       }
     }
   }
