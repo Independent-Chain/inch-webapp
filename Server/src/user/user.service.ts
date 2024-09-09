@@ -31,18 +31,13 @@ export class UserService {
             await this.prisma.users_app_data.create({ data: appData })
 
             if (start_param != undefined) {
-                try {
-                    const check = Number(start_param)
-                    await this.prisma.users_app_data.update({
-                        where: { user_id: start_param },
-                        data: {
-                            balance: { increment: 100 },
-                            friends: { increment: 1 }
-                        }
-                    })
-                } catch (error) {
-                    //
-                }
+                await this.prisma.users_app_data.update({
+                    where: { user_id: start_param },
+                    data: {
+                        balance: { increment: 100 },
+                        friends: { increment: 1 }
+                    }
+                })
             }
         }
         
