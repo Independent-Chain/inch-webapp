@@ -18,7 +18,7 @@ import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
 import DesktopSplashScreen from '../components/DesktopSplashScreen/DesktopSplashScreen.tsx';
 import StepByStep from '../modules/StepByStep/StepByStep.tsx';
 import Loading from '../components/Loading/Loading.tsx';
-import Header from '../modules/Header/Header.tsx'
+import Header from '../modules/Header/Header.tsx';
 import Home from '../pages/Home/Home.tsx';
 import Upgrades from '../pages/Upgrades/Upgrades.tsx';
 import Tasks from '../pages/Tasks/Tasks.tsx';
@@ -30,62 +30,61 @@ import NavigationPanel from '../modules/NavigationPanel/NavigationPanel.tsx';
 import '../main.scss';
 
 const App = (): JSX.Element => {
-  const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
-  const [newUser, setNewUser] = useState(false)
-  const device: string = detectDevice()
+  const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
+  const [newUser, setNewUser] = useState(false);
+  const device: string = detectDevice();
   
   const { setHeaderColor } = useThemeParams();
   const { token, webApp, updateContextData } = useAuth();
   const { updateLocalization } = useLocalization();
-  
+
   setHeaderColor('rgb(14, 14, 14)');
 
-  const [ debug, debugToken ] = webApp.initDataUnsafe.start_param ? webApp.initDataUnsafe.start_param.split('_') : [false, ''];
+  const [debug, debugToken] = webApp.initDataUnsafe.start_param ? webApp.initDataUnsafe.start_param.split('_') : [false, ''];
   // @ts-ignore
-  const debugMode = debug === 'debug' && debugToken == import.meta.env.VITE_DEBUG_PASSWORD;
+  const debugMode = debug === 'debug' && debugToken === import.meta.env.VITE_DEBUG_PASSWORD;
+
   if (debugMode) {
     import('eruda').then(eruda => eruda.default.init());
   }
 
   useEffect(() => {
-    if (token) {
-      createUser(token, webApp).then(response => {
-        setNewUser(true)
-        updateContextData(response)
-      }).catch(error => {
-        getUser(token, webApp).then(response => {
-          updateContextData(response)
-          updateLocalization(response.appData.locale)
+    const initializeUser = async () => {
+      try {
+        const response = await createUser(token, webApp);
+        setNewUser(true);
+        updateContextData(response);
+      } catch (error) {
+        try {
+          const response = await getUser(token, webApp);
+          updateContextData(response);
+          updateLocalization(response.appData.locale);
           setTimeout(() => {
-            if (debugMode) {
-              setLoadingStatus(false)
-            } else {
-              if (device == 'mobile') {
-                setLoadingStatus(false)
-              }
-            }
-          }, debugMode ? 1 : 4000)
-        }).catch(error => {
-          throw error
-        })
-      })
-    }
-  }, [token, loadingStatus])
-
-  if (loadingStatus) {
-    if (debugMode) {
-      return <Loading text="Debugging loading" />
-    } else {
-      if (device == 'desktop') {
-        return <DesktopSplashScreen />
-      } else {
-        if (newUser) {
-          return <StepByStep loading={ setLoadingStatus } />
-        } else {
-          return <SplashScreen />
+            setLoadingStatus(!debugMode && device !== 'mobile' ? true : false);
+          }, debugMode ? 1 : 4000);
+        } catch (error) {
+          console.error(error);
         }
       }
+    };
+
+    if (token) {
+      initializeUser();
     }
+  }, [token]);
+
+  const renderSplashScreen = () => {
+    if (debugMode) {
+      return <Loading text="Debugging loading" />;
+    }
+    if (device === 'desktop') {
+      return <DesktopSplashScreen />;
+    }
+    return newUser ? <StepByStep loading={ setLoadingStatus } /> : <SplashScreen />;
+  };
+
+  if (loadingStatus) {
+    return renderSplashScreen();
   }
 
   return (
@@ -100,7 +99,7 @@ const App = (): JSX.Element => {
       </Routes>
       <NavigationPanel />
     </BrowserRouter>
-  )
-}
+  );
+};
 
 export default App;
