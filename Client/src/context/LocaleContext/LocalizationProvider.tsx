@@ -1,8 +1,8 @@
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 // Localizations;
-import localizationRu from '../../../public/locales/ru.json';
-import localizationEn from '../../../public/locales/en.json';
+import localizationRu from '../../locales/ru.json';
+import localizationEn from '../../locales/en.json';
 
 interface LocalizationContextType {
   localization: { [key: string]: any };
