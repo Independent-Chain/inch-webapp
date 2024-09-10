@@ -23,18 +23,19 @@
 	},
 	 
 	"upgrades":{
+		"headline": "Улучшения",
 		"device":{
 		   "level":"уровень",
 		   "upgrade":"Улучшить"
 		},
 		"reactor":{
 		   "headline":"Реактор",
-		   "description":"Реактор повышает скорость добычи",
+		   "description":"Повышает скорость добычи",
 		   "attribute":"час"
 		},
 		"storage":{
 		   "headline":"Хранилище",
-		   "description":"Хранилище увеличивает время добычи",
+		   "description":"Повышает время добычи",
 		   "attribute":"час(ов)"
 		}
 	},
