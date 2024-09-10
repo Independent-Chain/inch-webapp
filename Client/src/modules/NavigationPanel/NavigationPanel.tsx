@@ -23,10 +23,10 @@ const NavigationPanel = ({}: ComponentProps): JSX.Element => {
 
 	return (
 		<nav className="navigation-panel">
-			<NavigationElement path="/" icon={ <IconHome size={ navigationElementIconSize } /> } text={ localization.navigation.home } />
-			<NavigationElement path="/upgrades" icon={ <IconUpgrades size={ navigationElementIconSize } /> }text={ localization.navigation.upgrades } />
-			<NavigationElement path="/tasks" icon={ <IconTasks size={ navigationElementIconSize } /> } text={ localization.navigation.tasks } />
-			<NavigationElement path="/profile" icon={ <IconProfile size={ navigationElementIconSize } />} text={ localization.navigation.profile } />
+			<NavigationElement path="/" icon={ <IconHome size={ navigationElementIconSize } /> } text={ localization.home.headline } />
+			<NavigationElement path="/upgrades" icon={ <IconUpgrades size={ navigationElementIconSize } /> }text={ localization.upgrades.headline } />
+			<NavigationElement path="/tasks" icon={ <IconTasks size={ navigationElementIconSize } /> } text={ localization.tasks.headline } />
+			<NavigationElement path="/profile" icon={ <IconProfile size={ navigationElementIconSize } />} text={ localization.profile.headline } />
 		</nav>
 	)
 }
