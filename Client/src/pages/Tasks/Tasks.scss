@@ -3,4 +3,26 @@ div.page#tasks {
 	justify-content: center;
 	align-items: center;
 	padding: 10vw;
+
+	p.tasks-title {
+		text-align: center;
+		font-family: var(--font);
+		font-size: 3.5vh;
+		font-weight: 500;
+
+		color: var(--friends-counter-color);
+	}
+
+	p.tasks-description {
+		font-family: var(--font);
+		font-size: 1.6vh;
+		font-weight: 400;
+		text-align: center;
+
+		color: var(--friends-description-color);
+
+		span {
+			color: var(--accent-1000);
+		}
+	}
 }
