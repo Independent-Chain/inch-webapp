@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
+// Custom components;
+import Step from './Step/Step.tsx';
+
 // Included styles;
 import './StepByStep.scss';
-
-interface StepProps {
-	title: string;
-	imageNumber: number;
-}
-
-const Step = ({ title, imageNumber }: StepProps): JSX.Element => {
-	useEffect(() => {}, [title, imageNumber])
-
-  return (
-    <div className="step">
-      <p className="step-title">{ title }</p>
-      <img src={`./steps/step${imageNumber}.png`} alt="" className="step-image" />
-    </div>
-  );
-};
 
 interface ComponentProps {
 	loading: any;
@@ -38,27 +25,32 @@ const StepByStep = ({ loading }: ComponentProps): JSX.Element => {
 		'Share this app with friends for get reward'
 	]
 
+	const colorIndicators = () => {
+		const indicators = document.getElementsByClassName('indicator')
+		for(let i = 0; i <= Math.min(indicators.length, step); i++) {
+			indicators[i].classList.add('active-indicator')
+		}
+	}
+
+	const hideSteps = () => {
+		const steps = document.getElementsByClassName('step-by-step')
+		steps[0]?.classList.add('hide-steps')
+		setTimeout(() => {
+			loading(false)
+		}, 1000)
+	}
+
 	const nextStep = () => {
 		impactOccurred('light')
-
 		if (step < 4) {
 			setStep(step + 1)
 		} else if (step == 4) {
-			const steps = document.getElementsByClassName('step-by-step')
-			steps[0]?.classList.add('hide-steps')
-			setTimeout(() => {
-				loading(false)
-			}, 1000)
+			hideSteps()
 		}
 	}
 
 	useEffect(() => {
-		const indicators = document.getElementsByClassName('indicator')
-
-		for(let i = 0; i <= Math.min(indicators.length, step); i++) {
-			indicators[i].classList.add('active-indicator')
-		}
-
+		colorIndicators()
 		if (step == 4) {
 			setButtonText('Become a part of inch community')
 		}

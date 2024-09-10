@@ -58,28 +58,10 @@ div.step-by-step {
 		color: var(--action-white-children);
 
 		background-color: var(--action-white);
-	}
-}
 
-div.step {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	p.step-title {
-		margin-top: 10vh;
-		padding: 0 10vw;
-
-		text-align: center;
-		font-family: var(--font);
-		font-size: 3vh;
-		font-weight: 600;
-		color: var(--text-1000);
-	}
-
-	img.step-image {
-		width: 70vw;
-		margin-top: 14vh;
+		&.finish-animation {
+			animation: finish-animation 2s ease;
+		}
 	}
 }
 
@@ -89,5 +71,44 @@ div.step {
 	}
 	to {
 		opacity: 0;
+	}
+}
+
+@keyframes finish-animation {
+	0% {
+		z-index: 1001;
+		width: 80vw;
+
+		bottom: 5vh;
+		left: 10%;
+
+		padding: 2vh;
+	}
+	75% {
+		z-index: 1001;
+		height: 20vw;
+		width: 20vw;
+
+		padding: 0;
+
+		bottom: calc(100vh / 2 - 50px);
+		left: calc(100vw / 2 - 50px);
+
+		border-radius: 200px;
+
+		background-color: var(--background-1000);
+	}
+	100% {
+		z-index: 1001;
+		width: 100vw;
+		height: 100vh;
+
+		bottom: 0;
+		left: 0;
+
+		border-radius: 0;
+	}
+	75% {
+
 	}
 }
