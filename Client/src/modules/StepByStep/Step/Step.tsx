@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+
+// Included styles;
 import './Step.scss';
 
 interface StepProps {
@@ -7,7 +9,9 @@ interface StepProps {
 }
 
 const Step = ({ title, imageNumber }: StepProps): JSX.Element => {
-	useEffect(() => {}, [title, imageNumber])
+  useEffect(() => {
+   
+  }, [title, imageNumber]);
 
   return (
     <div className="step">

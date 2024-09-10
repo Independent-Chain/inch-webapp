@@ -6,6 +6,9 @@ div.step-by-step {
 	display: flex;
 	flex-direction: column;
 
+	background: rgb(14,14,14);
+	background: linear-gradient(0deg, rgba(14,14,14,1) 0%, rgba(183,207,174,1) 50%, rgba(14,14,14,1) 100%);
+
 	&.hide-steps {
 		animation: hide-steps 1s ease forwards;
 	}
@@ -74,41 +77,14 @@ div.step-by-step {
 	}
 }
 
-@keyframes finish-animation {
+@keyframes gradient {
 	0% {
-		z-index: 1001;
-		width: 80vw;
-
-		bottom: 5vh;
-		left: 10%;
-
-		padding: 2vh;
+		background-position: 0% 50%;
 	}
-	75% {
-		z-index: 1001;
-		height: 20vw;
-		width: 20vw;
-
-		padding: 0;
-
-		bottom: calc(100vh / 2 - 50px);
-		left: calc(100vw / 2 - 50px);
-
-		border-radius: 200px;
-
-		background-color: var(--background-1000);
+	50% {
+		background-position: 100% 50%;
 	}
 	100% {
-		z-index: 1001;
-		width: 100vw;
-		height: 100vh;
-
-		bottom: 0;
-		left: 0;
-
-		border-radius: 0;
-	}
-	75% {
-
+		background-position: 0% 50%;
 	}
 }
