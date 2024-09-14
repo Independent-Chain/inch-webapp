@@ -39,6 +39,7 @@ const App = (): JSX.Element => {
   const { updateLocalization } = useLocalization();
 
   setHeaderColor('rgb(14, 14, 14)');
+  webApp.expand();
 
   const [debug, debugToken] = webApp.initDataUnsafe.start_param ? webApp.initDataUnsafe.start_param.split('_') : [false, ''];
   // @ts-ignore
