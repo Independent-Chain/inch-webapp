@@ -30,3 +30,16 @@ model users_meta_data {
   allows_write_to_pm Boolean?
   photo_url          String?
 }
+
+model tasks {
+  task_id            Int      @id @default(autoincrement())
+  icon               String
+  title              String
+  description        String
+  award              Int
+}
+
+model users_tasks {
+  user_id            Int      @id @default(autoincrement())
+  task_id            String
+}
