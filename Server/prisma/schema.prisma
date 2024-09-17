@@ -32,14 +32,15 @@ model users_meta_data {
 }
 
 model tasks {
-  task_id            Int      @id @default(autoincrement())
-  icon               String
-  title              String
-  description        String
-  award              Int
+  task_id     Int    @id @default(autoincrement())
+  icon        String
+  title       String
+  description String
+  link        String
+  award       Int
 }
 
 model users_tasks {
-  user_id            Int      @id @default(autoincrement())
-  task_id            String
+  user_id Int    @id @default(autoincrement())
+  task_id String
 }
