@@ -1,0 +1,45 @@
+div.task {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+	gap: 12px;
+
+	padding: 1.5vh 3vw;
+
+	border-radius: 2vh;
+
+	background-color: var(--background-900);
+
+	div {
+		img.task-icon {
+			height: 3.4vh;
+		}
+	}
+
+	div {
+		p.task-title {
+			font-family: var(--font);
+			font-size: 2.4vh;
+			font-weight: 500;
+			color: var(--text-1000);
+		}
+
+		p.task-description {
+			font-family: var(--font);
+			font-size: 2vh;
+			font-weight: 500;
+			color: var(--text-500);
+		}
+	}
+
+	button.task-button {
+		padding: 1vh 4vw;
+
+		border-radius: 1.6vh;
+
+		font-family: var(--font);
+		font-weight: 500;
+	}
+}

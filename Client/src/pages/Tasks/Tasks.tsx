@@ -10,6 +10,7 @@ import Caption from '../../ui/Typography/Caption/Caption.tsx';
 // Included styles;
 import '../Page.scss';
 import './Tasks.scss';
+import Task from './components/Task/Task.tsx';
 
 interface ComponentProps {}
 
@@ -18,11 +19,7 @@ const Tasks = ({}: ComponentProps): JSX.Element => {
 
 	return (
 		<div className="page" id="tasks">
-			<p className="tasks-title">{ localization.tasks.title }</p>
-			<p className="tasks-description" style={ {textAlign: 'center'} }>
-				{ localization.tasks.cooperation } 
-				<a href="https://t.me/inch_support" style={ {color: 'var(--accent-1000'} }>@inch_support</a>
-			</p>
+			<Task status={true} taskId={1} icon="telegram" title="CIS Channel" description="lalalalallalalalal" link="https;//t.me/inch_ton_cis" award={200} />
 		</div>
 	)
 }
