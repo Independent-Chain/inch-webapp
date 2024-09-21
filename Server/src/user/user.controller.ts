@@ -26,7 +26,7 @@ export class UserController {
 
   @UseGuards(AuthGuard('jwt'))
   @Get('locale/:userId')
-  async getLocale(@Param('userId') userId: number, @Query('locale') locale: string) {
+  async getLocaleHandler(@Param('userId') userId: number, @Query('locale') locale: string) {
     return await this.userService.changeLocale(userId, locale)
   }
 }

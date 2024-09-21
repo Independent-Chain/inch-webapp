@@ -42,7 +42,7 @@ model tasks {
 }
 
 model users_tasks_data {
-  id            BigInt @unique
+  id            BigInt   @unique
   user_id       BigInt
   task_id       Int
   complete_time DateTime @db.Timestamptz(6)

@@ -2,7 +2,7 @@
 // Production: https://inch-app.ru/api
 
 const apiConfig = {
-	API_DOMAIN: 'https://inch-app.ru/api'
+	API_DOMAIN: 'http://localhost:3000/api'
 }
 
 export default apiConfig;
