@@ -7,9 +7,8 @@ export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
   @UseGuards(AuthGuard('jwt'))
-  @Get('tasks')
+  @Get('all')
   async getTasksHandler() {
     return await this.tasksService.getTasks()
   }
-
 }
