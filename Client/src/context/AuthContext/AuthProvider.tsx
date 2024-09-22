@@ -12,6 +12,7 @@ interface AuthContextType {
 interface ContextDataType {
 	metaData?: object;
 	appData?: object;
+	tasksData?: object;
 }
 interface ComponentProps {
 	children: ReactNode;
@@ -35,8 +36,10 @@ export const AuthProvider = ({ children }: ComponentProps): JSX.Element => {
 
 	const updateContextData = (newData: any) => {
 		setContextData(prevContext => ({
+			...prevContext,
 			metaData: { ...prevContext.metaData, ...newData.metaData },
-			appData: { ...prevContext.appData, ...newData.appData }
+			appData: { ...prevContext.appData, ...newData.appData },
+			tasksData: { ...prevContext.tasksData, ...newData.tasksData }
 		}));
 	}
 
