@@ -43,7 +43,7 @@
 	"tasks": {
 		"headline": "Tasks",
 		"labels": {
-			"nc": "Not completed",
+			"nc": "Available",
 			"c": "Completed"
 		},
 		"buttons": {
