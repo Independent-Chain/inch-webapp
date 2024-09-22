@@ -70,7 +70,7 @@
 		  "not_upgraded": "- level not upgraded"
 	   },
 		 "tasks": {
-			"c": "Task successfully completed",
+			"c": "Task successfully completed. Accrued",
 			"nc": "Task not completed"
 		 },
 	   "translated": "Now the application will be in English"

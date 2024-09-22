@@ -46,7 +46,7 @@ const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
 		if (buttonText === localization.tasks.buttons.claim) {
 			const lcl = localization.notifications;
 			claimAward().then(result => {
-				showNotification("success", lcl.success, lcl.tasks.c)
+				showNotification("success", lcl.success, `${lcl.tasks.c} ${taskData.award} tINCH`)
 			}).catch(error => {
 				showNotification("error", lcl.error, lcl.tasks.nc)
 				console.log(error)
