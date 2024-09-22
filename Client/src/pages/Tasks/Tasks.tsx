@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
+import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
 
 // Custom components;
 import Loading from '../../components/Loading/Loading.tsx';
@@ -21,6 +22,7 @@ const Tasks = ({}: ComponentProps): JSX.Element => {
 	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
 
 	const { webApp, token, contextData } = useAuth();
+	const { localization } = useLocalization();
 
 	const loadTasks = async () => {
 		try {
@@ -44,7 +46,7 @@ const Tasks = ({}: ComponentProps): JSX.Element => {
 		<div className="page" id="tasks">
 			<TasksList />
 			<p className="tasks__information">
-				На данный момент мы открыты для предложений. Для сотрудничества с Independent Chain свяжитесь с поддержкой проекта: <a href="https://t.me/inch_support" style={{color: 'var(--accent-1000'}}>@inch_support</a>
+				{ localization.tasks.description }<a href="https://t.me/inch_support" style={{color: 'var(--accent-1000'}}>@inch_support</a>
 			</p>
 		</div>
 	)
