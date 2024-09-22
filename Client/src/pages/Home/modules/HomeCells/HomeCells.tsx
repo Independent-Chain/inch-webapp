@@ -23,7 +23,8 @@ const HomeCells = ({ appData }: ComponentProps): JSX.Element => {
 		<div className="home-cells">
 			<Cell 
 				subhead={ localization.home.balance.subhead } 
-				title={ `$${appData.balance.toLocaleString('en-US')}` } 
+				title={ `${appData.balance.toLocaleString('en-US')}` } 
+				titleIcon={<img src="/coin.png" alt="" style={{width: '2vh', marginRight: '4px'}} />}
 				description={ localization.home.balance.description }/>
 			<Cell 
 				subhead={ localization.home.booster.subhead }  
