@@ -1,14 +1,17 @@
 import axios from 'axios';
 import apiConfig from './api.config.js';
 
-export const getTasks = async (token, webApp) => {
-	const userId = webApp.initDataUnsafe.user.id;
+export const completeTask = async (token, webApp, task_id) => {
 	const options = {
-		method: 'GET',
-		url: `${apiConfig.API_DOMAIN}/tasks/all/${userId}`,
+		method: 'POST',
+		url: `${apiConfig.API_DOMAIN}/tasks/complete`,
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`,
+		},
+		data: { 
+			user_id: webApp.initDataUnsafe.user.id,
+			task_id: task_id,
 		}
 	};
 	try {
