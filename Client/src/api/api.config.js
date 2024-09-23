@@ -1,7 +1,7 @@
 // Develop: http://localhost:3000/api
 // Production: https://inch-app.ru/api
 
-const mode = 'dev';
+const mode = 'build';
 
 const configApi = () => {
 	if (mode === 'build') {
