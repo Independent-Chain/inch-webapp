@@ -1,7 +1,8 @@
 import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 // Custom API;
-import { createToken } from '../../api/api.create-token.js';
+import { getToken } from '../../api/api.create-token.js';
 
 interface AuthContextType {
 	webApp: { [key: string]: any };
@@ -22,13 +23,14 @@ export const AuthContext = createContext<AuthContextType | null>(null)
 
 export const AuthProvider = ({ children }: ComponentProps): JSX.Element => {
 	// @ts-ignore
-	const webApp = window.Telegram.WebApp
-	const userId = webApp.initDataUnsafe.user.id
+	const webApp = window.Telegram.WebApp;
+	const userId = webApp.initDataUnsafe.user.id;
+	const { initDataRaw } = retrieveLaunchParams();
 
 	const [token, setToken] = useState<string>('')
 	const [contextData, setContextData] = useState<ContextDataType>({})
 
-	createToken(userId).then(response => {
+	getToken(userId, initDataRaw).then(response => {
 		setToken(response)
 	}).catch(error => {
 		throw error
