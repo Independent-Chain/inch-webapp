@@ -11,7 +11,6 @@ import { getUser } from '../../../../api/api.get-user.js';
 
 // Custom components;
 import Button from '../../../../ui/Button/Button.tsx';
-import Divider from '../../../../ui/Divider/Divider.tsx';
 
 // Included styles;
 import './SingleTask.scss';
@@ -47,7 +46,7 @@ const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
 		if (buttonText === localization.tasks.buttons.claim) {
 			const lcl = localization.notifications;
 			claimAward().then(result => {
-				showNotification("success", lcl.success, lcl.tasks.c)
+				showNotification("success", lcl.success, `${lcl.tasks.c} ${taskData.award} tINCH`)
 			}).catch(error => {
 				showNotification("error", lcl.error, lcl.tasks.nc)
 				console.log(error)
@@ -80,27 +79,25 @@ const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
 
 	return (
 		<div className="task">
-			<div className="task__head">
-				<img className="task__icon" src={`/public/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
-				<div className="task__body">
-					<p className="task__name">{ taskData.name }{ 
-						completed ? 
-							<span className="completed">{ localization.tasks.labels.c }</span> : 
-							<span className="not-completed">{ localization.tasks.labels.nc }</span>
-					}</p>
-					<p className="task__award">+{ taskData.award } tINCH</p>
-				</div>
-				<Button
-					disabled={ completed }
-					mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
-					size="medium"
-					haptic={ ["impact", "soft"] }
-					style={ {margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh'} }
-					onClick={ () => !completed && buttonAction() }
-				>
-					{ buttonText }
-				</Button>
+			<img className="task__icon" src={`/public/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
+			<div className="task__body">
+				<p className="task__name">{ taskData.name }{ 
+					completed ? 
+						<span className="completed">{ localization.tasks.labels.c }</span> : 
+						<span className="not-completed">{ localization.tasks.labels.nc }</span>
+				}</p>
+				<p className="task__award">+{ taskData.award } tINCH</p>
 			</div>
+			<Button
+				disabled={ completed }
+				mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
+				size="medium"
+				haptic={ ["impact", "soft"] }
+				style={ {margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh'} }
+				onClick={ () => !completed && buttonAction() }
+			>
+				{ buttonText }
+			</Button>
 		</div>
 	)
 }
