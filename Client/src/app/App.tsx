@@ -61,7 +61,7 @@ const App = (): JSX.Element => {
           updateContextData(response);
           updateLocalization(response.appData.locale);
           setTimeout(() => {
-            setLoadingStatus(!debugMode && device !== 'mobile' ? true : false);
+            setLoadingStatus(device !== 'desktop' || debugMode ? false : true);
           }, debugMode ? 1 : 4000);
         } catch (error) {
           console.error(error);
@@ -78,10 +78,10 @@ const App = (): JSX.Element => {
     if (debugMode) {
       return <Loading text="Debugging loading" />;
     }
-    if (device === 'desktop') {
+    if (!debugMode && device === 'desktop') {
       return <DesktopSplashScreen />;
     }
-    return newUser ? <StepByStep loading={ setLoadingStatus } /> : <SplashScreen />;
+    return newUser ? <StepByStep loading={ setLoadingStatus} /> : <SplashScreen />;
   };
 
   if (loadingStatus) {
