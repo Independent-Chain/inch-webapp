@@ -28,57 +28,55 @@ import NavigationPanel from '../modules/NavigationPanel/NavigationPanel.tsx';
 
 // Included styles;
 import '../main.scss';
+import { configAppMode } from './helpers/configAppMode.js';
 
 const App = (): JSX.Element => {
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
-  const [newUser, setNewUser] = useState(false);
-  const device: string = 'mobile'; //detectDevice();
+  const [newUser, setNewUser] = useState<boolean>(false);
+
+  const [device, setDevice] = useState<string>('');
+  const [debug, setDebug] = useState<boolean>(false)
   
   const { setHeaderColor } = useThemeParams();
   const { token, webApp, updateContextData } = useAuth();
   const { updateLocalization } = useLocalization();
 
+  // @ts-ignore
   setHeaderColor('rgb(14, 14, 14)');
   webApp.expand();
 
-  const [debug, debugToken] = webApp.initDataUnsafe.start_param ? webApp.initDataUnsafe.start_param.split('_') : [false, ''];
-  // @ts-ignore
-  const debugMode = debug === 'debug' && debugToken === import.meta.env.VITE_DEBUG_PASSWORD;
-
-  if (debugMode) {
-    import('eruda').then(eruda => eruda.default.init());
+  const initializeUser = async () => {
+    try {
+      const response = await API_USER_CREATE(token, webApp);
+      setNewUser(true);
+      updateContextData(response);
+    } catch (error) {
+      try {
+        const response = await API_USER_GET(token, webApp);
+        updateContextData(response);
+        updateLocalization(response.appData.locale);
+        setTimeout(() => {
+          setLoadingStatus(device !== 'desktop' ? false : true);
+        }, debug ? 1 : 4000);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 
   useEffect(() => {
-    const initializeUser = async () => {
-      try {
-        const response = await API_USER_CREATE(token, webApp);
-        setNewUser(true);
-        updateContextData(response);
-      } catch (error) {
-        try {
-          const response = await API_USER_GET(token, webApp);
-          updateContextData(response);
-          updateLocalization(response.appData.locale);
-          setTimeout(() => {
-            setLoadingStatus(device !== 'desktop' || debugMode ? false : true);
-          }, debugMode ? 1 : 4000);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
+    configAppMode(debug, setDebug, setDevice);
 
     if (token) {
       initializeUser();
     }
-  }, [token]);
+  }, [token, debug, device]);
 
   const renderSplashScreen = () => {
-    if (debugMode) {
+    if (debug) {
       return <Loading text="Debugging loading" />;
     }
-    if (!debugMode && device === 'desktop') {
+    if (!debug && device === 'desktop') {
       return <DesktopSplashScreen />;
     }
     return newUser ? <StepByStep loading={ setLoadingStatus} /> : <SplashScreen />;

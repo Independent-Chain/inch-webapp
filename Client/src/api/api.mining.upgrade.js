@@ -1,11 +1,11 @@
 import axios from 'axios';
-import apiConfig from './api.config.js';
+import API_CONFIG from './api.config.js';
 
 export const API_MINING_UPGRADE = async (token, webApp, device) => {
 	const userId = webApp.initDataUnsafe.user.id
 	const options = {
 		method: 'GET',
-		url: `${apiConfig.API_DOMAIN}/mining/upgrade/${device}/${userId}`,
+		url: `${API_CONFIG.API_DOMAIN}/mining/upgrade/${device}/${userId}`,
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`,

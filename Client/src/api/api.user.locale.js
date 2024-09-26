@@ -1,11 +1,11 @@
 import axios from 'axios';
-import apiConfig from './api.config.js';
+import API_CONFIG from './api.config.js';
 
 export const API_USER_LOCALE = async (token, webApp, appData) => {
 	const userId = webApp.initDataUnsafe.user.id
 	const options = {
 		method: 'GET',
-		url: `${apiConfig.API_DOMAIN}/user/locale/${userId}`,
+		url: `${API_CONFIG.API_DOMAIN}/user/locale/${userId}`,
 		params: {locale: appData.locale},
 		headers: {
 			'Content-Type': 'application/json',
