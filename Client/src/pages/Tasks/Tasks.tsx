@@ -28,9 +28,11 @@ const Tasks = ({}: ComponentProps): JSX.Element => {
 		try {
 			const response = await API_TASKS_ALL(token, webApp);
 			contextData.tasks = response;
-			setLoadingStatus(false)
+			setTimeout(() => {
+				setLoadingStatus(false);
+			}, 1500)
 		} catch(error) {
-			console.log(error)
+			console.log(error);
 		}
 	}
 
@@ -39,7 +41,7 @@ const Tasks = ({}: ComponentProps): JSX.Element => {
   }, [token]);
 
 	if (loadingStatus) {
-		return <Loading text="Loading tasks" />
+		return <Loading />
 	}
 
 	return (

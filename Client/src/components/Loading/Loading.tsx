@@ -8,7 +8,8 @@ interface ComponentProps {
 const Loading = ({ text }: ComponentProps): JSX.Element => {
 	return (
 		<div className="loading">
-			<p className="loading-text">{ text || 'Loading' }</p>
+			<p className="loading-text">{ text }</p>
+			<span className="loader"></span>
 		</div>
 	)
 }
