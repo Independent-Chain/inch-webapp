@@ -1,4 +1,4 @@
-export const configAppMode = (debug, setDebug, setDevice) => {
+export const configureLaunch = (debug, setDebug, setDevice) => {
 	const detectDevice = () => {
 		const userAgent = navigator.userAgent;
 	

@@ -11,7 +11,7 @@ import { API_USER_CREATE } from '../api/api.user.create.js';
 import { API_USER_GET } from '../api/api.user.get.js';
 
 // Custom helpers;
-import { configAppMode } from './helpers/configAppMode.js';
+import { configureLaunch } from './helpers/configureLaunch.js';
 
 // Custom components;
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
@@ -63,23 +63,19 @@ const App = (): JSX.Element => {
     }
   }
 
+  const renderSplashScreen = () => {
+    if (debug) { return <Loading text="Debugging loading" /> }
+    if (!debug && device === 'desktop') { return <DesktopSplashScreen /> }
+    return newUser ? <StepByStep loading={ setLoadingStatus} /> : <SplashScreen />;
+  };
+
   useEffect(() => {
-    configAppMode(debug, setDebug, setDevice);
+    configureLaunch(debug, setDebug, setDevice);
 
     if (token) {
       initializeUser();
     }
   }, [token, debug, device]);
-
-  const renderSplashScreen = () => {
-    if (debug) {
-      return <Loading text="Debugging loading" />;
-    }
-    if (!debug && device === 'desktop') {
-      return <DesktopSplashScreen />;
-    }
-    return newUser ? <StepByStep loading={ setLoadingStatus} /> : <SplashScreen />;
-  };
 
   if (loadingStatus) {
     return renderSplashScreen();
