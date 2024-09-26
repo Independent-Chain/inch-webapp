@@ -48,6 +48,11 @@ span {
 		color: var(--cell-subhead-color);
 	}
 	&.cell__title {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		
 		font-family: var(--font);
 		font-size: 2vh;
 		color: var(--cell-title-color);

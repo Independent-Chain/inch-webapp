@@ -42,14 +42,22 @@
 
 	"tasks": {
 		"headline": "Tasks",
-		"title": "Will be available soon",
-		"cooperation": "At the moment, we are open to suggestions. To cooperate with the Independent Chain, contact the project support:  "
+		"labels": {
+			"nc": "Available",
+			"c": "Completed"
+		},
+		"buttons": {
+			"start": "Start",
+			"claim": "Claim"
+		},
+		"description": "At the moment, we are open to suggestions. To cooperate with the Independent Chain, contact the project support: "
 	},
 
 	"profile": {
 		"headline": "Profile",
 		"invite_button": "Invite friend",
 		"friends": "friends",
+		"invite": "Become a part of the Independent Chain history with me ⚡️\n\n🇬🇧 Channel: @inch_ton\n🇷🇺 CIS Channel: @inch_ton_cis\n💬 Chat: @inch_ton_chat",
 		"description": "Invite friends and get 100 $tINCH for every invited friend. In the future, it will be possible to create your own teams. Start building your community now.",
 		"honor_roll_description": "Visit the honor board to see everyone who participated in the creation of this app"
 	},
@@ -61,6 +69,10 @@
 		  "upgraded": "- level upgraded",
 		  "not_upgraded": "- level not upgraded"
 	   },
+		 "tasks": {
+			"c": "Task successfully completed. Accrued",
+			"nc": "Task not completed"
+		 },
 	   "translated": "Now the application will be in English"
 	},
 

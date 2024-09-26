@@ -1,8 +1,13 @@
-// Develop: http://localhost:3000/api
-// Production: https://inch-app.ru/api
+const mode = import.meta.env.VITE_LAUNCH_MODE;
 
-const apiConfig = {
-	API_DOMAIN: 'https://inch-app.ru/api'
+const configure = (mode) => {
+	if (mode === 'BUILD') {
+		return { API_DOMAIN: import.meta.env.VITE_BUILD_DOMAIN }
+	} else if (mode === 'DEVELOP') {
+		return { API_DOMAIN: import.meta.env.VITE_DEVELOP_DOMAIN }
+	}
 }
 
-export default apiConfig;
+const API_CONFIG = configure(mode);
+
+export default API_CONFIG;

@@ -6,7 +6,7 @@ import { useLocalization } from '../../context/LocaleContext/LocalizationProvide
 import { useNotification } from '../../context/NotificationContext/NotificationProvider.tsx';
 
 // Custom helpers;
-import { switchLocale } from '../../api/api.switch-locale.js';
+import { API_USER_LOCALE } from '../../api/api.user.locale.js';
 
 // Custom components;
 import Button from '../../ui/Button/Button.tsx';
@@ -28,7 +28,7 @@ const Header = ({ }: ComponentProps): JSX.Element => {
 	const { showNotification } = useNotification()
 
 	const translateApp = () => {
-		switchLocale(token, webApp, contextData.appData).then(responseData => {
+		API_USER_LOCALE(token, webApp, contextData.appData).then(responseData => {
 			updateContextData({ metaData: responseData.metaData, appData: responseData.appData })
 			updateLocalization(responseData.appData.locale)
 		}).catch(error => {

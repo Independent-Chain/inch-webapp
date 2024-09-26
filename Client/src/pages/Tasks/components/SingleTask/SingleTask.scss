@@ -1,0 +1,69 @@
+:root {
+	--task-horizontal-padding: 4vw;
+	--task-vertical-padding: 2vh;
+	--task-radius: 14px;
+}
+
+div.task {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+	gap: 16px;
+
+	padding: var(--task-vertical-padding) var(--task-horizontal-padding);
+
+	border-radius: var(--task-radius);
+
+	background-color: var(--background-900);
+
+	img.task__icon {
+		width: 4vh;
+
+		filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(228deg) brightness(102%) contrast(107%);
+	}
+
+	div.task__body {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		flex-grow: 1;
+
+		font-family: var(--font);
+
+		p.task__name {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+
+			font-size: 2.3vh;
+			color: var(--text-1000);
+
+			span {
+				margin-left: 8px;
+				padding: 0.4vh 2vw;
+
+				font-size: 1.4vh;
+				border-radius: 100px;
+
+				&.completed {
+					color: var(--accent-1000);
+					border: 1px solid var(--accent-1000);
+				}
+
+				&.not-completed {
+					color: rgb(235, 200, 147);
+
+					border: 1px solid rgb(235, 200, 147);
+				}
+			}
+		}
+		
+		p.task__award {
+			font-size: 1.7vh;
+			color: var(--text-500);
+		}
+	}
+}

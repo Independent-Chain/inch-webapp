@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_DEVELOP_URL") // DATABASE_DEVELOP_URL || DATABASE_BUILD_URL
 }
 
 model users_app_data {
@@ -29,4 +29,21 @@ model users_meta_data {
   is_premium         Boolean?
   allows_write_to_pm Boolean?
   photo_url          String?
+}
+
+model tasks {
+  task_id     Int      @id @default(autoincrement())
+  status      Boolean? @default(true)
+  icon        String
+  name        String
+  description String
+  link        String
+  award       Int
+}
+
+model users_tasks_data {
+  id            BigInt   @id @default(autoincrement())
+  user_id       BigInt
+  task_id       Int
+  complete_time DateTime @db.Timestamptz(6)
 }

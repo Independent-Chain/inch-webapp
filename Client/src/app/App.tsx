@@ -7,11 +7,11 @@ import { useAuth } from '../context/AuthContext/AuthProvider.tsx';
 import { useLocalization } from '../context/LocaleContext/LocalizationProvider.tsx';
 
 // Custom API;
-import { createUser } from '../api/api.create-user.js';
-import { getUser } from '../api/api.get-user.js';
+import { API_USER_CREATE } from '../api/api.user.create.js';
+import { API_USER_GET } from '../api/api.user.get.js';
 
 // Custom helpers;
-import { detectDevice } from './helpers/detectDevice.js';
+import { configureLaunch } from './helpers/configureLaunch.js';
 
 // Custom components;
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
@@ -31,58 +31,51 @@ import '../main.scss';
 
 const App = (): JSX.Element => {
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
-  const [newUser, setNewUser] = useState(false);
-  const device: string = detectDevice();
+  const [newUser, setNewUser] = useState<boolean>(false);
+
+  const [device, setDevice] = useState<string>('');
+  const [debug, setDebug] = useState<boolean>(false)
   
   const { setHeaderColor } = useThemeParams();
   const { token, webApp, updateContextData } = useAuth();
   const { updateLocalization } = useLocalization();
 
+  // @ts-ignore
   setHeaderColor('rgb(14, 14, 14)');
   webApp.expand();
 
-  const [debug, debugToken] = webApp.initDataUnsafe.start_param ? webApp.initDataUnsafe.start_param.split('_') : [false, ''];
-  // @ts-ignore
-  const debugMode = debug === 'debug' && debugToken === import.meta.env.VITE_DEBUG_PASSWORD;
-
-  if (debugMode) {
-    import('eruda').then(eruda => eruda.default.init());
+  const initializeUser = async () => {
+    try {
+      const response = await API_USER_CREATE(token, webApp);
+      setNewUser(true);
+      updateContextData(response);
+    } catch (error) {
+      try {
+        const response = await API_USER_GET(token, webApp);
+        updateContextData(response);
+        updateLocalization(response.appData.locale);
+        setTimeout(() => {
+          setLoadingStatus(device !== 'desktop' ? false : true);
+        }, debug ? 1 : 4000);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 
+  const renderSplashScreen = () => {
+    if (debug) { return <Loading text="Debugging loading" /> }
+    if (!debug && device === 'desktop') { return <DesktopSplashScreen /> }
+    return newUser ? <StepByStep loading={ setLoadingStatus} /> : <SplashScreen />;
+  };
+
   useEffect(() => {
-    const initializeUser = async () => {
-      try {
-        const response = await createUser(token, webApp);
-        setNewUser(true);
-        updateContextData(response);
-      } catch (error) {
-        try {
-          const response = await getUser(token, webApp);
-          updateContextData(response);
-          updateLocalization(response.appData.locale);
-          setTimeout(() => {
-            setLoadingStatus(!debugMode && device !== 'mobile' ? true : false);
-          }, debugMode ? 1 : 4000);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
+    configureLaunch(debug, setDebug, setDevice);
 
     if (token) {
       initializeUser();
     }
-  }, [token]);
-
-  const renderSplashScreen = () => {
-    if (debugMode) {
-      return <Loading text="Debugging loading" />;
-    }
-    if (device === 'desktop') {
-      return <DesktopSplashScreen />;
-    }
-    return newUser ? <StepByStep loading={ setLoadingStatus } /> : <SplashScreen />;
-  };
+  }, [token, debug, device]);
 
   if (loadingStatus) {
     return renderSplashScreen();

@@ -1,19 +1,29 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Independent Chain</title>
-    <link rel="preload" href="/qrCode.svg" as="image">
-    <link rel="preload" href="/steps/step0.png" as="image">
-    <link rel="preload" href="/steps/step1.png" as="image">
-    <link rel="preload" href="/steps/step2.png" as="image">
-    <link rel="preload" href="/steps/step3.png" as="image">
-    <link rel="preload" href="/steps/step4.png" as="image">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Independent Chain</title>
+
+      <!-- Preload images -->
+      <link rel="preload" href="/qrCode.svg" as="image">
+      <link rel="preload" href="/coin.png" as="image">
+      <link rel="preload" href="/tasks-icons/telegram.svg" as="image">
+      
+      <!-- Preload step images -->
+      <link rel="preload" href="/steps/step0.png" as="image">
+      <link rel="preload" href="/steps/step1.png" as="image">
+      <link rel="preload" href="/steps/step2.png" as="image">
+      <link rel="preload" href="/steps/step3.png" as="image">
+      <link rel="preload" href="/steps/step4.png" as="image">
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+      <div id="root"></div>
+      
+      <!-- Main script -->
+      <script type="module" src="/src/main.tsx"></script>
+      
+      <!-- Telegram Web App script -->
+      <script src="https://telegram.org/js/telegram-web-app.js"></script>
   </body>
 </html>

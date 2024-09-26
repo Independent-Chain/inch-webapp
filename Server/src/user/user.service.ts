@@ -51,14 +51,16 @@ export class UserService {
     async allUserData(userId: number) {
         const _metaData = await this.prisma.users_meta_data.findUnique({ where: { user_id: userId }})
         const _appData = await this.prisma.users_app_data.findUnique({ where: { user_id: userId }})
+        const _userTasks = await this.prisma.users_tasks_data.findMany({ where: { user_id: userId }})
 
         const metaData = convertBigIntToNumber(_metaData)
         const appData = {
             ...convertBigIntToNumber(_appData),
             last_claim_time: _appData.last_claim_time.toISOString(),
         }
+        const tasksData = convertBigIntToNumber(_userTasks)
 
-        return { metaData, appData }
+        return { metaData, appData, tasksData }
     }
 
     async changeLocale(userId: number, locale: string) {

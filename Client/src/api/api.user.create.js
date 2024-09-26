@@ -1,10 +1,10 @@
 import axios from 'axios';
-import apiConfig from './api.config.js';
+import API_CONFIG from './api.config.js';
 
-export const createUser = async (token, webApp) => {
+export const API_USER_CREATE = async (token, webApp) => {
 	const options = {
 		method: 'POST',
-		url: `${apiConfig.API_DOMAIN}/user/create`,
+		url: `${API_CONFIG.API_DOMAIN}/user/create`,
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`,

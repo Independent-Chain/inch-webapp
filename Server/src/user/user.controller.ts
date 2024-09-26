@@ -1,6 +1,7 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UserService } from './user.service';
+
 import { registrationDataDto } from './dto/dto.registrationDataDto';
 
 @Controller('user')
@@ -26,7 +27,7 @@ export class UserController {
 
   @UseGuards(AuthGuard('jwt'))
   @Get('locale/:userId')
-  async getLocale(@Param('userId') userId: number, @Query('locale') locale: string) {
+  async getLocaleHandler(@Param('userId') userId: number, @Query('locale') locale: string) {
     return await this.userService.changeLocale(userId, locale)
   }
 }
