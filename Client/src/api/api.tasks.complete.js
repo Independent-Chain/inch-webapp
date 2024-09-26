@@ -1,10 +1,10 @@
 import axios from 'axios';
-import apiConfig from './api.config.js';
+import API_CONFIG from './api.config.js';
 
 export const API_TASKS_COMPLETE = async (token, webApp, task_id) => {
 	const options = {
 		method: 'POST',
-		url: `${apiConfig.API_DOMAIN}/tasks/complete`,
+		url: `${API_CONFIG.API_DOMAIN}/tasks/complete`,
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`,
