@@ -11,7 +11,7 @@ import { API_USER_CREATE } from '../api/api.user.create.js';
 import { API_USER_GET } from '../api/api.user.get.js';
 
 // Custom helpers;
-import { detectDevice } from './helpers/detectDevice.js';
+import { configAppMode } from './helpers/configAppMode.js';
 
 // Custom components;
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
@@ -28,7 +28,6 @@ import NavigationPanel from '../modules/NavigationPanel/NavigationPanel.tsx';
 
 // Included styles;
 import '../main.scss';
-import { configAppMode } from './helpers/configAppMode.js';
 
 const App = (): JSX.Element => {
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
