@@ -1,7 +1,7 @@
 import axios from 'axios';
 import apiConfig from './api.config.js';
 
-export const getToken = async (userId, initData) => {
+export const API_AUTH_TOKEN = async (userId, initData) => {
 	const options = {
 		method: 'POST',
 		url: `${apiConfig.API_DOMAIN}/auth/token`,

@@ -1,9 +1,7 @@
 // Develop: http://localhost:3000/api
 // Production: https://inch-app.ru/api
 
-const mode = 'build';
-
-const configApi = () => {
+const configApi = (mode = 'dev') => {
 	if (mode === 'build') {
 		return { API_DOMAIN: 'https://inch-app.ru/api' }
 	} else if (mode === 'dev') {

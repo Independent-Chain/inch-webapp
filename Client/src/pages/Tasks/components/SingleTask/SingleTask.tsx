@@ -6,8 +6,8 @@ import { useLocalization } from '../../../../context/LocaleContext/LocalizationP
 import { useNotification } from '../../../../context/NotificationContext/NotificationProvider.tsx';
 
 // Custom API;
-import { completeTask } from '../../../../api/api.complete-task.js';
-import { getUser } from '../../../../api/api.get-user.js';
+import { API_TASKS_COMPLETE } from '../../../../api/api.tasks.complete.js';
+import { API_USER_GET } from '../../../../api/api.user.get.js';
 
 // Custom components;
 import Button from '../../../../ui/Button/Button.tsx';
@@ -57,11 +57,11 @@ const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
 	const claimAward = async () => {
 		try {
 			// Get boolean response from server;
-			const completed = await completeTask(token, webApp, taskData.task_id);
+			const completed = await API_TASKS_COMPLETE(token, webApp, taskData.task_id);
 			if (completed) {
 				try {
 					// Update user data in contextData;
-					const newContextData = await getUser(token, webApp);
+					const newContextData = await API_USER_GET(token, webApp);
 					updateContextData(newContextData);
 				} catch(error) {
 					console.log(error)

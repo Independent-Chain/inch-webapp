@@ -11,8 +11,8 @@ import HorizontalLayout from '../../../../ui/Layout/HorizontalLayout/HorizontalL
 import VerticalLayout from '../../../../ui/Layout/VerticalLayout/VerticalLayout.tsx';
 
 // Custom API;
-import { upgradeDevice } from '../../../../api/api.upgrade-device.js';
-import { getClaim } from '../../../../api/api.claim.js';
+import { API_MINING_UPGRADE } from '../../../../api/api.mining.upgrade.js';
+import { API_MINING_CLAIM } from '../../../../api/api.mining.claim.js';
 
 // Icons;
 import IconCoin from '../../../../icons/IconCoin.tsx';
@@ -50,8 +50,8 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
   }
 
   const upgrade = () => {
-		upgradeDevice(token, webApp, deviceId).then(responseData => {
-			getClaim(token, webApp).then(responseData => {
+		API_MINING_UPGRADE(token, webApp, deviceId).then(responseData => {
+			API_MINING_CLAIM(token, webApp).then(responseData => {
         updateContextData({ metaData: responseData.metaData, appData: responseData.appData })
         successUpgradeNotification()
       }).catch(error => {

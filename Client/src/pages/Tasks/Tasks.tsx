@@ -10,7 +10,7 @@ import Loading from '../../components/Loading/Loading.tsx';
 import TasksList from './modules/TasksList/TasksList.tsx';
 
 // Custom API;
-import { getTasks } from '../../api/api.get-tasks.js';
+import { API_TASKS_ALL } from '../../api/api.tasks.all.js';
 
 // Included styles;
 import '../Page.scss';
@@ -26,7 +26,7 @@ const Tasks = ({}: ComponentProps): JSX.Element => {
 
 	const loadTasks = async () => {
 		try {
-			const response = await getTasks(token, webApp);
+			const response = await API_TASKS_ALL(token, webApp);
 			contextData.tasks = response;
 			setLoadingStatus(false)
 		} catch(error) {

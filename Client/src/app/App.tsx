@@ -7,8 +7,8 @@ import { useAuth } from '../context/AuthContext/AuthProvider.tsx';
 import { useLocalization } from '../context/LocaleContext/LocalizationProvider.tsx';
 
 // Custom API;
-import { createUser } from '../api/api.create-user.js';
-import { getUser } from '../api/api.get-user.js';
+import { API_USER_CREATE } from '../api/api.user.create.js';
+import { API_USER_GET } from '../api/api.user.get.js';
 
 // Custom helpers;
 import { detectDevice } from './helpers/detectDevice.js';
@@ -32,7 +32,7 @@ import '../main.scss';
 const App = (): JSX.Element => {
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
   const [newUser, setNewUser] = useState(false);
-  const device: string = detectDevice();
+  const device: string = 'mobile'; //detectDevice();
   
   const { setHeaderColor } = useThemeParams();
   const { token, webApp, updateContextData } = useAuth();
@@ -52,12 +52,12 @@ const App = (): JSX.Element => {
   useEffect(() => {
     const initializeUser = async () => {
       try {
-        const response = await createUser(token, webApp);
+        const response = await API_USER_CREATE(token, webApp);
         setNewUser(true);
         updateContextData(response);
       } catch (error) {
         try {
-          const response = await getUser(token, webApp);
+          const response = await API_USER_GET(token, webApp);
           updateContextData(response);
           updateLocalization(response.appData.locale);
           setTimeout(() => {

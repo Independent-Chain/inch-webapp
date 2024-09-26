@@ -1,7 +1,5 @@
 // @ts-nocheck
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 import { initUtils } from '@telegram-apps/sdk';
 import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
 import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
@@ -14,11 +12,9 @@ import VerticalLayout from '../../ui/Layout/VerticalLayout/VerticalLayout.tsx';
 import './Profile.scss';
 import '../page.scss';
 
-interface ComponentProps {
- //
-}
+interface ComponentProps {}
 
-const Profile = ({  }: ComponentProps): JSX.Element => {
+const Profile = ({}: ComponentProps): JSX.Element => {
 	const { contextData } = useAuth()
 	const { localization } = useLocalization()
 	const utils = initUtils()

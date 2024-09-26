@@ -9,7 +9,7 @@ import { useNotification } from '../../../../context/NotificationContext/Notific
 import Button from '../../../../ui/Button/Button.tsx';
 
 // Custom API;
-import { getClaim } from '../../../../api/api.claim.js';
+import { API_MINING_CLAIM } from '../../../../api/api.mining.claim.js';
 
 // Included styles;
 import './ActionButtons.scss';
@@ -26,7 +26,7 @@ const ActionButtons = ({}: ComponentProps): JSX.Element => {
 	const claim = () => {
 		setClaimButtonDisableStatus(true)
 		setTimeout(() => setClaimButtonDisableStatus(false), 5000) // Claim timeout;
-		getClaim(token, webApp).then(responseData => {
+		API_MINING_CLAIM(token, webApp).then(responseData => {
 			showNotification('success', localization.notifications.success, `+ ${responseData.loot.toLocaleString('en-US')} $tINCH`)
 			updateContextData({ metaData: responseData.metaData, appData: responseData.appData })
 		}).catch(error => {

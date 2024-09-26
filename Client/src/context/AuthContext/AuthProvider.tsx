@@ -2,7 +2,7 @@ import React, { ReactNode, createContext, useContext, useState } from 'react';
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 // Custom API;
-import { getToken } from '../../api/api.create-token.js';
+import { API_AUTH_TOKEN } from '../../api/api.auth.token.js';
 
 interface AuthContextType {
 	webApp: { [key: string]: any };
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: ComponentProps): JSX.Element => {
 	const [token, setToken] = useState<string>('')
 	const [contextData, setContextData] = useState<ContextDataType>({})
 
-	getToken(userId, initDataRaw).then(response => {
+	API_AUTH_TOKEN(userId, initDataRaw).then(response => {
 		setToken(response)
 	}).catch(error => {
 		throw error

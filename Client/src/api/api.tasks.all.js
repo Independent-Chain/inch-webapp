@@ -1,12 +1,11 @@
 import axios from 'axios';
 import apiConfig from './api.config.js';
 
-export const switchLocale = async (token, webApp, appData) => {
-	const userId = webApp.initDataUnsafe.user.id
+export const API_TASKS_ALL = async (token, webApp) => {
+	const userId = webApp.initDataUnsafe.user.id;
 	const options = {
 		method: 'GET',
-		url: `${apiConfig.API_DOMAIN}/user/locale/${userId}`,
-		params: {locale: appData.locale},
+		url: `${apiConfig.API_DOMAIN}/tasks/all/${userId}`,
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`,
