@@ -6,9 +6,9 @@ const calculateLoot = (lastClaimTime: string, reactor: number, storage: number) 
 	const timeDifference = currentTime.diff(lastTime, 'seconds').seconds;
 
 	if (timeDifference > storage * 3600) {
-		return reactor * 0.001 * storage * 3600
+		return Math.abs(reactor * 0.001 * storage * 3600);
 	} else {
-		return reactor * 0.001 * timeDifference
+		return Math.abs(reactor * 0.001 * timeDifference);
 	}
 }
 
