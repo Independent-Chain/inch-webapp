@@ -22,7 +22,7 @@ const Profile = ({}: ComponentProps): JSX.Element => {
 	// production invite link: https://t.me/inch_ton_bot/app
 	const invite = {
 		text: localization.profile.invite,
-		url: `https://t.me/pc_controller_f15_bot/inchapptesttest?startapp=${contextData.appData.user_id}`, 
+		url: `https://t.me/inch_ton_bot/app?startapp=${contextData.appData.user_id}`, 
 	}
 
 	return (
