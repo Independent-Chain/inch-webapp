@@ -40,7 +40,6 @@ const App = (): JSX.Element => {
   const { token, webApp, updateContextData } = useAuth();
   const { updateLocalization } = useLocalization();
 
-  // @ts-ignore
   setHeaderColor('rgb(14, 14, 14)');
   webApp.expand();
 
