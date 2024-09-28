@@ -30,7 +30,7 @@ const Tasks = ({}: ComponentProps): JSX.Element => {
 			contextData.tasks = response;
 			setTimeout(() => {
 				setLoadingStatus(false);
-			}, 1000)
+			}, 600)
 		} catch(error) {
 			console.log(error);
 		}
