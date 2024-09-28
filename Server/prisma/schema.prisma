@@ -4,20 +4,23 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL") // DATABASE_DEVELOP_URL || DATABASE_BUILD_URL
+  url      = env("DEVELOP_DATABASE_URL")
 }
 
 model users_app_data {
-  user_id         BigInt   @unique
-  premium         Boolean  @default(false)
-  uid             Int      @id @default(autoincrement())
-  inviter_id      BigInt?
-  friends         Int
-  balance         Float
-  last_claim_time DateTime @db.Timestamptz(6)
-  reactor         Int
-  storage         Int
-  locale          String   @default("en")
+  user_id           BigInt   @unique
+  premium           Boolean  @default(false)
+  uid               Int      @id @default(autoincrement())
+  inviter_id        BigInt?
+  friends           Int
+  balance           Float
+  last_claim_time   DateTime @db.Timestamptz(6)
+  reactor           Int
+  storage           Int
+  locale            String   @default("en")
+  last_daily_reward Int      @default(20)
+  last_entry        DateTime @default(now()) @db.Timestamptz(6)
+  streak_days       Int      @default(0)
 }
 
 model users_meta_data {
