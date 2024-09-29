@@ -20,6 +20,7 @@ div.daily-reward {
 	}
 
 	p.title {
+		text-align: center;
 		font-size: 5vh;
 		font-weight: 600;
 		color: var(--text-1000);
@@ -50,8 +51,12 @@ div.daily-reward {
 	}
 
 	p.daily-reward__tip, p.daily-reward__description {
+		margin-bottom: 14px;
+		padding: 0 20vw;
+
 		text-align: center;
-		font-size: 2.4vh;
+		font-size: 2.2vh;
+		font-weight: 500;
 		color: var(--text-500);
 	}
 }

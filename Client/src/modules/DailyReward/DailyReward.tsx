@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // Custom hooks
-import { useAuth } from '../../context/AuthContext/AuthProvider';
+import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
+import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
 
 // Custom API
 import { API_DAILY_TAKE } from '../../api/api.daily.take';
@@ -24,6 +25,9 @@ interface ComponentProps {
 
 const DailyReward = ({ dailyInformation, stateController }: ComponentProps): JSX.Element => {
   const { token, webApp, updateContextData } = useAuth();
+	const { localization } = useLocalization();
+
+	const lcl = localization.daily_reward;
 
   const handleRewardFetch = async () => {
     try {
@@ -38,16 +42,14 @@ const DailyReward = ({ dailyInformation, stateController }: ComponentProps): JSX
 
   const renderRewardContent = () => (
     <>
-      <p className="title">Your daily reward</p>
+      <p className="title">{ lcl.title }</p>
       <div className="reward">
         <img className="reward__image" src="/coin.webp" alt="Reward coin" />
         <p className="reward__value">+{dailyInformation.reward} tINCH</p>
       </div>
       <div>
-        <p className="daily-reward__description">
-          Come back tomorrow for check-in day {dailyInformation.streak_days + 1}
-        </p>
-        <p className="daily-reward__tip">Tip: Skipping a day resets your check-in</p>
+        <p className="daily-reward__description">{ lcl.description }</p>
+        <p className="daily-reward__tip">{ lcl.tip }</p>
       </div>
       <Button
         mode="white"
@@ -62,7 +64,7 @@ const DailyReward = ({ dailyInformation, stateController }: ComponentProps): JSX
         }}
         onClick={handleRewardFetch}
       >
-        Get reward
+        { lcl.button_text }
       </Button>
     </>
   );
