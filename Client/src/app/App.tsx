@@ -8,6 +8,7 @@ import { useLocalization } from '../context/LocaleContext/LocalizationProvider.t
 // Custom API;
 import { API_USER_CREATE } from '../api/api.user.create.js';
 import { API_USER_GET } from '../api/api.user.get.js';
+import { API_DAILY_CHECK } from '../api/api.daily.check.js';
 
 // Custom helpers;
 import { configureLaunch } from './helpers/configureLaunch.js';
@@ -17,6 +18,7 @@ import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
 import DesktopSplashScreen from '../components/DesktopSplashScreen/DesktopSplashScreen.tsx';
 import StepByStep from '../modules/StepByStep/StepByStep.tsx';
 import Loading from '../components/Loading/Loading.tsx';
+import DailyReward from '../modules/DailyReward/DailyReward.tsx';
 import Header from '../modules/Header/Header.tsx';
 import Home from '../pages/Home/Home.tsx';
 import Upgrades from '../pages/Upgrades/Upgrades.tsx';
@@ -31,6 +33,7 @@ import '../main.scss';
 const App = (): JSX.Element => {
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
   const [newUser, setNewUser] = useState<boolean>(false);
+  const [dailyRewardData, setDailyRewardData] = useState(null);
 
   const [device, setDevice] = useState<string>('');
   const [debug, setDebug] = useState<boolean>(false)
@@ -41,45 +44,54 @@ const App = (): JSX.Element => {
   webApp.setHeaderColor('#0e0e0e')
   webApp.expand();
 
-  const initializeUser = async () => {
+  const handleUserCreation = async () => {
     try {
       const response = await API_USER_CREATE(token, webApp);
       setNewUser(true);
       updateContextData(response);
     } catch (error) {
-      try {
-        const response = await API_USER_GET(token, webApp);
-        updateContextData(response);
-        updateLocalization(response.appData.locale);
-        setTimeout(() => {
-          setLoadingStatus(device !== 'desktop' ? false : true);
-        }, debug ? 1 : 4000);
-      } catch (error) {
-        console.error(error);
-      }
+      await handleExistingUser();
     }
-  }
+  };
+
+  const handleExistingUser = async () => {
+    try {
+      const response = await API_USER_GET(token, webApp);
+      updateContextData(response);
+      updateLocalization(response.appData.locale);
+      setTimeout(() => {
+        setLoadingStatus(device !== 'desktop' ? false : true);
+      }, debug ? 1 : 4000)
+      await fetchDailyReward();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchDailyReward = async () => {
+    try {
+      const response = await API_DAILY_CHECK(token, webApp);
+      setDailyRewardData(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const renderSplashScreen = () => {
-    if (debug) { return <Loading text="Debugging loading" /> }
-    if (!debug && device === 'desktop') { return <DesktopSplashScreen /> }
-    return newUser ? <StepByStep loading={ setLoadingStatus} /> : <SplashScreen />;
+    if (debug) return <Loading text="Debugging loading" />;
+    return device === 'desktop' ? <DesktopSplashScreen /> : (newUser ? <StepByStep loading={setLoadingStatus} /> : <SplashScreen />);
   };
 
   useEffect(() => {
     configureLaunch(debug, setDebug, setDevice);
-
-    if (token) {
-      initializeUser();
-    }
+    if (token) handleUserCreation();
   }, [token, debug, device]);
 
-  if (loadingStatus) {
-    return renderSplashScreen();
-  }
+  if (loadingStatus) return renderSplashScreen();
 
   return (
     <BrowserRouter>
+      { dailyRewardData && <DailyReward dailyInformation={ dailyRewardData } stateController={ setDailyRewardData } /> }
       <Header /> 
       <Routes>
         <Route index path='/' element={<Home />} />
