@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useThemeParams } from "@zakarliuka/react-telegram-web-tools";
 
 // Custom hooks;
 import { useAuth } from '../context/AuthContext/AuthProvider.tsx';
@@ -36,12 +35,10 @@ const App = (): JSX.Element => {
   const [device, setDevice] = useState<string>('');
   const [debug, setDebug] = useState<boolean>(false)
   
-  const { setHeaderColor } = useThemeParams();
   const { token, webApp, updateContextData } = useAuth();
   const { updateLocalization } = useLocalization();
 
-  // @ts-ignore
-  setHeaderColor('rgb(14, 14, 14)');
+  webApp.setHeaderColor('#0e0e0e')
   webApp.expand();
 
   const initializeUser = async () => {

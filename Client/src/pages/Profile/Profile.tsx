@@ -1,5 +1,5 @@
-// @ts-nocheck
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { initUtils } from '@telegram-apps/sdk';
 import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
 import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';

@@ -79,7 +79,7 @@ const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
 
 	return (
 		<div className="task">
-			<img className="task__icon" src={`/public/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
+			<img className="task__icon" src={`/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
 			<div className="task__body">
 				<p className="task__name">{ taskData.name }{ 
 					completed ? 
