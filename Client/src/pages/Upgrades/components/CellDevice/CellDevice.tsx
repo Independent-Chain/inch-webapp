@@ -1,13 +1,12 @@
 import React from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../../../context/AuthContext/AuthProvider.tsx';
-import { useLocalization } from '../../../../context/LocaleContext/LocalizationProvider.tsx';
-import { useNotification } from '../../../../context/NotificationContext/NotificationProvider.tsx';
+import { useAuth } from '../../../../providers/AuthProvider.tsx';
+import { useLocalization } from '../../../../providers/LocalizationProvider.tsx';
+import { useNotification } from '../../../../providers/NotificationProvider.tsx';
 
 // Custom components;
 import Button from '../../../../ui/Button/Button.tsx';
-import HorizontalLayout from '../../../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
 import VerticalLayout from '../../../../ui/Layout/VerticalLayout/VerticalLayout.tsx';
 
 // Custom API;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import API_CONFIG from './api.config.js';
+import API_CONFIG from '../config/config.api.js';
 
 export const API_MINING_UPGRADE = async (token, webApp, device) => {
 	const userId = webApp.initDataUnsafe.user.id

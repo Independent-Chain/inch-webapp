@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Custom hooks;
-import { useLocalization } from '../../../../context/LocaleContext/LocalizationProvider';
+import { useLocalization } from '../../../../providers/LocalizationProvider';
 
 // Custom components;
 import Cell from '../../../../ui/Cell/Cell';

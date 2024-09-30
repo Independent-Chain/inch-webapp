@@ -1,6 +1,9 @@
 import React from 'react';
-import { useLocalization } from '../../../../context/LocaleContext/LocalizationProvider';
 
+// Custom hooks;
+import { useLocalization } from '../../../../providers/LocalizationProvider';
+
+// Included styles;
 import './FriendsCounter.scss';
 
 interface ComponentProps {

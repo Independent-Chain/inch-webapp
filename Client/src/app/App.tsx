@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Custom hooks;
-import { useAuth } from '../context/AuthContext/AuthProvider.tsx';
-import { useLocalization } from '../context/LocaleContext/LocalizationProvider.tsx';
+import { useAuth } from '../providers/AuthProvider.tsx';
+import { useLocalization } from '../providers/LocalizationProvider.tsx';
 
 // Custom API;
 import { API_USER_CREATE } from '../api/api.user.create.js';
@@ -11,13 +11,13 @@ import { API_USER_GET } from '../api/api.user.get.js';
 import { API_DAILY_CHECK } from '../api/api.daily.check.js';
 
 // Custom helpers;
-import { configureLaunch } from './helpers/configureLaunch.js';
+import { configureLaunch } from '../config/config.launch.js';
 
 // Custom components;
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
 import DesktopSplashScreen from '../components/DesktopSplashScreen/DesktopSplashScreen.tsx';
 import StepByStep from '../modules/StepByStep/StepByStep.tsx';
-import Loading from '../components/Loading/Loading.tsx';
+import Loading from '../ui/Loading/Loading.tsx';
 import DailyReward from '../modules/DailyReward/DailyReward.tsx';
 import Header from '../modules/Header/Header.tsx';
 import Home from '../pages/Home/Home.tsx';

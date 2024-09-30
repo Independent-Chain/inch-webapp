@@ -1,10 +1,10 @@
 import React from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
+import { useAuth } from '../../providers/AuthProvider.tsx';
 
 // Custom modules;
-import Mining from './modules/Mining/Mining.tsx';
+import MiningCounter from './modules/MiningCounter/MiningCounter.tsx';
 import ActionButtons from './modules/ActionButtons/ActionButtons.tsx';
 import HomeCells from './modules/HomeCells/HomeCells.tsx';
 
@@ -16,7 +16,7 @@ const Home = ({}): JSX.Element => {
 
 	return (
 		<div className="page" id="home">
-			<Mining appData={contextData.appData} />
+			<MiningCounter appData={contextData.appData} />
 			<ActionButtons />
 			<HomeCells appData={contextData.appData} />
 		</div>

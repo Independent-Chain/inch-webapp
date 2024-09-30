@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Custom hooks
-import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
-import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
+import { useAuth } from '../../providers/AuthProvider.tsx';
+import { useLocalization } from '../../providers/LocalizationProvider.tsx'; 
 
 // Custom API
 import { API_DAILY_TAKE } from '../../api/api.daily.take';
