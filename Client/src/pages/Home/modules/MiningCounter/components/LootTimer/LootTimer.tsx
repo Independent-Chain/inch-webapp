@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Custom components;
-import HorizontalLayout from '../../../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
+import HorizontalLayout from '../../../../../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
 
 // Included styles;
 import './LootTimer.scss';

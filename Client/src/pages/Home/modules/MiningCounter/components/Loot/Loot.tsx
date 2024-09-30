@@ -3,7 +3,7 @@ import MotionNumber from 'motion-number';
 import { easeOut } from 'framer-motion';
 
 // Custom components;
-import HorizontalLayout from '../../../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
+import HorizontalLayout from '../../../../../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
 
 // Included styles;
 import './Loot.scss';

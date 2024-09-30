@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
 // Custom components;
-import Loot from '../../components/Loot/Loot.tsx';
-import LootTimer from '../../components/LootTimer/LootTimer.tsx';
+import Loot from './components/Loot/Loot.tsx';
+import LootTimer from './components/LootTimer/LootTimer.tsx';
 
 // Custom helpers;
-import calculateLoot from '../../helpers/calculateLoot.ts';
-import calculateLootTimer from '../../helpers/calculateLootTimer.ts';
+import calculateLoot from './helpers/calculateLoot.ts';
+import calculateLootTimer from './helpers/calculateLootTimer.ts';
 
 // Included styles;
-import './Mining.scss';
+import './MiningCounter.scss';
 
 interface appData {
 	[key: string]: any;
