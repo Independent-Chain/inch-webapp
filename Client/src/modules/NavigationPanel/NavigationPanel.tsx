@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Custom hooks;
-import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
+import { useLocalization } from '../../providers/LocalizationProvider.tsx';
 
 // Custom components;
 import NavigationElement from './NavigationElement/NavigationElement';

@@ -1,14 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { initUtils } from '@telegram-apps/sdk';
-import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
-import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
 
+//  Custom hooks;
+import { useAuth } from '../../providers/AuthProvider.tsx';
+import { useLocalization } from '../../providers/LocalizationProvider.tsx';
+
+// Custom components;
 import Button from '../../ui/Button/Button.tsx';
 import FriendsCounter from './components/FriendsCounter/FriendsCounter.tsx';
 import FriendsDescription from './components/FriendsDescription/FriendsDescription.tsx';
 import VerticalLayout from '../../ui/Layout/VerticalLayout/VerticalLayout.tsx';
 
+// Included styles;
 import './Profile.scss';
 import '../page.scss';
 
@@ -19,7 +23,6 @@ const Profile = ({}: ComponentProps): JSX.Element => {
 	const { localization } = useLocalization()
 	const utils = initUtils()
 
-	// production invite link: https://t.me/inch_ton_bot/app
 	const invite = {
 		text: localization.profile.invite,
 		url: `https://t.me/inch_ton_bot/app?startapp=${contextData.appData.user_id}`, 

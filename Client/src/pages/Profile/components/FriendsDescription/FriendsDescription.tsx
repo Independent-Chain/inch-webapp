@@ -1,13 +1,14 @@
 import React from 'react';
-import { useLocalization } from '../../../../context/LocaleContext/LocalizationProvider';
 
+// Custom hooks;
+import { useLocalization } from '../../../../providers/LocalizationProvider';
+
+// Included styles;
 import './FriendsDescription.scss';
 
-interface ComponentProps {
+interface ComponentProps {}
 
-}
-
-const FriendsDescription = ({  }: ComponentProps): JSX.Element => {
+const FriendsDescription = ({}: ComponentProps): JSX.Element => {
 	const { localization } = useLocalization()
 
 	return (

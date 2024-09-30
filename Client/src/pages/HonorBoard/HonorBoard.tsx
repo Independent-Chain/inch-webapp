@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Custom hooks;
-import { useLocalization } from '../../context/LocaleContext/LocalizationProvider';
+import { useLocalization } from '../../providers/LocalizationProvider';
 
 // Included styles;
 import '../Page.scss';

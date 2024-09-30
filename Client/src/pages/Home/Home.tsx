@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
+import { useAuth } from '../../providers/AuthProvider.tsx';
 
 // Custom modules;
 import Mining from './modules/Mining/Mining.tsx';

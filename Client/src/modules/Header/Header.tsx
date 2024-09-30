@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
-import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
-import { useNotification } from '../../context/NotificationContext/NotificationProvider.tsx';
+import { useAuth } from '../../providers/AuthProvider.tsx';
+import { useLocalization } from '../../providers/LocalizationProvider.tsx';
+import { useNotification } from '../../providers/NotificationProvider.tsx';
 
 // Custom helpers;
 import { API_USER_LOCALE } from '../../api/api.user.locale.js';
