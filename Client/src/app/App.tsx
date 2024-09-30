@@ -11,7 +11,7 @@ import { API_USER_GET } from '../api/api.user.get.js';
 import { API_DAILY_CHECK } from '../api/api.daily.check.js';
 
 // Custom helpers;
-import { configureLaunch } from './helpers/configureLaunch.js';
+import { configureLaunch } from '../config/config.launch.js';
 
 // Custom components;
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
