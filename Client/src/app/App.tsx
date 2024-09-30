@@ -14,8 +14,8 @@ import { API_DAILY_CHECK } from '../api/api.daily.check.js';
 import { configureLaunch } from '../config/config.launch.js';
 
 // Custom components;
-import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
-import DesktopSplashScreen from '../components/DesktopSplashScreen/DesktopSplashScreen.tsx';
+import MobileSplashScreen from '../ui/SplashScreen/MobileSplashScreen/MobileSplashScreen.tsx';
+import DesktopSplashScreen from '../ui/SplashScreen/DesktopSplashScreen/DesktopSplashScreen.tsx';
 import StepByStep from '../modules/StepByStep/StepByStep.tsx';
 import Loading from '../ui/Loading/Loading.tsx';
 import DailyReward from '../modules/DailyReward/DailyReward.tsx';
@@ -79,7 +79,7 @@ const App = (): JSX.Element => {
 
   const renderSplashScreen = () => {
     if (debug) return <Loading text="Debugging loading" />;
-    return device === 'desktop' ? <DesktopSplashScreen /> : (newUser ? <StepByStep loading={setLoadingStatus} /> : <SplashScreen />);
+    return device === 'desktop' ? <DesktopSplashScreen /> : (newUser ? <StepByStep loading={setLoadingStatus} /> : <MobileSplashScreen />);
   };
 
   useEffect(() => {

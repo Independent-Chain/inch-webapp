@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './SplashScreen.scss';
+
+// Included styles;
+import './MobileSplashScreen.scss';
 
 interface ComponentProps {
 
