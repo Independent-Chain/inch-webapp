@@ -17,7 +17,7 @@ import { configureLaunch } from '../config/config.launch.js';
 import SplashScreen from '../components/SplashScreen/SplashScreen.tsx';
 import DesktopSplashScreen from '../components/DesktopSplashScreen/DesktopSplashScreen.tsx';
 import StepByStep from '../modules/StepByStep/StepByStep.tsx';
-import Loading from '../components/Loading/Loading.tsx';
+import Loading from '../ui/Loading/Loading.tsx';
 import DailyReward from '../modules/DailyReward/DailyReward.tsx';
 import Header from '../modules/Header/Header.tsx';
 import Home from '../pages/Home/Home.tsx';

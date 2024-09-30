@@ -21,6 +21,7 @@ const SplashScreen = ({  }: ComponentProps): JSX.Element => {
 	}
 
 	useEffect(() => {
+    // @ts-ignore
     const timeouts: NodeJS.Timeout[] = []
     
     for (let i = 0; i < 40; i++) {

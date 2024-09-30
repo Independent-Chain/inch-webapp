@@ -6,7 +6,7 @@ import { useAuth } from '../../providers/AuthProvider.tsx';
 import { useLocalization } from '../../providers/LocalizationProvider.tsx'; 
 
 // Custom components;
-import Loading from '../../components/Loading/Loading.tsx';
+import Loading from '../../ui/Loading/Loading.tsx';
 import TasksList from './modules/TasksList/TasksList.tsx';
 
 // Custom API;
