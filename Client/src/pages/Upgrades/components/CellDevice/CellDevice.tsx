@@ -2,6 +2,7 @@ import React from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../../../providers/AuthProvider.tsx';
+import { useData } from '../../../../providers/DataProvider.tsx';
 import { useLocalization } from '../../../../providers/LocalizationProvider.tsx';
 import { useNotification } from '../../../../providers/NotificationProvider.tsx';
 
@@ -20,7 +21,6 @@ import IconParameter from '../../../../icons/IconParameter.tsx';
 
 // Included styles;
 import './CellDevice.scss';
-import { boolean } from '@telegram-apps/sdk';
 
 interface ComponentProps {
   deviceId: string;
@@ -32,7 +32,8 @@ interface ComponentProps {
 }
 
 const CellDevice = ({ deviceId, title, description, level, parameter, price }: ComponentProps): JSX.Element => {
-  const { webApp, token, contextData, updateContextData } = useAuth();
+  const { webApp, token } = useAuth();
+  const { contextData, updateDataContext } = useData();
   const { localization } = useLocalization();
   const { showNotification } = useNotification();
 
@@ -51,7 +52,7 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
   const upgrade = () => {
 		API_MINING_UPGRADE(token, webApp, deviceId).then(responseData => {
 			API_MINING_CLAIM(token, webApp).then(responseData => {
-        updateContextData({ metaData: responseData.metaData, appData: responseData.appData })
+        updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
         successUpgradeNotification()
       }).catch(error => {
         errorUpgradeNotification()

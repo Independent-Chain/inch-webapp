@@ -1,7 +1,7 @@
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 interface ContextType {
-	contextData: ContextDataType;
+	contextData: { [key: string]: any };
 	updateDataContext: (newData: any) => void;
 }
 

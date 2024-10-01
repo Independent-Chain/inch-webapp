@@ -8,7 +8,7 @@ import '../Page.scss';
 import './HonorBoard.scss';
 
 // Honor board;
-import honorBoard from './honor_board.json'
+import honorBoard from './data/honor_board.json';
 
 interface ComponentProps {}
 

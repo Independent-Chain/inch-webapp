@@ -17,19 +17,21 @@ import IconTranslate from '../../icons/IconTranslate.tsx';
 
 // Included styles;
 import './Header.scss';
+import { useData } from '../../providers/DataProvider.tsx';
 
 interface ComponentProps {}
 
 const Header = ({ }: ComponentProps): JSX.Element => {
 	const [isFirstRender, setIsFirstRender] = useState(true);
 
-	const { webApp, token, contextData, updateContextData } = useAuth()
-	const { localization, updateLocalization } = useLocalization()
-	const { showNotification } = useNotification()
+	const { webApp, token } = useAuth();
+	const { contextData, updateDataContext } = useData();
+	const { localization, updateLocalization } = useLocalization();
+	const { showNotification } = useNotification();
 
 	const translateApp = () => {
 		API_USER_LOCALE(token, webApp, contextData.appData).then(responseData => {
-			updateContextData({ metaData: responseData.metaData, appData: responseData.appData })
+			updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
 			updateLocalization(responseData.appData.locale)
 		}).catch(error => {
 			alert(error)

@@ -1,8 +1,8 @@
-// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../providers/AuthProvider.tsx';
+import { useData } from '../../providers/DataProvider.tsx';
 import { useLocalization } from '../../providers/LocalizationProvider.tsx'; 
 
 // Custom components;
@@ -21,7 +21,8 @@ interface ComponentProps {}
 const Tasks = ({}: ComponentProps): JSX.Element => {
 	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
 
-	const { webApp, token, contextData } = useAuth();
+	const { webApp, token } = useAuth();
+	const { contextData } = useData();
 	const { localization } = useLocalization();
 
 	const loadTasks = async () => {

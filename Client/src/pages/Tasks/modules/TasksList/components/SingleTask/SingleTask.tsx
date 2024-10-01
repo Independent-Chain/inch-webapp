@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../../../providers/AuthProvider.tsx';
-import { useLocalization } from '../../../../providers/LocalizationProvider.tsx';
-import { useNotification } from '../../../../providers/NotificationProvider.tsx';
+import { useAuth } from '../../../../../../providers/AuthProvider.tsx';
+import { useData } from '../../../../../../providers/DataProvider.tsx';
+import { useLocalization } from '../../../../../../providers/LocalizationProvider.tsx';
+import { useNotification } from '../../../../../../providers/NotificationProvider.tsx';
 
 // Custom API;
-import { API_TASKS_COMPLETE } from '../../../../api/api.tasks.complete.js';
-import { API_USER_GET } from '../../../../api/api.user.get.js';
+import { API_TASKS_COMPLETE } from '../../../../../../api/api.tasks.complete.js';
+import { API_USER_GET } from '../../../../../../api/api.user.get.js';
 
 // Custom components;
-import Button from '../../../../ui/Button/Button.tsx';
+import Button from '../../../../../../ui/Button/Button.tsx';
 
 // Included styles;
 import './SingleTask.scss';
@@ -35,7 +36,8 @@ const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
 
 	const [buttonText, setButtonText] = useState<string>(localization.tasks.buttons.start);
 
-	const { webApp, token, updateContextData } = useAuth();
+	const { webApp, token } = useAuth();
+	const { updateDataContext } = useData();
 	const { showNotification } = useNotification();
 
 	const buttonAction = async () => {
@@ -62,7 +64,7 @@ const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
 				try {
 					// Update user data in contextData;
 					const newContextData = await API_USER_GET(token, webApp);
-					updateContextData(newContextData);
+					updateDataContext(newContextData);
 				} catch(error) {
 					console.log(error)
 				}
