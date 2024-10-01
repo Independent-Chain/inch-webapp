@@ -2,6 +2,7 @@ import React from 'react';
 
 // Custom hooks
 import { useAuth } from '../../providers/AuthProvider.tsx';
+import { useData } from '../../providers/DataProvider.tsx';
 import { useLocalization } from '../../providers/LocalizationProvider.tsx'; 
 
 // Custom API
@@ -24,7 +25,8 @@ interface ComponentProps {
 }
 
 const DailyReward = ({ dailyInformation, stateController }: ComponentProps): JSX.Element => {
-  const { token, webApp, updateContextData } = useAuth();
+  const { token, webApp } = useAuth();
+  const { updateDataContext } = useData();
 	const { localization } = useLocalization();
 
 	const lcl = localization.daily_reward;
@@ -33,7 +35,7 @@ const DailyReward = ({ dailyInformation, stateController }: ComponentProps): JSX
     try {
       await API_DAILY_TAKE(token, webApp);
       const userData = await API_USER_GET(token, webApp);
-      updateContextData(userData);
+      updateDataContext(userData);
       stateController(null);
     } catch (error) {
       console.error("Error fetching reward or user data:", error);

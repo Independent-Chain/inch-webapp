@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../providers/AuthProvider.tsx';
+import { useData } from '../../providers/DataProvider.tsx';
 import { useLocalization } from '../../providers/LocalizationProvider.tsx';
 
 // Custom components;
@@ -14,11 +14,11 @@ import HorizontalLayout from '../../ui/Layout/HorizontalLayout/HorizontalLayout.
 interface ComponentProps {}
 
 const Upgrades = ({}: ComponentProps): JSX.Element => {
-	const { contextData } = useAuth()
-	const { localization } = useLocalization()
+	const { contextData } = useData();
+	const { localization } = useLocalization();
 
-	const reactorPrice = 150 * 2.2 ** (contextData.appData.reactor - 1)
-	const storagePrice = 75 * 2.2 ** (contextData.appData.storage - 1)
+	const reactorPrice = 150 * 2.2 ** (contextData.appData.reactor - 1);
+	const storagePrice = 75 * 2.2 ** (contextData.appData.storage - 1);
 
 	return (
 		<div className="page" id="upgrades">

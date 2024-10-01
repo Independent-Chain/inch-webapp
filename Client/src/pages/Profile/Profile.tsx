@@ -3,13 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { initUtils } from '@telegram-apps/sdk';
 
 //  Custom hooks;
-import { useAuth } from '../../providers/AuthProvider.tsx';
+import { useData } from '../../providers/DataProvider.tsx';
 import { useLocalization } from '../../providers/LocalizationProvider.tsx';
 
 // Custom components;
 import Button from '../../ui/Button/Button.tsx';
-import FriendsCounter from './components/FriendsCounter/FriendsCounter.tsx';
-import FriendsDescription from './components/FriendsDescription/FriendsDescription.tsx';
+import FriendsCounter from './modules/FriendsCounter/FriendsCounter.tsx';
+import FriendsDescription from './modules/FriendsDescription/FriendsDescription.tsx';
 import VerticalLayout from '../../ui/Layout/VerticalLayout/VerticalLayout.tsx';
 
 // Included styles;
@@ -19,9 +19,9 @@ import '../page.scss';
 interface ComponentProps {}
 
 const Profile = ({}: ComponentProps): JSX.Element => {
-	const { contextData } = useAuth()
-	const { localization } = useLocalization()
-	const utils = initUtils()
+	const { contextData } = useData();
+	const { localization } = useLocalization();
+	const utils = initUtils();
 
 	const invite = {
 		text: localization.profile.invite,

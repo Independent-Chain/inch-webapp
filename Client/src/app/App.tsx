@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Custom hooks;
 import { useAuth } from '../providers/AuthProvider.tsx';
+import { useData } from '../providers/DataProvider.tsx';
 import { useLocalization } from '../providers/LocalizationProvider.tsx';
 
 // Custom API;
@@ -38,7 +39,8 @@ const App = (): JSX.Element => {
   const [device, setDevice] = useState<string>('');
   const [debug, setDebug] = useState<boolean>(false)
   
-  const { token, webApp, updateContextData } = useAuth();
+  const { token, webApp } = useAuth();
+  const { updateDataContext } = useData();
   const { updateLocalization } = useLocalization();
 
   webApp.setHeaderColor('#0e0e0e')
@@ -48,7 +50,7 @@ const App = (): JSX.Element => {
     try {
       const response = await API_USER_CREATE(token, webApp);
       setNewUser(true);
-      updateContextData(response);
+      updateDataContext(response);
     } catch (error) {
       await handleExistingUser();
     }
@@ -57,7 +59,7 @@ const App = (): JSX.Element => {
   const handleExistingUser = async () => {
     try {
       const response = await API_USER_GET(token, webApp);
-      updateContextData(response);
+      updateDataContext(response);
       updateLocalization(response.appData.locale);
       setTimeout(() => {
         setLoadingStatus(device !== 'desktop' ? false : true);

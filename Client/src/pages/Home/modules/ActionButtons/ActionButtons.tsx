@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../../../providers/AuthProvider.tsx';
+import { useData } from '../../../../providers/DataProvider.tsx';
 import { useLocalization } from '../../../../providers/LocalizationProvider.tsx';
 import { useNotification } from '../../../../providers/NotificationProvider.tsx';
 
@@ -19,16 +20,17 @@ interface ComponentProps {}
 const ActionButtons = ({}: ComponentProps): JSX.Element => {
 	const [claimButtonDisableStatus, setClaimButtonDisableStatus] = useState(false)
 
-	const { token, webApp, updateContextData } = useAuth()
-	const { localization } = useLocalization()
-	const { showNotification } = useNotification()
+	const { token, webApp } = useAuth();
+	const { updateDataContext } = useData();
+	const { localization } = useLocalization();
+	const { showNotification } = useNotification();
 
 	const claim = () => {
 		setClaimButtonDisableStatus(true)
 		setTimeout(() => setClaimButtonDisableStatus(false), 5000) // Claim timeout;
 		API_MINING_CLAIM(token, webApp).then(responseData => {
 			showNotification('success', localization.notifications.success, `+ ${responseData.loot.toLocaleString('en-US')} $tINCH`)
-			updateContextData({ metaData: responseData.metaData, appData: responseData.appData })
+			updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
 		}).catch(error => {
 			alert(error) // Debug alert;
 		})
