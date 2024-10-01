@@ -7,14 +7,8 @@ import { API_AUTH_TOKEN } from '../api/api.auth.token.js';
 interface AuthContextType {
 	webApp: { [key: string]: any };
 	token: string | null;
-	contextData: { [key: string]: any };
-	updateContextData: (newData: any) => void;
 }
-interface ContextDataType {
-	metaData?: object;
-	appData?: object;
-	tasksData?: object;
-}
+
 interface ComponentProps {
 	children: ReactNode;
 }
@@ -28,7 +22,6 @@ export const AuthProvider = ({ children }: ComponentProps): JSX.Element => {
 	const { initDataRaw } = retrieveLaunchParams();
 
 	const [token, setToken] = useState<string>('')
-	const [contextData, setContextData] = useState<ContextDataType>({})
 
 	API_AUTH_TOKEN(userId, initDataRaw).then(response => {
 		setToken(response)
@@ -36,18 +29,9 @@ export const AuthProvider = ({ children }: ComponentProps): JSX.Element => {
 		throw error
 	})
 
-	const updateContextData = (newData: any) => {
-		setContextData(prevContext => ({
-			...prevContext,
-			metaData: { ...prevContext.metaData, ...newData.metaData },
-			appData: { ...prevContext.appData, ...newData.appData },
-			tasksData: { ...prevContext.tasksData, ...newData.tasksData }
-		}));
-	}
-
 	return (
-		<AuthContext.Provider value={{ webApp, token, contextData, updateContextData }}>
-			{children}
+		<AuthContext.Provider value={{ webApp, token }}>
+			{ children }
 		</AuthContext.Provider>
 	)
 }
