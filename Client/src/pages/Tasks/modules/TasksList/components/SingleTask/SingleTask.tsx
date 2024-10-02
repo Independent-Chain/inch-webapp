@@ -42,7 +42,7 @@ const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
 
 	const buttonAction = async () => {
 		if (buttonText === localization.tasks.buttons.start) {
-			webApp.openTelegramLink(taskData.link);
+			webApp.openLink(taskData.link);
 			setButtonText(localization.tasks.buttons.claim);
 		}
 		if (buttonText === localization.tasks.buttons.claim) {
