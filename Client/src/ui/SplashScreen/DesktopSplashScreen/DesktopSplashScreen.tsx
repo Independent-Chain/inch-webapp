@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Included styles;
 import './DesktopSplashScreen.scss';
 
 interface ComponentProps {}
 
-const DesktopSplashScreen = ({}: ComponentProps): JSX.Element => {
+const DesktopSplashScreen = ({}: ComponentProps): ReactNode => {
 	return (
 		<div className="desktop-splash">
 			<p className="desktop-splash__title">Open Independent Chain mini App on mobile for better experience</p>

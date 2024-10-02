@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import MotionNumber from 'motion-number';
 import { easeOut } from 'framer-motion';
 
@@ -12,7 +12,7 @@ interface ComponentProps {
 	loot: number;
 }
 
-const Loot = ({ loot }: ComponentProps): JSX.Element => {
+const Loot = ({ loot }: ComponentProps): ReactNode => {
 	return (
 		<HorizontalLayout justify="center" align="center">
 			<MotionNumber

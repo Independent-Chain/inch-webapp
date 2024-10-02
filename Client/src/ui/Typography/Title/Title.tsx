@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import './Title.scss';
 
@@ -16,7 +16,7 @@ interface ComponentProps {
 	children: string;
 }
 
-const Title = ({ level=1, weight=1, color, center, plain, caps, children }: ComponentProps): JSX.Element => {
+const Title = ({ level=1, weight=1, color, center, plain, caps, children }: ComponentProps): ReactNode => {
 	return (
 		<h2 className={`title level-${level} weight-${weight} color-${color} plain-${plain} center-${center}`}>
 			{ caps ? children.toUpperCase() : children }

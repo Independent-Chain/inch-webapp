@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import './Headline.scss';
 
@@ -13,7 +13,7 @@ interface ComponentProps {
 	children: string;
 }
 
-const Headline = ({ weight=1, color, plain, caps, children }: ComponentProps): JSX.Element => {
+const Headline = ({ weight=1, color, plain, caps, children }: ComponentProps): ReactNode => {
 	return (
 		<h5 className={`headline weight-${weight} color-${color} plain-${plain}`}>
 			{ caps ? children.toUpperCase() : children }

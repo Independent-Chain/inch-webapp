@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
 import { useLocalization } from '../../../../providers/LocalizationProvider';
@@ -8,7 +8,7 @@ import './FriendsDescription.scss';
 
 interface ComponentProps {}
 
-const FriendsDescription = ({}: ComponentProps): JSX.Element => {
+const FriendsDescription = ({}: ComponentProps): ReactNode => {
 	const { localization } = useLocalization()
 
 	return (

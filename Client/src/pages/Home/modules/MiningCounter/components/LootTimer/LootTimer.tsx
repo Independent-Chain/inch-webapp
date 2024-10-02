@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom components;
 import HorizontalLayout from '../../../../../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
@@ -10,7 +10,7 @@ interface ComponentProps {
 	timer: string;
 }
 
-const LootTimer = ({ timer }: ComponentProps): JSX.Element => {
+const LootTimer = ({ timer }: ComponentProps): ReactNode => {
 	return (
 		<HorizontalLayout justify="center" align="center">
 			<span className="loot-timer">{ timer }</span>

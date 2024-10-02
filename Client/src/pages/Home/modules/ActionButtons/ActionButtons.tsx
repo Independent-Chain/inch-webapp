@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../../../providers/AuthProvider.tsx';
@@ -17,7 +17,7 @@ import './ActionButtons.scss';
 
 interface ComponentProps {}
 
-const ActionButtons = ({}: ComponentProps): JSX.Element => {
+const ActionButtons = ({}: ComponentProps): ReactNode => {
 	const [claimButtonDisableStatus, setClaimButtonDisableStatus] = useState(false)
 
 	const { token, webApp } = useAuth();

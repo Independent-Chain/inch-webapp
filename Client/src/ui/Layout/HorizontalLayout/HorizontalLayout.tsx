@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import './HorizontalLayout.scss';
 
@@ -13,7 +13,7 @@ interface ComponentProps {
 	children: any;
 }
 
-const HorizontalLayout = ({ justify, align, gap, grow, children }: ComponentProps): JSX.Element => {
+const HorizontalLayout = ({ justify, align, gap, grow, children }: ComponentProps): ReactNode => {
 	return (
 		<div className="horizontal-layout"
 			style={{

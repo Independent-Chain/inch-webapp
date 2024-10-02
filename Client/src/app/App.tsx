@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Custom hooks;
@@ -31,7 +31,7 @@ import NavigationPanel from '../modules/NavigationPanel/NavigationPanel.tsx';
 // Included styles;
 import '../main.scss';
 
-const App = (): JSX.Element => {
+const App = (): ReactNode => {
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
   const [newUser, setNewUser] = useState<boolean>(false);
   const [dailyRewardData, setDailyRewardData] = useState(null);

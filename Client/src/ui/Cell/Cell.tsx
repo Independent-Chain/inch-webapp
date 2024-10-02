@@ -15,7 +15,7 @@ interface ComponentProps {
 	url?: string;
 }
 
-const Cell = ({ before, after, subhead, title, titleIcon, subtitle, description, url }: ComponentProps): JSX.Element => {
+const Cell = ({ before, after, subhead, title, titleIcon, subtitle, description, url }: ComponentProps): ReactNode => {
 	return (
 		<div className="cell">
 			{before}

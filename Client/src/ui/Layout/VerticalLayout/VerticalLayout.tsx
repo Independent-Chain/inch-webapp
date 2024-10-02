@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import './VerticalLayout.scss';
 
@@ -13,7 +13,7 @@ interface ComponentProps {
 	children: any;
 }
 
-const VerticalLayout = ({ justify, align, gap, grow, children }: ComponentProps): JSX.Element => {
+const VerticalLayout = ({ justify, align, gap, grow, children }: ComponentProps): ReactNode => {
 	return (
 		<div className="vertical-layout"
 			style={{

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
 import { useData } from '../../../../providers/DataProvider.tsx';
@@ -11,7 +11,7 @@ import './TasksList.scss';
 
 interface ComponentProps {}
 
-const TasksList = ({}: ComponentProps): JSX.Element => {
+const TasksList = ({}: ComponentProps): ReactNode => {
 	const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([ ]);
   const [completedTasks, setCompletedTasks] = useState<any[]>([ ]);
 

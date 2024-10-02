@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './Icon.scss';
 
 interface ComponentProps {
 	size: number;
 }
 
-const IconTranslate = ({ size }: ComponentProps): JSX.Element => {
+const IconTranslate = ({ size }: ComponentProps): ReactNode => {
 	return (
 		<div className="icon">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size+'vw'} height={size+'vw'} color="#ffffff" fill="none">

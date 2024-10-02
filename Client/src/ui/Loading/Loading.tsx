@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './Loading.scss';
 
 interface ComponentProps {
 	text?: string;
 }
 
-const Loading = ({ text }: ComponentProps): JSX.Element => {
+const Loading = ({ text }: ComponentProps): ReactNode => {
 	return (
 		<div className="loading">
 			<p className="loading-text">{ text }</p>

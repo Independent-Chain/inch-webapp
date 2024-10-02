@@ -16,7 +16,7 @@ interface ComponentProps {
 
 const NotificationContext = createContext<NotificationContextType | null>(null)
 
-export const NotificationProvider = ({ children }: ComponentProps): JSX.Element => {
+export const NotificationProvider = ({ children }: ComponentProps): ReactNode => {
 	const basicNotificationProps: Notification = { type: '', title: '', text: '', visible: false }
 	const [notification, setNotification] = useState<Notification>(basicNotificationProps);
 

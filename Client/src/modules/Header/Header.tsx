@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../providers/AuthProvider.tsx';
@@ -21,7 +21,7 @@ import { useData } from '../../providers/DataProvider.tsx';
 
 interface ComponentProps {}
 
-const Header = ({ }: ComponentProps): JSX.Element => {
+const Header = ({ }: ComponentProps): ReactNode => {
 	const [isFirstRender, setIsFirstRender] = useState(true);
 
 	const { webApp, token } = useAuth();

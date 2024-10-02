@@ -14,7 +14,7 @@ interface ComponentProps {
 
 export const LocalizationContext = createContext<LocalizationContextType | null>(null)
 
-export const LocalizationProvider = ({ children }: ComponentProps): JSX.Element => {
+export const LocalizationProvider = ({ children }: ComponentProps): ReactNode => {
 	const [language, setLanguage] = useState('en')
 	const localizations = { en: localizationEn, ru: localizationRu }
 

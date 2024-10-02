@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 // Custom components;
 import Loot from './components/Loot/Loot.tsx';
@@ -18,7 +18,7 @@ interface ComponentProps {
 	appData: appData;
 }
 
-const Mining = ({ appData }: ComponentProps): JSX.Element => {
+const Mining = ({ appData }: ComponentProps): ReactNode => {
 	const [loot, setLoot] = useState<number>(0)
 	const [timer, setTimer] = useState<string>('loading')
 

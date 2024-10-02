@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../providers/AuthProvider.tsx';
@@ -18,7 +18,7 @@ import './Tasks.scss';
 
 interface ComponentProps {}
 
-const Tasks = ({}: ComponentProps): JSX.Element => {
+const Tasks = ({}: ComponentProps): ReactNode => {
 	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
 
 	const { webApp, token } = useAuth();

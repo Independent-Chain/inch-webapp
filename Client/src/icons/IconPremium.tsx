@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Included styles;
 import './Icon.scss';
@@ -8,7 +8,7 @@ interface ComponentProps {
 	size: number;
 }
 
-const IconStar = ({ premium, size }: ComponentProps): JSX.Element => {
+const IconStar = ({ premium, size }: ComponentProps): ReactNode => {
 	return (
 		<div className="icon">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width={size+'vw'} height={size+'vw'} fill="none">

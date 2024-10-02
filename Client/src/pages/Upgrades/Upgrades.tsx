@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
 import { useData } from '../../providers/DataProvider.tsx';
@@ -13,7 +13,7 @@ import HorizontalLayout from '../../ui/Layout/HorizontalLayout/HorizontalLayout.
 
 interface ComponentProps {}
 
-const Upgrades = ({}: ComponentProps): JSX.Element => {
+const Upgrades = ({}: ComponentProps): ReactNode => {
 	const { contextData } = useData();
 	const { localization } = useLocalization();
 

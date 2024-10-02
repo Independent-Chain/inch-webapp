@@ -15,7 +15,7 @@ interface ComponentProps {
 
 export const AuthContext = createContext<AuthContextType | null>(null)
 
-export const AuthProvider = ({ children }: ComponentProps): JSX.Element => {
+export const AuthProvider = ({ children }: ComponentProps): ReactNode => {
 	// @ts-ignore
 	const webApp = window.Telegram.WebApp;
 	const userId = webApp.initDataUnsafe.user.id;

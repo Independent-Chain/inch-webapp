@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { initUtils } from '@telegram-apps/sdk';
 
@@ -18,7 +18,7 @@ import '../page.scss';
 
 interface ComponentProps {}
 
-const Profile = ({}: ComponentProps): JSX.Element => {
+const Profile = ({}: ComponentProps): ReactNode => {
 	const { contextData } = useData();
 	const { localization } = useLocalization();
 	const utils = initUtils();

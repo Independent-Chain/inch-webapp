@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import './Caption.scss';
 
@@ -15,7 +15,7 @@ interface ComponentProps {
 	children: any;
 }
 
-const Caption = ({ level=1, weight=1, color, center, caps, children }: ComponentProps): JSX.Element => {
+const Caption = ({ level=1, weight=1, color, center, caps, children }: ComponentProps): ReactNode => {
 	return (
 		<span className={`caption level-${level} weight-${weight} color-${color} center-${center}`}>
 			{ caps ? children.toUpperCase() : children }

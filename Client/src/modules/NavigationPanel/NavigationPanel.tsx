@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
 import { useLocalization } from '../../providers/LocalizationProvider.tsx';
@@ -17,7 +17,7 @@ import './NavigationPanel.scss';
 
 interface ComponentProps {}
 
-const NavigationPanel = ({}: ComponentProps): JSX.Element => {
+const NavigationPanel = ({}: ComponentProps): ReactNode => {
 	const { localization } = useLocalization()
 	const navigationElementIconSize = 6.5;
 

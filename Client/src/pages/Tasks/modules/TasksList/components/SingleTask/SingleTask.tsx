@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../../../../../providers/AuthProvider.tsx';
@@ -31,7 +31,7 @@ interface ComponentProps {
 	completed: boolean;
 }
 
-const SingleTask = ({ taskData, completed }: ComponentProps): JSX.Element => {
+const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
 	const { localization } = useLocalization();
 
 	const [buttonText, setButtonText] = useState<string>(localization.tasks.buttons.start);

@@ -17,7 +17,7 @@ interface ComponentProps {
 
 export const DataContext = createContext<ContextType | null>(null)
 
-export const DataProvider = ({ children }: ComponentProps): JSX.Element => {
+export const DataProvider = ({ children }: ComponentProps): ReactNode => {
 	const [contextData, setContextData] = useState<ContextDataType>({})
 
 	const updateDataContext = (newData: { [key: string]: any }) => {

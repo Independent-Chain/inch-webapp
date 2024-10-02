@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import './SubHeadline.scss';
 
@@ -13,7 +13,7 @@ interface ComponentProps {
 	children: string;
 }
 
-const SubHeadline = ({ weight=1, color, plain, caps, children }: ComponentProps): JSX.Element => {
+const SubHeadline = ({ weight=1, color, plain, caps, children }: ComponentProps): ReactNode => {
 	return (
 		<h6 className={`subheadline weight-${weight} color-${color} plain-${plain}`}>
 			{ caps ? children.toUpperCase() : children }

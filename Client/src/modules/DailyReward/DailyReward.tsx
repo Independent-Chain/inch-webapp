@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks
 import { useAuth } from '../../providers/AuthProvider.tsx';
@@ -24,7 +24,7 @@ interface ComponentProps {
   stateController: (value: any) => void;
 }
 
-const DailyReward = ({ dailyInformation, stateController }: ComponentProps): JSX.Element => {
+const DailyReward = ({ dailyInformation, stateController }: ComponentProps): ReactNode => {
   const { token, webApp } = useAuth();
   const { updateDataContext } = useData();
 	const { localization } = useLocalization();

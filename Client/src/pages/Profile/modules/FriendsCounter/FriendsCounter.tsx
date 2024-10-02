@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
 import { useLocalization } from '../../../../providers/LocalizationProvider';
@@ -10,7 +10,7 @@ interface ComponentProps {
 	friends: number;
 }
 
-const FriendsCounter = ({ friends }: ComponentProps): JSX.Element => {
+const FriendsCounter = ({ friends }: ComponentProps): ReactNode => {
 	const { localization } = useLocalization()
 
 	return (

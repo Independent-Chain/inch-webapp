@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 // Included styles;
 import './MobileSplashScreen.scss';
@@ -7,7 +7,7 @@ interface ComponentProps {
 
 }
 
-const SplashScreen = ({  }: ComponentProps): JSX.Element => {
+const SplashScreen = ({  }: ComponentProps): ReactNode => {
 	const [title1, setTitle1] = useState('')
 	const [title2, setTitle2] = useState('')
 

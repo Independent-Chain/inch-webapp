@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import './Text.scss';
 
@@ -13,7 +13,7 @@ interface ComponentProps {
 	children: string;
 }
 
-const Text = ({ weight=1, color, center, caps, children }: ComponentProps): JSX.Element => {
+const Text = ({ weight=1, color, center, caps, children }: ComponentProps): ReactNode => {
 	return (
 		<span className={`text weight-${weight} color-${color} center-${center}`}>
 			{ caps ? children.toUpperCase() : children }

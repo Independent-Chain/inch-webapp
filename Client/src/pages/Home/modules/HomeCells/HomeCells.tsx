@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
 import { useLocalization } from '../../../../providers/LocalizationProvider';
@@ -16,7 +16,7 @@ interface ComponentProps {
 	appData: appData;
 }
 
-const HomeCells = ({ appData }: ComponentProps): JSX.Element => {
+const HomeCells = ({ appData }: ComponentProps): ReactNode => {
 	const { localization } = useLocalization()
 
 	return (

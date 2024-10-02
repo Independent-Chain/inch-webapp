@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
 import { useAuth } from '../../../../providers/AuthProvider.tsx';
@@ -31,7 +31,7 @@ interface ComponentProps {
   price: number;
 }
 
-const CellDevice = ({ deviceId, title, description, level, parameter, price }: ComponentProps): JSX.Element => {
+const CellDevice = ({ deviceId, title, description, level, parameter, price }: ComponentProps): ReactNode => {
   const { webApp, token } = useAuth();
   const { contextData, updateDataContext } = useData();
   const { localization } = useLocalization();

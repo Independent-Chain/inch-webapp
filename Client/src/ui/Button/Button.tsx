@@ -26,7 +26,7 @@ interface ComponentProps {
 	style?: Object;
 }
 
-const Button = ({ disabled, mode, before, size, children, after, haptic, onClick, style }: ComponentProps): JSX.Element => {
+const Button = ({ disabled, mode, before, size, children, after, haptic, onClick, style }: ComponentProps): ReactNode => {
 	const [impactOccurred, notificationOccurred, selectionChanged] = useHapticFeedback();
   const [position, setPosition] = useState<{ x: number; y: number } | null>(null)
 

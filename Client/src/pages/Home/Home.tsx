@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
 import { useData } from '../../providers/DataProvider.tsx';
@@ -11,7 +11,7 @@ import HomeCells from './modules/HomeCells/HomeCells.tsx';
 // Included styles;
 import '../Page.scss';
 
-const Home = ({}): JSX.Element => {
+const Home = ({}): ReactNode => {
 	const { contextData } = useData()
 
 	return (
