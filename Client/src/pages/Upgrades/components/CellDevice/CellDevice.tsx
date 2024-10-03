@@ -22,6 +22,9 @@ import IconParameter from '../../../../icons/IconParameter.tsx';
 // Included styles;
 import './CellDevice.scss';
 
+// Custom helpers;
+import formatUpgradeConfirm from '../../helpers/formatUpgradeConfirm.ts';
+
 interface ComponentProps {
   deviceId: string;
   title: string;
@@ -65,7 +68,7 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
   const confirmUpgrade = () => {
     const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
     webApp.showConfirm(
-      `Upgrade ${title} for ${formattedPrice} $tINCH?`, 
+      formatUpgradeConfirm(localization.notifications.upgrades.confirm, title, formattedPrice),
       (callback: boolean) => {
         if (callback) {
           upgrade()
