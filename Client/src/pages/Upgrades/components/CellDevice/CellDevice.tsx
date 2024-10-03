@@ -61,14 +61,6 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
 			errorUpgradeNotification()
 		})
   }
-
-  const formatUpgradeDescription = (description, name, price) => {
-    const upgradePhrase = description.split(' ');
-    upgradePhrase.splice(1, 0, name);
-    upgradePhrase.splice(3, 0, price);
-    return upgradePhrase.join(" ");
-  };
-
   
   const confirmUpgrade = () => {
     const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
