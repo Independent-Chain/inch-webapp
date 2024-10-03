@@ -70,6 +70,12 @@ html, body, #root {
 
 @media (orientation: landscape) {
   body {
-    display: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  #root {
+    width: 50%;
   }
 }
