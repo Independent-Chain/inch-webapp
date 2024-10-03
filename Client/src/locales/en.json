@@ -73,7 +73,8 @@
 	   "error": "Error",
 	   "upgrades": {
 		  "upgraded": "- level upgraded",
-		  "not_upgraded": "- level not upgraded"
+		  "not_upgraded": "- level not upgraded",
+		  "confirm": "Upgrade for $tINCH?"
 	   },
 		 "tasks": {
 			"c": "Task successfully completed. Accrued",
