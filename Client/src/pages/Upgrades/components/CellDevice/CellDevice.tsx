@@ -62,10 +62,18 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
 		})
   }
 
+  const formatUpgradeDescription = (description, name, price) => {
+    const upgradePhrase = description.split(' ');
+    upgradePhrase.splice(1, 0, name);
+    upgradePhrase.splice(3, 0, price);
+    return upgradePhrase.join(" ");
+  };
+
+  
   const confirmUpgrade = () => {
-    const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
+    const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
     webApp.showConfirm(
-      `Upgrade ${title} for ${formattedPrice} $tINCH?`, 
+      formatUpgradeDescription(localization.notifications.upgrades.description, title, formattedPrice),
       (callback: boolean) => {
         if (callback) {
           upgrade()
