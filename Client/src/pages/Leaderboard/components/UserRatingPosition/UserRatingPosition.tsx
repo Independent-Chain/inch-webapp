@@ -19,7 +19,7 @@ const UserRatingPosition = ({ userData }: ComponentProps): JSX.Element => {
 				<span className={`urp__position ${userData.marker}`}>#{ userData.position + 1 } </span>
 				| { userData.username }
 			</p>
-			<p className="urp__balance">{ userData.balance.toLocaleString('en-Us') } tINCH</p>
+			<p className="urp__balance">Balance: { userData.balance.toLocaleString('en-Us') } tINCH</p>
 		</div>
 	)
 }

@@ -1,8 +1,11 @@
 import React from 'react';
 
+// Custom components;
+import AllUsersRating from './modules/AllUsersRating/AllUsersRating';
+import SelfRating from './components/SelfRating/SelfRating';
+
 // Included styles;
 import './Leaderboard.scss';
-import AllUsersRating from './modules/AllUsersRating/AllUsersRating';
 
 interface ComponentProps {}
 
@@ -10,7 +13,7 @@ const Leaderboard = ({}: ComponentProps): JSX.Element => {
 	return (
 		<div className="page" id="leaderboard">
 			<AllUsersRating />
-			<div className="self-rating"></div>
+			<SelfRating />
 		</div>
 	)
 }
