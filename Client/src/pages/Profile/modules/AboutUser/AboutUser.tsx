@@ -7,10 +7,10 @@ import { useData } from '../../../../providers/DataProvider';
 import './AboutUser.scss';
 
 interface ComponentProps {
-
+	rating: number | null;
 }
 
-const AboutUser = ({  }: ComponentProps): JSX.Element => {
+const AboutUser = ({ rating }: ComponentProps): JSX.Element => {
 	const { contextData } = useData();
 
 	return (
@@ -26,7 +26,7 @@ const AboutUser = ({  }: ComponentProps): JSX.Element => {
 					<span className="title">UID</span>
 				</div>
 				<div className="information__cell lb">
-					<span className="value">#1</span>
+					<span className="value">#{ rating }</span>
 					<span className="title">Rating</span>
 				</div>
 			</div>
