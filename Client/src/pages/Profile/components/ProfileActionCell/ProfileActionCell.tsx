@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 interface ComponentProps {
 	pagePath: string;
+	data?: { [key: string]: any }
 	title: string;
 	description: string;
 }

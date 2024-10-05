@@ -10,7 +10,7 @@ const ProfileCells = ({}: ComponentProps): JSX.Element => {
 	return (
 		<div className="profile-cells">
 			<ProfileActionCell 
-				pagePath={''} 
+				pagePath={'/leaderboard'} 
 				title={'Points leaderboard'}
 				description={'Rating of all tINCH points holders'}
 			/>

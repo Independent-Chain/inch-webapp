@@ -26,7 +26,7 @@ interface ComponentProps {}
 const Profile = ({}: ComponentProps): ReactNode => {
 	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
 	const [userRating, setUserRating] = useState<number | null>(null);
-	const [allRating, setAllRating] = useState<object>();
+	const [allRating, setAllRating] = useState<{ [key: string]: any }>({});
 
 	const { webApp, token } = useAuth();
 	const { contextData } = useData();
@@ -40,10 +40,11 @@ const Profile = ({}: ComponentProps): ReactNode => {
 
 	const getUserRating = async () => {
 		try {
-			const rating = await API_RATING_USER(token, webApp);
-			setUserRating(rating);
+			const response = await API_RATING_USER(token, webApp);
+			setUserRating(response);
+			contextData.appData.rating = response;
 			setTimeout(() => {
-				setLoadingStatus(false)
+				setLoadingStatus(false);
 			}, 500)
 		} catch(error) {
 			console.log(error)
@@ -52,8 +53,9 @@ const Profile = ({}: ComponentProps): ReactNode => {
 
 	const getAllRating = async () => {
 		try {
-			const rating = await API_RATING_HOLDERS(token, webApp);
-			setAllRating(rating)
+			const response = await API_RATING_HOLDERS(token, webApp);
+			setAllRating(response);
+			contextData.allRating = response;
 		} catch (error) {
 			console.log(error)
 		}

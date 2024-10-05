@@ -1,0 +1,46 @@
+:root {
+	--gold: rgb(255, 215, 0);
+	--silver: rgb(192, 192, 192);
+	--bronze: rgb(205, 127, 50);
+}
+
+div.user-rating-position {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 3px;
+
+	padding: var(--cell-vertical-padding) var(--cell-horizontal-padding);
+
+	border-radius: var(--cell-radius);
+
+	background-color: var(--background-900);
+
+	p.urp__username {
+		font-family: var(--font);
+		font-size: 2vh;
+		color: var(--text-1000);
+
+		span.urp__position {
+			&.gold {
+				color: var(--gold);
+			}
+			&.silver {
+				color: var(--silver);
+			}
+			&.bronze {
+				color: var(--bronze);
+			}
+			&.default {
+				color: var(--text-500);
+			}
+		}
+	}
+
+	p.urp__balance {
+		font-family: var(--font);
+		font-size: 2vh;
+		color: var(--text-500);
+	}
+}
