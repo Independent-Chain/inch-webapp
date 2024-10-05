@@ -9,10 +9,12 @@ import { useLocalization } from '../../providers/LocalizationProvider.tsx';
 
 // Custom API;
 import { API_RATING_USER } from '../../api/api.rating.user.js';
+import { API_RATING_HOLDERS } from '../../api/api.rating.holders.js';
 
 // Custom components;
 import Loading from '../../ui/Loading/Loading.tsx';
 import AboutUser from './modules/AboutUser/AboutUser.tsx';
+import ProfileCells from './modules/ProfileCells/ProfileCells.tsx';
 import Button from '../../ui/Button/Button.tsx';
 
 // Included styles;
@@ -24,6 +26,7 @@ interface ComponentProps {}
 const Profile = ({}: ComponentProps): ReactNode => {
 	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
 	const [userRating, setUserRating] = useState<number | null>(null);
+	const [allRating, setAllRating] = useState<object>();
 
 	const { webApp, token } = useAuth();
 	const { contextData } = useData();
@@ -47,9 +50,18 @@ const Profile = ({}: ComponentProps): ReactNode => {
 		}
 	}
 
+	const getAllRating = async () => {
+		try {
+			const rating = await API_RATING_HOLDERS(token, webApp);
+			setAllRating(rating)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	useEffect(() => {
-		// getRating()
-		getUserRating()
+		getUserRating();
+		getAllRating();
 	}, [])
 
 	if (loadingStatus) {
@@ -68,9 +80,8 @@ const Profile = ({}: ComponentProps): ReactNode => {
 			>
 				{ localization.profile.invite_button }
 			</Button>
-			{/*
-				<NavLink to={'/honor-roll'} className="honor-roll__link">{localization.profile.honor_roll_description}</NavLink> 
-			*/}
+			<ProfileCells />
+			<p className="app-version">version 2.1</p>
 		</div>
 	)
 }
