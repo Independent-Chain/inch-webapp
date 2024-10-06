@@ -77,7 +77,7 @@ const Profile = ({}: ComponentProps): ReactNode => {
 				mode="white" 
 				size="medium" 
 				haptic={["notification", "success"]} 
-				style={{margin: '6px 18vw'}} 
+				style={{margin: '6px 0'}} 
 				onClick={() => utils.shareURL(invite.url, invite.text)}
 			>
 				{ localization.profile.invite_button }

@@ -4,11 +4,29 @@ div.about-user {
 	justify-content: center;
 	align-items: center;
 
+	div.au__avatar {
+		width: 10vh;
+		height: 10vh;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
+		border-radius: 100px;
+
+		font-family: var(--font);
+		font-size: 4vh;
+		font-weight: 600;
+
+		background-color: var(--accent-1000);
+	}
+
 	p.username {
 		padding: 2vh 0;
 
 		font-family: var(--font);
-		font-size: 3vh;
+		font-size: 2.4vh;
 		font-weight: 600;
 		color: var(--text-1000);
 	}
