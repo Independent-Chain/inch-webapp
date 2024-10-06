@@ -8,23 +8,23 @@ datasource db {
 }
 
 model users_app_data {
-  user_id         BigInt   @unique
-  premium         Boolean  @default(false)
-  uid             Int      @id @default(autoincrement())
-  inviter_id      BigInt?
+  user_id         BigInt           @unique
+  premium         Boolean          @default(false)
+  uid             Int              @id @default(autoincrement())
+  inviter_id      BigInt?  
   friends         Int
   balance         Float
-  last_claim_time DateTime @db.Timestamptz(6)
+  last_claim_time DateTime         @db.Timestamptz(6)
   reactor         Int
   storage         Int
-  locale          String   @default("en")
-  last_entry      DateTime @default(now()) @db.Timestamptz(6)
-  streak_days     Int      @default(0)
-  metaData        users_meta_data? @relation(fields: [user_id], references: [user_id])    
+  locale          String           @default("en")
+  last_entry      DateTime         @db.Timestamptz(6)
+  streak_days     Int              @default(0)
+  users_meta_data users_meta_data? @relation(fields: [user_id], references: [user_id]) 
 }
 
 model users_meta_data {
-  user_id            BigInt   @unique
+  user_id            BigInt         @unique
   first_name         String
   last_name          String?
   username           String?
@@ -32,7 +32,7 @@ model users_meta_data {
   is_premium         Boolean?
   allows_write_to_pm Boolean?
   photo_url          String?
-  user_app_data      users_app_data? @relation
+  users_app_data     users_app_data? @relation()
 }
 
 model tasks {
