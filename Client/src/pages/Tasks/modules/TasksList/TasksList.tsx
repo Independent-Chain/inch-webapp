@@ -33,7 +33,7 @@ const TasksList = ({}: ComponentProps): ReactNode => {
       setCompletedTasks(completed);
       setNotCompletedTasks(notCompleted);
     }
-  }, [contextData.tasks]);
+  }, [contextData.tasksData]);
 
   return (
     <>

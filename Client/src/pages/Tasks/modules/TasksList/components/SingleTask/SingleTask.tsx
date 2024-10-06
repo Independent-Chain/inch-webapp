@@ -34,10 +34,11 @@ interface ComponentProps {
 const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
 	const { localization } = useLocalization();
 
+	const [completeStatus, setCompleteStatus] = useState(completed);
 	const [buttonText, setButtonText] = useState<string>(localization.tasks.buttons.start);
 
 	const { webApp, token } = useAuth();
-	const { contextData, updateDataContext } = useData();
+	const { updateDataContext } = useData();
 	const { showNotification } = useNotification();
 
 	const buttonAction = async () => {
@@ -47,20 +48,22 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
 		}
 		if (buttonText === localization.tasks.buttons.claim) {
 			const lcl = localization.notifications;
-			claimAward().then(result => {
-				showNotification("success", lcl.success, `${lcl.tasks.c} ${taskData.award} tINCH`)
-			}).catch(error => {
-				showNotification("error", lcl.error, lcl.tasks.nc)
-				console.log(error)
-			})
+			try {
+				claimAward();
+				showNotification("success", lcl.success, `${lcl.tasks.c} ${taskData.award} tINCH`);
+				setCompleteStatus(!completeStatus);
+			} catch (error) {
+				console.log(error);
+				showNotification("error", lcl.error, lcl.tasks.nc);
+			}
 		}
 	}
 
 	const claimAward = async () => {
 		try {
 			// Get boolean response from server;
-			const completed = await API_TASKS_COMPLETE(token, webApp, taskData.task_id);
-			if (completed) {
+			const result = await API_TASKS_COMPLETE(token, webApp, taskData.task_id);
+			if (result) {
 				try {
 					// Update user data in contextData;
 					const newContextData = await API_USER_GET(token, webApp);
@@ -70,14 +73,15 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
 				}
 			}
 		} catch(error) {
-			console.log(error)
+			console.log(error);
+			throw error;
 		}
 	}
 
 	// Rerender task after change localization;
 	useEffect(() => {
 		setButtonText(localization.tasks.buttons.start)
-	}, [localization, contextData])
+	}, [localization, completeStatus])
 
 	return (
 		<div className="task">
@@ -91,7 +95,7 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
 				<p className="task__award">+{ taskData.award } tINCH</p>
 			</div>
 			<Button
-				disabled={ completed }
+				disabled={ completeStatus }
 				mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
 				size="medium"
 				haptic={ ["impact", "soft"] }
