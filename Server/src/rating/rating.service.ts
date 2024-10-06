@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
-import { convertBigIntToNumber } from 'src/utils/bigIntToNumber';
 
 @Injectable()
 export class RatingService {
@@ -23,7 +22,7 @@ export class RatingService {
 		const rating = await this.prisma.users_app_data.findMany({
 			select: { 
 				balance: true,
-				metaData: {
+				users_meta_data: {
 					select: {
 							username: true,
 					},
@@ -34,7 +33,7 @@ export class RatingService {
 		});
 
 		const users = rating.map(user => ({
-			username: user.metaData.username,
+			username: user.users_meta_data.username,
 			balance: user.balance
 		}));
 
