@@ -49,11 +49,19 @@ const App = (): ReactNode => {
   webApp.setHeaderColor('#0e0e0e')
   webApp.expand();
 
+  const stopLoading = async () => {
+    setTimeout(() => {
+      setLoadingStatus(device !== 'desktop' ? false : true);
+    }, debug ? 1 : 4000)
+  }
+
   const handleUserCreation = async () => {
     try {
       const response = await API_USER_CREATE(token, webApp);
       setNewUser(true);
       updateDataContext(response);
+      await stopLoading();
+      await fetchDailyReward();
     } catch (error) {
       await handleExistingUser();
     }
@@ -64,9 +72,7 @@ const App = (): ReactNode => {
       const response = await API_USER_GET(token, webApp);
       updateDataContext(response);
       updateLocalization(response.appData.locale);
-      setTimeout(() => {
-        setLoadingStatus(device !== 'desktop' ? false : true);
-      }, debug ? 1 : 4000)
+      await stopLoading();
       await fetchDailyReward();
     } catch (error) {
       console.error(error);

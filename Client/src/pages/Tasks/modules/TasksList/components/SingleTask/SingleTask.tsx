@@ -37,7 +37,7 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
 	const [buttonText, setButtonText] = useState<string>(localization.tasks.buttons.start);
 
 	const { webApp, token } = useAuth();
-	const { updateDataContext } = useData();
+	const { contextData, updateDataContext } = useData();
 	const { showNotification } = useNotification();
 
 	const buttonAction = async () => {
@@ -77,7 +77,7 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
 	// Rerender task after change localization;
 	useEffect(() => {
 		setButtonText(localization.tasks.buttons.start)
-	}, [localization])
+	}, [localization, contextData])
 
 	return (
 		<div className="task">

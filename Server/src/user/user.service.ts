@@ -28,27 +28,35 @@ export class UserService {
         }
 
         const createUser = async () => {
-            await this.prisma.users_meta_data.create({ data: metaData });
-            await this.prisma.users_app_data.create({ data: appData });
+            const userExisting = await this.prisma.users_meta_data.findUnique({ where: { user_id: metaData.user_id }});
 
-            if (start_param != undefined) {
-                await this.prisma.users_app_data.update({
-                    where: { user_id: start_param },
-                    data: {
-                        balance: { increment: 100 },
-                        friends: { increment: 1 }
-                    }
-                })
+            if (userExisting === null) {
+                await this.prisma.users_meta_data.create({ data: metaData });
+                await this.prisma.users_app_data.create({ data: appData });
+
+                if (start_param != undefined) {
+                    await this.prisma.users_app_data.update({
+                        where: { user_id: start_param },
+                        data: {
+                            balance: { increment: 100 },
+                            friends: { increment: 1 }
+                        }
+                    })
+                }
+
+                return true
+            } else {
+                return false
             }
         }
         
-        try {
-            await createUser();
-            const data = await this.allUserData(registrationData.metaData.user_id);
-            return data;
-        } catch (error) {
-            return false;
+        const result = await createUser();
+        if (result) {
+            return await this.allUserData(registrationData.metaData.user_id);
+        } else {
+            return false
         }
+        
 	}
 
     async allUserData(userId: number) {
