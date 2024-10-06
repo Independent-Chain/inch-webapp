@@ -27,10 +27,9 @@ export class UserService {
             last_entry: new DateTime(DateTime.utc().setZone('utc')).minus({ days: 1 }).toISO(),
         }
 
-
-        const create_user = async () => {
-            await this.prisma.users_app_data.create({ data: appData });
+        const createUser = async () => {
             await this.prisma.users_meta_data.create({ data: metaData });
+            await this.prisma.users_app_data.create({ data: appData });
 
             if (start_param != undefined) {
                 await this.prisma.users_app_data.update({
@@ -44,26 +43,28 @@ export class UserService {
         }
         
         try {
-            await create_user();
-            return await this.allUserData(registrationData.metaData.user_id);
+            await createUser();
+            const data = await this.allUserData(registrationData.metaData.user_id);
+            return data;
         } catch (error) {
             return false;
         }
 	}
 
     async allUserData(userId: number) {
-        const _metaData = await this.prisma.users_meta_data.findUnique({ where: { user_id: userId }})
-        const _appData = await this.prisma.users_app_data.findUnique({ where: { user_id: userId }})
-        const _userTasks = await this.prisma.users_tasks_data.findMany({ where: { user_id: userId }})
+        const _metaData = await this.prisma.users_meta_data.findUnique({ where: { user_id: userId }});
+        const _appData = await this.prisma.users_app_data.findUnique({ where: { user_id: userId }});
+        const _userTasks = await this.prisma.users_tasks_data.findMany({ where: { user_id: userId }});
 
-        const metaData = convertBigIntToNumber(_metaData)
+        const metaData = convertBigIntToNumber(_metaData);
         const appData = {
             ...convertBigIntToNumber(_appData),
-            last_claim_time: _appData.last_claim_time.toISOString(),
-        }
-        const tasksData = convertBigIntToNumber(_userTasks)
+            last_claim_time: _appData.last_claim_time?.toISOString(),
+            last_entry: _appData.last_entry?.toISOString(),
+        };
+        const tasksData = convertBigIntToNumber(_userTasks);
 
-        return { metaData, appData, tasksData }
+        return { metaData, appData, tasksData };
     }
 
     async changeLocale(userId: number, locale: string) {
