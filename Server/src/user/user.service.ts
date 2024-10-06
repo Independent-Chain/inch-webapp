@@ -24,11 +24,13 @@ export class UserService {
             last_claim_time: DateTime.utc().setZone('utc').toISO(), 
             reactor: 1,
             storage: 1,
+            last_entry: new DateTime(DateTime.utc().setZone('utc')).minus({ days: 1 }).toISO(),
         }
 
-        const create = async () => {
-            await this.prisma.users_meta_data.create({ data: metaData })
-            await this.prisma.users_app_data.create({ data: appData })
+
+        const create_user = async () => {
+            await this.prisma.users_app_data.create({ data: appData });
+            await this.prisma.users_meta_data.create({ data: metaData });
 
             if (start_param != undefined) {
                 await this.prisma.users_app_data.update({
@@ -41,11 +43,12 @@ export class UserService {
             }
         }
         
-		return create().then(() => {
-            return this.allUserData(registrationData.metaData.user_id)
-        }).catch((error) => {
+        try {
+            await create_user();
+            return await this.allUserData(registrationData.metaData.user_id);
+        } catch (error) {
             return false;
-        });
+        }
 	}
 
     async allUserData(userId: number) {
