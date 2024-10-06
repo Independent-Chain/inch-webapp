@@ -19,27 +19,26 @@ import './Tasks.scss';
 interface ComponentProps {}
 
 const Tasks = ({}: ComponentProps): ReactNode => {
-	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
+	const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
 	const { webApp, token } = useAuth();
 	const { contextData } = useData();
 	const { localization } = useLocalization();
 
+	useEffect(() => {
+    loadTasks();
+  }, [token]);
+
 	const loadTasks = async () => {
 		try {
 			const response = await API_TASKS_ALL(token, webApp);
 			contextData.tasks = response;
-			setTimeout(() => {
-				setLoadingStatus(false);
-			}, 600)
 		} catch(error) {
 			console.log(error);
+		} finally {
+			setLoadingStatus(false);
 		}
 	}
-
-	useEffect(() => {
-    loadTasks();
-  }, [token]);
 
 	if (loadingStatus) {
 		return <Loading />

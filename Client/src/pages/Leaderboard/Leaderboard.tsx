@@ -16,6 +16,7 @@ interface ComponentProps {}
 
 const Leaderboard = ({}: ComponentProps): JSX.Element => {
 	const { contextData } = useData();
+	
 	const selfUserData = {
 		username: contextData.metaData.username,
 		balance: contextData.appData.balance,
