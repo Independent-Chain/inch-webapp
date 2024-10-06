@@ -5,9 +5,4 @@ div.all-users-rating {
 
 	flex-grow: 1;
 	gap: 6px;
-
-	overflow-y: scroll;
-	&::-webkit-scrollbar {
-		display: none; /* Для Chrome, Safari и Opera */
-	}
 }

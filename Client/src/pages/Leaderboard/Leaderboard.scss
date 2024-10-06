@@ -1,0 +1,14 @@
+div.page#leaderboard {
+	overflow-y: scroll;
+	gap: 12px;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+div.title-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
