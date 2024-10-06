@@ -38,7 +38,6 @@ const App = (): ReactNode => {
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
   const [newUser, setNewUser] = useState<boolean>(false);
   const [dailyRewardData, setDailyRewardData] = useState(null);
-
   const [device, setDevice] = useState<string>('');
   const [debug, setDebug] = useState<boolean>(false)
   
@@ -48,6 +47,11 @@ const App = (): ReactNode => {
 
   webApp.setHeaderColor('#0e0e0e')
   webApp.expand();
+
+  useEffect(() => {
+    configureLaunch(debug, setDebug, setDevice);
+    if (token) handleUserCreation();
+  }, [token, debug, device]);
 
   const stopLoading = async () => {
     setTimeout(() => {
@@ -63,6 +67,7 @@ const App = (): ReactNode => {
       await stopLoading();
       await fetchDailyReward();
     } catch (error) {
+      console.log(error)
       await handleExistingUser();
     }
   };
@@ -90,13 +95,12 @@ const App = (): ReactNode => {
 
   const renderSplashScreen = () => {
     if (debug) return <Loading text="Debugging loading" />;
-    return device === 'desktop' ? <DesktopSplashScreen /> : (newUser ? <StepByStep loading={setLoadingStatus} /> : <MobileSplashScreen />);
+    return device === 'desktop' 
+      ? <DesktopSplashScreen /> 
+      : newUser 
+        ? <StepByStep loading={setLoadingStatus} /> 
+        : <MobileSplashScreen />;
   };
-
-  useEffect(() => {
-    configureLaunch(debug, setDebug, setDevice);
-    if (token) handleUserCreation();
-  }, [token, debug, device]);
 
   if (loadingStatus) return renderSplashScreen();
 
