@@ -46,7 +46,11 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
 
   const handleButtonClick = async () => {
     if (buttonText === localization.tasks.buttons.start) {
-      webApp.openLink(taskData.link);
+      if (taskData.icon === 'telegram') {
+        webApp.openTelegramLink(taskData.link);
+      } else {
+        webApp.openLink(taskData.link);
+      }
       setButtonText(localization.tasks.buttons.claim);
     } else if (buttonText === localization.tasks.buttons.claim) {
       await claimAward();
@@ -59,8 +63,8 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
       if (result) {
         const newContextData = await API_USER_GET(token, webApp);
         updateDataContext(newContextData);
-        showNotification("success", localization.notifications.success, `${localization.tasks.c} ${taskData.award} tINCH`);
         setCompleteStatus(true);
+        showNotification("success", localization.notifications.success, `${localization.tasks.c} ${taskData.award} tINCH`);
       }
     } catch (error) {
       console.error(error);
