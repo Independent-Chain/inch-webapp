@@ -43,7 +43,7 @@ const DailyReward = ({ dailyInformation, stateController }: ComponentProps): Rea
   };
 
   const renderRewardContent = () => (
-    <>
+    <div className="wrapper">
       <p className="title">{ lcl.title }</p>
       <div className="reward">
         <img className="reward__image" src="/coin.webp" alt="Reward coin" />
@@ -68,7 +68,7 @@ const DailyReward = ({ dailyInformation, stateController }: ComponentProps): Rea
       >
         { lcl.button_text }
       </Button>
-    </>
+    </div>
   );
 
   if (dailyInformation.type === 'newDay' || dailyInformation.type === 'lostDay') {

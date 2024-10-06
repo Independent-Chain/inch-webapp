@@ -1,6 +1,6 @@
 {
 	"daily_reward": {
-		"title": "Your daily reward",
+		"title": "Daily reward",
 		"description": "Come back tomorrow to receive the next reward",
 		"tip": "Hint: If you miss one day, the accumulated reward is reset",
 		"button_text": "Get reward"

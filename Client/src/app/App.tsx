@@ -14,6 +14,14 @@ import { API_DAILY_CHECK } from '../api/api.daily.check.js';
 // Custom helpers;
 import { configureLaunch } from '../config/config.launch.js';
 
+// Pages;
+import Home from '../pages/Home/Home.tsx';
+import Upgrades from '../pages/Upgrades/Upgrades.tsx';
+import Tasks from '../pages/Tasks/Tasks.tsx';
+import Profile from '../pages/Profile/Profile.tsx';
+import Leaderboard from '../pages/Leaderboard/Leaderboard.tsx';
+import HonorBoard from '../pages/HonorBoard/HonorBoard.tsx';
+
 // Custom components;
 import MobileSplashScreen from '../ui/SplashScreen/MobileSplashScreen/MobileSplashScreen.tsx';
 import DesktopSplashScreen from '../ui/SplashScreen/DesktopSplashScreen/DesktopSplashScreen.tsx';
@@ -21,11 +29,6 @@ import StepByStep from '../modules/StepByStep/StepByStep.tsx';
 import Loading from '../ui/Loading/Loading.tsx';
 import DailyReward from '../modules/DailyReward/DailyReward.tsx';
 import Header from '../modules/Header/Header.tsx';
-import Home from '../pages/Home/Home.tsx';
-import Upgrades from '../pages/Upgrades/Upgrades.tsx';
-import Tasks from '../pages/Tasks/Tasks.tsx';
-import Profile from '../pages/Profile/Profile.tsx';
-import HonorBoard from '../pages/HonorBoard/HonorBoard.tsx';
 import NavigationPanel from '../modules/NavigationPanel/NavigationPanel.tsx';
 
 // Included styles;
@@ -100,6 +103,7 @@ const App = (): ReactNode => {
         <Route path='/upgrades' element={<Upgrades />} />
         <Route path='/tasks' element={<Tasks />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/leaderboard' element={<Leaderboard />} />
         <Route path='/honor-roll' element={<HonorBoard />} />
       </Routes>
       <NavigationPanel />

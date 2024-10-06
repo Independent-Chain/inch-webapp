@@ -1,18 +1,8 @@
-div.page#profile {
-	justify-content: center;
-	align-items: center;
-
-	padding: 0 10vw;
-
-	a.honor-roll__link {
-		padding: 2vh 0;
-
-		text-align: center;
-		text-decoration: underline;
-
-		font-family: var(--font);
-		font-size: 1.6vh;
-		color: var(--text-500);
-	}
+p.app-version {
+	text-align: center;
+	
+	font-family: var(--font);
+	font-size: 1.5vh;
+	color: var(--text-500);
 }
 

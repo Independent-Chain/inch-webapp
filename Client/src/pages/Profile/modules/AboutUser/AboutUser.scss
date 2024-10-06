@@ -1,0 +1,69 @@
+div.about-user {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	div.au__avatar {
+		width: 10vh;
+		height: 10vh;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
+		border-radius: 100px;
+
+		font-family: var(--font);
+		font-size: 4vh;
+		font-weight: 600;
+
+		background-color: var(--accent-1000);
+	}
+
+	p.username {
+		padding: 2vh 0;
+
+		font-family: var(--font);
+		font-size: 2.4vh;
+		font-weight: 600;
+		color: var(--text-1000);
+	}
+
+	div.information {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		align-self: stretch;
+		gap: 1.2px;
+
+		div.information__cell {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 4px;
+			
+			padding: 0 7vw;
+
+			font-family: var(--font);
+			font-size: 2vh;
+
+			&.rb {
+				border-right: 1.2px solid var(--border-color);
+			}
+			&.lb {
+				border-left: 1.2px solid var(--border-color);
+			}
+
+			span.value {
+				color: var(--text-1000);
+			}
+			span.title {
+				color: var(--text-500);
+			}
+		}
+	}
+}
