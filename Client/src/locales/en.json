@@ -1,4 +1,7 @@
 {
+	"header": {
+		"soon": "Soon"
+	},
 	"daily_reward": {
 		"title": "Daily reward",
 		"description": "Come back tomorrow to receive the next reward",
