@@ -18,6 +18,7 @@ import IconTranslate from '../../icons/IconTranslate.tsx';
 // Included styles;
 import './Header.scss';
 import { useData } from '../../providers/DataProvider.tsx';
+import IconTon from '../../icons/IconTon.tsx';
 
 interface ComponentProps {}
 
@@ -50,16 +51,21 @@ const Header = ({ }: ComponentProps): ReactNode => {
 		<div className="header">
 			<IconStar premium={ contextData.appData.premium } size={6} />
 			<span className="logo">
-				{ contextData.metaData.username} | {contextData.appData.uid }
+				{ contextData.metaData.username}.inch
 			</span>
-			<Button
+			<div className="ton-connect">
+				<IconTon size={3} />
+				<span className="ton-connect__text">Soon</span>
+			</div>
+			
+			{/* <Button
 				before={ <IconTranslate size={6}/> }
 				mode="plain" 
 				size="medium" 
 				style={ { padding: '0 2vw' } }
 				onClick={ translateApp }
 				haptic={ ["notification", "success"] }
-			/>
+			/> */}
 		</div>
 	)
 }
