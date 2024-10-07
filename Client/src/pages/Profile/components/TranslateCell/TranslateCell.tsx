@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
 // Custom hooks;
 import { useAuth } from '../../../../providers/AuthProvider';
@@ -20,6 +21,8 @@ interface ComponentProps {}
 const TranslateCell = ({}: ComponentProps): JSX.Element => {
 	const [isFirstRender, setIsFirstRender] = useState(true);
 
+	const [impactOccurred] = useHapticFeedback();
+
 	const { webApp, token } = useAuth();
 	const { contextData, updateDataContext } = useData();
 	const { language, localization, updateLocalization } = useLocalization();
@@ -38,12 +41,15 @@ const TranslateCell = ({}: ComponentProps): JSX.Element => {
 			updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
 			updateLocalization(responseData.appData.locale)
 		}).catch(error => {
-			alert(error)
+			console.log(error)
 		})
 	}
 
 	return (
-		<div className="translate-cell" onClick={translateApp}>
+		<div className="translate-cell" onClick={() => {
+			translateApp();
+			impactOccurred('heavy');
+		}}>
 			<Cell 
 				before={
 					<img className="tc__icon" src={`/${language}.svg`} alt="" />
@@ -54,9 +60,6 @@ const TranslateCell = ({}: ComponentProps): JSX.Element => {
 				}
 			/>
 		</div>
-		// <div className="translate-cell">
-		// 	<img className="tc__flag" src={`/${language}.svg`} alt="" />
-		// </div>
 	)
 }
 
