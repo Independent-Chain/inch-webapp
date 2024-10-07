@@ -11,7 +11,7 @@ interface ComponentProps {
 	title: string;
 	titleIcon?: ReactNode;
 	subtitle?: string;
-	description: string;
+	description?: string;
 	url?: string;
 }
 
