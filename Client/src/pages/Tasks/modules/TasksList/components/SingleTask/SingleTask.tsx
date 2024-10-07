@@ -19,89 +19,83 @@ import './SingleTask.scss';
 type Icons = 'telegram';
 
 interface ComponentProps {
-	taskData: {
-		task_id: number;
-		status: boolean;
-		icon: Icons;
-		name: string;
-		description: string;
-		link: string;
-		award: number;
-	},
-	completed: boolean;
+  taskData: {
+    task_id: number;
+    status: boolean;
+    icon: Icons;
+    name: string;
+    description: string;
+    link: string;
+    award: number;
+  },
+  completed: boolean;
 }
 
 const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
-	const { localization } = useLocalization();
+  const { localization } = useLocalization();
+  const { webApp, token } = useAuth();
+  const { updateDataContext } = useData();
+  const { showNotification } = useNotification();
 
-	const [buttonText, setButtonText] = useState<string>(localization.tasks.buttons.start);
+  const [completeStatus, setCompleteStatus] = useState(completed);
+  const [buttonText, setButtonText] = useState(localization.tasks.buttons.start);
 
-	const { webApp, token } = useAuth();
-	const { updateDataContext } = useData();
-	const { showNotification } = useNotification();
+  useEffect(() => {
+    setButtonText(localization.tasks.buttons.start);
+  }, [localization]);
 
-	const buttonAction = async () => {
-		if (buttonText === localization.tasks.buttons.start) {
-			webApp.openLink(taskData.link);
-			setButtonText(localization.tasks.buttons.claim);
-		}
-		if (buttonText === localization.tasks.buttons.claim) {
-			const lcl = localization.notifications;
-			claimAward().then(result => {
-				showNotification("success", lcl.success, `${lcl.tasks.c} ${taskData.award} tINCH`)
-			}).catch(error => {
-				showNotification("error", lcl.error, lcl.tasks.nc)
-				console.log(error)
-			})
-		}
-	}
+  const handleButtonClick = async () => {
+    if (buttonText === localization.tasks.buttons.start) {
+      if (taskData.icon === 'telegram') {
+        webApp.openTelegramLink(taskData.link);
+      } else {
+        webApp.openLink(taskData.link);
+      }
+      setButtonText(localization.tasks.buttons.claim);
+    } else if (buttonText === localization.tasks.buttons.claim) {
+      await claimAward();
+    }
+  };
 
-	const claimAward = async () => {
-		try {
-			// Get boolean response from server;
-			const completed = await API_TASKS_COMPLETE(token, webApp, taskData.task_id);
-			if (completed) {
-				try {
-					// Update user data in contextData;
-					const newContextData = await API_USER_GET(token, webApp);
-					updateDataContext(newContextData);
-				} catch(error) {
-					console.log(error)
-				}
-			}
-		} catch(error) {
-			console.log(error)
-		}
-	}
+  const claimAward = async () => {
+    try {
+      const result = await API_TASKS_COMPLETE(token, webApp, taskData.task_id);
+      if (result) {
+        const newContextData = await API_USER_GET(token, webApp);
+        updateDataContext(newContextData);
+        setCompleteStatus(true);
+        showNotification("success", localization.notifications.success, `${localization.tasks.c} ${taskData.award} tINCH`);
+      }
+    } catch (error) {
+      console.error(error);
+      showNotification("error", localization.notifications.error, localization.tasks.nc);
+    }
+  };
 
-	// Rerender task after change localization;
-	useEffect(() => {
-		setButtonText(localization.tasks.buttons.start)
-	}, [localization])
-
-	return (
-		<div className="task">
-			<img className="task__icon" src={`/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
-			<div className="task__body">
-				<p className="task__name">{ taskData.name }{ 
-					completed ? 
-						<span className="completed">{ localization.tasks.labels.c }</span> : 
-						<span className="not-completed">{ localization.tasks.labels.nc }</span>
-				}</p>
-				<p className="task__award">+{ taskData.award } tINCH</p>
-			</div>
-			<Button
-				disabled={ completed }
-				mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
-				size="medium"
-				haptic={ ["impact", "soft"] }
-				style={ {margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh'} }
-				onClick={ () => !completed && buttonAction() }
-			>
-				{ buttonText }
-			</Button>
-		</div>
-	)
+  return (
+    <div className="task">
+      <img className="task__icon" src={`/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
+      <div className="task__body">
+        <p className="task__name">
+          {taskData.name}
+          <span className={ completed ? "completed" : "not-completed" }>
+            { completed ? localization.tasks.labels.c : localization.tasks.labels.nc }
+          </span>
+        </p>
+        <p className="task__award">+{taskData.award} tINCH</p>
+      </div>
+      <Button
+        disabled={ completeStatus }
+        mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
+        size="medium"
+        haptic={["impact", "soft"]}
+        style={{ margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh' }}
+        onClick={() => !completed && handleButtonClick()}
+      >
+        { buttonText }
+      </Button>
+    </div>
+  );
 }
 
 export default SingleTask;
