@@ -2,16 +2,16 @@ import React from 'react';
 
 // Custom hooks;
 import { useData } from '../../../../providers/DataProvider';
+import { useLocalization } from '../../../../providers/LocalizationProvider';
 
 // Included styles;
 import './AboutUser.scss';
 
-interface ComponentProps {
-	rating: number | null;
-}
+interface ComponentProps {}
 
-const AboutUser = ({ rating }: ComponentProps): JSX.Element => {
+const AboutUser = ({}: ComponentProps): JSX.Element => {
 	const { contextData } = useData();
+	const { localization } = useLocalization();
 
 	return (
 		<div className="about-user">
@@ -22,15 +22,15 @@ const AboutUser = ({ rating }: ComponentProps): JSX.Element => {
 			<div className="information">
 				<div className="information__cell rb">
 					<span className="value">{ contextData.appData.friends }</span>
-					<span className="title">Friends</span>
+					<span className="title">{ localization.profile.friends }</span>
 				</div>
 				<div className="information__cell">
 					<span className="value">{ contextData.appData.uid }</span>
 					<span className="title">UID</span>
 				</div>
 				<div className="information__cell lb">
-					<span className="value">#{ rating }</span>
-					<span className="title">Rating</span>
+					<span className="value">#{ contextData.appData.rating }</span>
+					<span className="title">{ localization.profile.rating }</span>
 				</div>
 			</div>
 		</div>

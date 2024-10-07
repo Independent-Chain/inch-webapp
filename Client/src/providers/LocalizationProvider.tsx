@@ -5,6 +5,7 @@ import localizationRu from '../locales/ru.json';
 import localizationEn from '../locales/en.json';
 
 interface LocalizationContextType {
+	language: string;
   localization: { [key: string]: any };
   updateLocalization: (locale: string) => void;
 }
@@ -23,7 +24,7 @@ export const LocalizationProvider = ({ children }: ComponentProps): ReactNode =>
   };
 
 	return (
-		<LocalizationContext.Provider value={{ localization: localizations[language], updateLocalization }}>
+		<LocalizationContext.Provider value={{ language: language, localization: localizations[language], updateLocalization }}>
 			{children}
 		</LocalizationContext.Provider>
 	)
