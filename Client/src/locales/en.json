@@ -61,12 +61,36 @@
 
 	"profile": {
 		"headline": "Profile",
+		"friends": "Friends",
+		"rating": "Рейтинг",
 		"invite_button": "Invite friend",
-		"friends": "friends",
 		"invite": "Become a part of the Independent Chain history with me ⚡️\n\n🇬🇧 Channel: @inch_ton\n🇷🇺 CIS Channel: @inch_ton_cis\n💬 Chat: @inch_ton_chat",
-		"description": "Invite friends and get 100 $tINCH for every invited friend. In the future, it will be possible to create your own teams. Start building your community now.",
-		"honor_roll_description": "Visit the honor board to see everyone who participated in the creation of this app"
+		"translate": "Change language",
+		"leaderboard": {
+			"title": "Leaderboard",
+			"description": "List of the best owners of tINCH points"
+		},
+		"honorboard": {
+			"title": "Honor board",
+			"description": "List of honorary users of the project"
+		},
+		"version": "Version 2.1"
 	},
+
+	"leaderboard": {
+		"your_score": "Your score",
+		"general": {
+			"title": "General leaderboard",
+			"description": "This board shows the top 100 tINCH point holders"
+		}
+	},
+
+	"honor_roll": {
+		"description": "Many thanks to everyone from this list for participating in the development of this application",
+		"developers": "Developers",
+		"testers": "Testers",
+		"contributors": "Contributors"
+ },
 	
 	"notifications": {
 	   "success": "Success",
@@ -81,12 +105,5 @@
 			"nc": "Task not completed"
 		 },
 	   "translated": "Now the application will be in English"
-	},
-
-	"honor_roll": {
-	   "description": "Many thanks to everyone from this list for participating in the development of this application",
-	   "developers": "Developers",
-	   "testers": "Testers",
-	   "contributors": "Contributors"
 	}
 }

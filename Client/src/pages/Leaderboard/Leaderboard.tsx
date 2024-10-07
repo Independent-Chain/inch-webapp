@@ -2,6 +2,7 @@ import React from 'react';
 
 // Custom hooks;
 import { useData } from '../../providers/DataProvider.tsx';
+import { useLocalization } from '../../providers/LocalizationProvider.tsx';
 
 // Custom components;
 import Title from '../../ui/Typography/Title/Title.tsx';
@@ -16,6 +17,7 @@ interface ComponentProps {}
 
 const Leaderboard = ({}: ComponentProps): JSX.Element => {
 	const { contextData } = useData();
+	const { localization } = useLocalization();
 	
 	const selfUserData = {
 		username: contextData.metaData.username,
@@ -25,11 +27,11 @@ const Leaderboard = ({}: ComponentProps): JSX.Element => {
 
 	return (
 		<div className="page" id="leaderboard">
-			<Title level={3} weight={2} color="white">Your score</Title>
+			<Title level={3} weight={2} color="white">{ localization.leaderboard.your_score }</Title>
 			<UserRatingCard userData={ selfUserData } />
 			<div className="title-wrapper">
-				<Title level={3} weight={2} color="white">General leaderboard</Title>
-				<SubHeadline color="gray">This board shows the Top 100 tINCH point holders</SubHeadline>
+				<Title level={3} weight={2} color="white">{ localization.leaderboard.general.title }</Title>
+				<SubHeadline color="gray">{ localization.leaderboard.general.description }</SubHeadline>
 			</div>
 			<AllUsersRating />
 		</div>
