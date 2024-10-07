@@ -20,15 +20,17 @@ const AboutUser = ({}: ComponentProps): JSX.Element => {
 			</div>
 			<p className="username">{ contextData.metaData.username }</p>
 			<div className="information">
-				<div className="information__cell rb">
+				<div className="information__cell ">
 					<span className="value">{ contextData.appData.friends }</span>
 					<span className="title">{ localization.profile.friends }</span>
 				</div>
+				<div className="i__divider"></div>
 				<div className="information__cell">
 					<span className="value">{ contextData.appData.uid }</span>
 					<span className="title">UID</span>
 				</div>
-				<div className="information__cell lb">
+				<div className="i__divider"></div>
+				<div className="information__cell">
 					<span className="value">#{ contextData.appData.rating }</span>
 					<span className="title">{ localization.profile.rating }</span>
 				</div>
