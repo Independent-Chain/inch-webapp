@@ -52,7 +52,7 @@ const TranslateCell = ({}: ComponentProps): JSX.Element => {
 		}}>
 			<Cell 
 				before={
-					<img className="tc__icon" src={`/${language}.svg`} alt="" />
+					<img className="tc__icon" src={`/ui-icons/${language}.svg`} alt="" />
 				}
 				title="Translate app"
 				after={
