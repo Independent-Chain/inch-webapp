@@ -14,7 +14,7 @@ interface ComponentProps {
 const Notification = ({ type, title, text, visible }: ComponentProps): ReactNode => {
 	return (
 		<div className={`notification ${type} visible-${visible}`}>
-			<IconNotification size={6} />
+			<IconNotification size={24} />
 			<div className="notification-body">
 				<p className="notification-title">{title}</p>
 				<p className="notification-text">{text}</p>

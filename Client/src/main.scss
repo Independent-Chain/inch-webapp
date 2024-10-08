@@ -67,15 +67,3 @@ html, body, #root {
   display: flex;
   flex-direction: column;
 }
-
-@media (orientation: landscape) {
-  body {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-  #root {
-    width: 50%;
-  }
-}
