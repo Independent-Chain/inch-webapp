@@ -20,6 +20,7 @@ import Button from '../../ui/Button/Button.tsx';
 // Included styles;
 import './Profile.scss';
 import '../page.scss';
+import ProfileFooter from './modules/ProfileFooter/ProfileFooter.tsx';
 
 interface ComponentProps {}
 
@@ -78,7 +79,7 @@ const Profile = ({}: ComponentProps): ReactNode => {
 			</Button>
 			<TranslateCell />
 			<ProfileCells />
-			<p className="app-version">{ localization.profile.version }</p>
+			<ProfileFooter />
 		</div>
 	)
 }

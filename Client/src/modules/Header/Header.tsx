@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 
 // Custom hooks;
 import { useData } from '../../providers/DataProvider.tsx';
+import { useLocalization } from '../../providers/LocalizationProvider.tsx';
 
 // Icons;
 import IconStar from '../../icons/IconPremium.tsx';
@@ -14,6 +15,7 @@ interface ComponentProps {}
 
 const Header = ({ }: ComponentProps): ReactNode => {
 	const { contextData } = useData();
+	const { localization } = useLocalization();
 
 	return (
 		<div className="header">
@@ -23,7 +25,7 @@ const Header = ({ }: ComponentProps): ReactNode => {
 			</span>
 			<div className="ton-connect">
 				<IconTon size={12} />
-				<span className="ton-connect__text">Soon</span>
+				<span className="ton-connect__text">{ localization.header.soon }</span>
 			</div>
 		</div>
 	)

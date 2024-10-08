@@ -1,4 +1,7 @@
 {
+	"header": {
+		"soon": "Soon"
+	},
 	"daily_reward": {
 		"title": "Daily reward",
 		"description": "Come back tomorrow to receive the next reward",
@@ -74,6 +77,7 @@
 			"title": "Honor board",
 			"description": "List of honorary users of the project"
 		},
+		"support": "Support",
 		"version": "Version 2.1"
 	},
 
