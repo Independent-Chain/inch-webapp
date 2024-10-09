@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 // Custom components;
 import Loot from './components/Loot/Loot.tsx';
@@ -19,22 +19,22 @@ interface ComponentProps {
 }
 
 const Mining = ({ appData }: ComponentProps): ReactNode => {
-	const [loot, setLoot] = useState<number>(0)
-	const [timer, setTimer] = useState<string>('loading')
+	const [loot, setLoot] = useState<number>(0);
+	const [timer, setTimer] = useState<string>('loading');
 
 	const updateMining = () => {
-		setLoot(calculateLoot(appData.last_claim_time, appData.reactor, appData.storage))
-		setTimer(calculateLootTimer(appData.last_claim_time, appData.storage))
+		setLoot(calculateLoot(appData.last_claim_time, appData.reactor, appData.storage));
+		setTimer(calculateLootTimer(appData.last_claim_time, appData.storage));
 	}
 
 	useEffect(() => {
-		updateMining()
+		updateMining();
 
 		const miningIntervalId = setInterval(() => {
-			updateMining()
+			updateMining();
 		}, 1000) 
 		
-		return () => clearInterval(miningIntervalId)
+		return () => clearInterval(miningIntervalId);
 	}, [appData])
 
 	return (

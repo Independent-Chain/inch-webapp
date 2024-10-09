@@ -1,10 +1,10 @@
-import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 // Icons;
-import IconDiagonalRightArrow from '../../../../icons/IconDiagonalRightArrow.tsx'
+import IconDiagonalRightArrow from '@icons/IconDiagonalRightArrow.tsx'
+
 // Included styles;
 import './ProfileActionCell.scss';
-import { NavLink } from 'react-router-dom';
 
 interface ComponentProps {
 	pagePath: string;

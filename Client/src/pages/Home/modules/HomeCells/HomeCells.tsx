@@ -1,23 +1,24 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 // Custom hooks;
-import { useLocalization } from '../../../../providers/LocalizationProvider';
+import { useLocalization } from '@providers/LocalizationProvider';
 
 // Custom components;
-import Cell from '../../../../ui/Cell/Cell';
+import Cell from '@ui/Cell/Cell';
 
 // Included styles;
 import './HomeCells.scss';
 
 interface appData {
-	[key: string]: any
+	[key: string]: any;
 }
+
 interface ComponentProps {
 	appData: appData;
 }
 
 const HomeCells = ({ appData }: ComponentProps): ReactNode => {
-	const { localization } = useLocalization()
+	const { localization } = useLocalization();
 
 	return (
 		<div className="home-cells">

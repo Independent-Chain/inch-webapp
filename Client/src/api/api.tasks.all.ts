@@ -1,7 +1,10 @@
 import axios from 'axios';
-import API_CONFIG from '../config/config.api.js';
+import API_CONFIG from '@config/config.api.ts';
 
-export const API_TASKS_ALL = async (token, webApp) => {
+// Custom types;
+import { WebAppType } from '@providers/AuthProvider.tsx';
+
+export const API_TASKS_ALL = async (token: string, webApp: WebAppType) => {
 	const userId = webApp.initDataUnsafe.user.id;
 	const options = {
 		method: 'GET',

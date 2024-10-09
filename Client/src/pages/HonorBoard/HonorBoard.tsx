@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 // Custom hooks;
-import { useLocalization } from '../../providers/LocalizationProvider';
+import { useLocalization } from '@providers/LocalizationProvider';
 
 // Included styles;
 import '../Page.scss';
@@ -10,13 +10,15 @@ import './HonorBoard.scss';
 // Honor board;
 import honorBoard from './data/honor_board.json';
 
-interface ComponentProps {}
+interface ComponentProps {
+
+}
 
 const HonorRoll = ({}: ComponentProps): ReactNode => {
 	const { localization } = useLocalization();
 
 	const generateMembersList = (users: Array<string>) => {
-		return users.map((user, index) => (
+		return users.map((user) => (
 			<a href={`https://t.me/${user}`} className="member">@{ user }</a>
 		))
 	}

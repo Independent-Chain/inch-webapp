@@ -1,9 +1,11 @@
 import React, { ReactNode, useState } from 'react';
 import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
+// Custom helpers;
 import { createHapticFeedback } from './hapticFeedback.js';
 import { buttonAnimation } from './buttonAnimation.js';
 
+// Included styles;
 import './Button.scss';
 
 type Modes = 'bezeled' | 'filled' | 'gray' | 'outline' | 'plain' | 'white';
@@ -12,7 +14,7 @@ type Sizes = 'small' | 'medium' | 'large';
 type HapticTypes = 'impact' | 'notification' | 'selection';
 type ImpactStyles = 'light' | 'medium' | 'heavy' | 'rigid' | 'soft';
 type NotificationStyles = 'error' | 'success' | 'warning';
-type Haptic = [HapticTypes, ImpactStyles | NotificationStyles]
+export type Haptic = [HapticTypes, ImpactStyles | NotificationStyles]
 
 interface ComponentProps {
 	disabled?: boolean;
@@ -49,9 +51,9 @@ const Button = ({ disabled, mode, before, size, children, after, haptic, onClick
 					/>
       	)
 			}
-			{before}
-			{children}
-			{after}
+			{ before }
+			{ children }
+			{ after }
 		</button>
 	)
 }

@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
 // Custom hooks;
-import { useAuth } from '../../../../providers/AuthProvider';
-import { useData } from '../../../../providers/DataProvider';
-import { useLocalization } from '../../../../providers/LocalizationProvider';
-import { useNotification } from '../../../../providers/NotificationProvider';
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
+import { useNotification } from '@providers/NotificationProvider.tsx';
 
 // Custom API;
-import { API_USER_LOCALE } from '../../../../api/api.user.locale';
+import { API_USER_LOCALE } from '@API/api.user.locale.ts';
 
 // Custom components;
-import Cell from '../../../../ui/Cell/Cell';
+import Cell from '@ui/Cell/Cell.tsx';
 
 // Included styles;
 import './TranslateCell.scss';
 
-interface ComponentProps {}
+interface ComponentProps {
+	
+}
 
 const TranslateCell = ({}: ComponentProps): JSX.Element => {
 	const [isFirstRender, setIsFirstRender] = useState(true);
@@ -37,7 +39,7 @@ const TranslateCell = ({}: ComponentProps): JSX.Element => {
 	}, [localization])
 
 	const translateApp = () => {
-		API_USER_LOCALE(token, webApp, contextData.appData).then(responseData => {
+		API_USER_LOCALE(token, webApp, contextData.appData.locale).then(responseData => {
 			updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
 			updateLocalization(responseData.appData.locale)
 		}).catch(error => {

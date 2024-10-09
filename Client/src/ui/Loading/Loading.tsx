@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
+
+// Included styles;
 import './Loading.scss';
 
 interface ComponentProps {

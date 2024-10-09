@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
+// Included styles;
 import './SubHeadline.scss';
 
 type Weights = 1 | 2 | 3; // 400, 600, 700;

@@ -1,13 +1,15 @@
-import React from 'react';
-
 // Custom hooks;
-import { useLocalization } from '../../../../providers/LocalizationProvider';
+import { useLocalization } from '@providers/LocalizationProvider';
+
+// Custom components;
+import ProfileActionCell from '@p-profile/components/ProfileActionCell/ProfileActionCell';
 
 // Included styles;
 import './ProfileCells.scss';
-import ProfileActionCell from '../../components/ProfileActionCell/ProfileActionCell';
 
-interface ComponentProps {}
+interface ComponentProps {
+	
+}
 
 const ProfileCells = ({}: ComponentProps): JSX.Element => {
 	const { localization } = useLocalization();

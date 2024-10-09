@@ -1,16 +1,16 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 // Custom hooks;
-import { useLocalization } from '../../providers/LocalizationProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Custom components;
 import NavigationElement from './NavigationElement/NavigationElement';
 
 // Icons;
-import IconHome from '../../icons/IconHome.tsx';
-import IconUpgrades from '../../icons/IconUpgrades.tsx';
-import IconTasks from '../../icons/IconTasks.tsx';
-import IconProfile from '../../icons/IconProfile.tsx';
+import IconHome from '@icons/IconHome.tsx';
+import IconUpgrades from '@icons/IconUpgrades.tsx';
+import IconTasks from '@icons/IconTasks.tsx';
+import IconProfile from '@icons/IconProfile.tsx';
 
 // Included styles;
 import './NavigationPanel.scss';

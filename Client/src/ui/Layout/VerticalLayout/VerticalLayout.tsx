@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
+// Included styles;
 import './VerticalLayout.scss';
 
 type justifyContent = 'start' | 'center' | 'end';

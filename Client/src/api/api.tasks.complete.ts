@@ -1,7 +1,10 @@
 import axios from 'axios';
-import API_CONFIG from '../config/config.api.js';
+import API_CONFIG from '@config/config.api.ts';
 
-export const API_TASKS_COMPLETE = async (token, webApp, task_id) => {
+// Custom types;
+import { WebAppType } from '@providers/AuthProvider.tsx';
+
+export const API_TASKS_COMPLETE = async (token: string, webApp: WebAppType, task_id: number) => {
 	const options = {
 		method: 'POST',
 		url: `${API_CONFIG.API_DOMAIN}/tasks/complete`,

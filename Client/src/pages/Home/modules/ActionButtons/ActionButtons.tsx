@@ -1,16 +1,16 @@
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../../../providers/AuthProvider.tsx';
-import { useData } from '../../../../providers/DataProvider.tsx';
-import { useLocalization } from '../../../../providers/LocalizationProvider.tsx';
-import { useNotification } from '../../../../providers/NotificationProvider.tsx';
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
+import { useNotification } from '@providers/NotificationProvider.tsx';
 
 // Custom components;
-import Button from '../../../../ui/Button/Button.tsx';
+import Button from '@ui/Button/Button.tsx';
 
 // Custom API;
-import { API_MINING_CLAIM } from '../../../../api/api.mining.claim.js';
+import { API_MINING_CLAIM } from '@API/api.mining.claim.ts';
 
 // Included styles;
 import './ActionButtons.scss';
@@ -29,10 +29,10 @@ const ActionButtons = ({}: ComponentProps): ReactNode => {
 		setClaimButtonDisableStatus(true)
 		setTimeout(() => setClaimButtonDisableStatus(false), 5000) // Claim timeout;
 		API_MINING_CLAIM(token, webApp).then(responseData => {
-			showNotification('success', localization.notifications.success, `+ ${responseData.loot.toLocaleString('en-US')} $tINCH`)
-			updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
+			showNotification('success', localization.notifications.success, `+ ${responseData.loot.toLocaleString('en-US')} $tINCH`);
+			updateDataContext({ metaData: responseData.metaData, appData: responseData.appData });
 		}).catch(error => {
-			alert(error) // Debug alert;
+			console.log(error);
 		})
 	}
 

@@ -1,16 +1,16 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 // Custom hooks
-import { useAuth } from '../../providers/AuthProvider.tsx';
-import { useData } from '../../providers/DataProvider.tsx';
-import { useLocalization } from '../../providers/LocalizationProvider.tsx'; 
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx'; 
 
 // Custom API
-import { API_DAILY_TAKE } from '../../api/api.daily.take';
-import { API_USER_GET } from '../../api/api.user.get';
+import { API_DAILY_TAKE } from '@API/api.daily.take.ts';
+import { API_USER_GET } from '@API/api.user.get.ts';
 
 // Custom components
-import Button from '../../ui/Button/Button';
+import Button from '@ui/Button/Button.tsx';
 
 // Included styles
 import './DailyReward.scss';
@@ -75,9 +75,9 @@ const DailyReward = ({ dailyInformation, stateController }: ComponentProps): Rea
     return <div className='daily-reward'>
 			{ renderRewardContent() }
 		</div>;
+  } else {
+    return <></>
   }
-
-  return <></>
 };
 
 export default DailyReward;

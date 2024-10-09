@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
+
+// Included styles;
 import './Divider.scss';
 
 interface ComponentProps {

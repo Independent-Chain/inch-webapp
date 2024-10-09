@@ -1,7 +1,7 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
-import { useData } from '../../../../providers/DataProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
 
 // Custom components;
 import SingleTask from './components/SingleTask/SingleTask.tsx';
@@ -9,7 +9,9 @@ import SingleTask from './components/SingleTask/SingleTask.tsx';
 // Included styles;
 import './TasksList.scss';
 
-interface ComponentProps {}
+interface ComponentProps {
+  
+}
 
 const TasksList = ({}: ComponentProps): ReactNode => {
 	const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([ ]);

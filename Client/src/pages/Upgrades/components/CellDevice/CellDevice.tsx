@@ -1,29 +1,29 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../../../providers/AuthProvider.tsx';
-import { useData } from '../../../../providers/DataProvider.tsx';
-import { useLocalization } from '../../../../providers/LocalizationProvider.tsx';
-import { useNotification } from '../../../../providers/NotificationProvider.tsx';
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
+import { useNotification } from '@providers/NotificationProvider.tsx';
 
 // Custom components;
-import Button from '../../../../ui/Button/Button.tsx';
-import VerticalLayout from '../../../../ui/Layout/VerticalLayout/VerticalLayout.tsx';
+import Button from '@ui/Button/Button.tsx';
+import VerticalLayout from '@ui/Layout/VerticalLayout/VerticalLayout.tsx';
 
 // Custom API;
-import { API_MINING_UPGRADE } from '../../../../api/api.mining.upgrade.js';
-import { API_MINING_CLAIM } from '../../../../api/api.mining.claim.js';
+import { API_MINING_UPGRADE } from '@API/api.mining.upgrade.ts';
+import { API_MINING_CLAIM } from '@API/api.mining.claim.ts';
+
+// Custom helpers;
+import formatUpgradeConfirm from '@p-upgrades/helpers/formatUpgradeConfirm.ts';
 
 // Icons;
-import IconCoin from '../../../../icons/IconCoin.tsx';
-import IconLevel from '../../../../icons/IconLevel.tsx';
-import IconParameter from '../../../../icons/IconParameter.tsx';
+import IconCoin from '@icons/IconCoin.tsx';
+import IconLevel from '@icons/IconLevel.tsx';
+import IconParameter from '@icons/IconParameter.tsx';
 
 // Included styles;
 import './CellDevice.scss';
-
-// Custom helpers;
-import formatUpgradeConfirm from '../../helpers/formatUpgradeConfirm.ts';
 
 interface ComponentProps {
   deviceId: string;
@@ -53,14 +53,16 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
   }
 
   const upgrade = () => {
-		API_MINING_UPGRADE(token, webApp, deviceId).then(responseData => {
-			API_MINING_CLAIM(token, webApp).then(responseData => {
+		API_MINING_UPGRADE(token, webApp, deviceId).then((_responseData) => {
+			API_MINING_CLAIM(token, webApp).then((responseData) => {
         updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
         successUpgradeNotification()
-      }).catch(error => {
+      }).catch((error) => {
+        console.log(error)
         errorUpgradeNotification()
       })
-		}).catch(error => {
+		}).catch((error) => {
+      console.log(error)
 			errorUpgradeNotification()
 		})
   }

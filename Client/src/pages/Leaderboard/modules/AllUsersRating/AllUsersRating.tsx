@@ -1,22 +1,20 @@
-import React from 'react';
-
 // Custom hooks;
-import { useData } from '../../../../providers/DataProvider';
+import { useData } from '@providers/DataProvider';
 
 // Custom helpers;
-import { setMarker } from '../../helpers/setMarker';
+import { setMarker } from '@p-leaderboard/helpers/setMarker.ts';
 
 // Custom components;
-import UserRatingCard from '../../components/UserRatingCard/UserRatingCard.tsx';
+import UserRatingCard from '@p-leaderboard/components/UserRatingCard/UserRatingCard.tsx';
 
 // Included styles;
 import './AllUsersRating.scss';
 
 type UserData = { 
-	username: string, 
+	username: string;
 	marker?: string;
-	position: number,
-	balance: number 
+	position: number;
+	balance: number;
 }
 
 interface ComponentProps {}
@@ -29,11 +27,13 @@ const AllUsersRating = ({}: ComponentProps): JSX.Element => {
 			{
 				contextData.allRating.map((user: UserData, index: number) =>  {
 					if (user.username === null) {
-						user.username = 'incognito'
+						user.username = 'incognito';
 					}
 					user.position = index;
 					user.marker = setMarker(index);
-					return <UserRatingCard key={ index } userData={ user } />
+					return (
+						<UserRatingCard key={ index } userData={ user } />
+					)
 				})
 			}
 		</div>
