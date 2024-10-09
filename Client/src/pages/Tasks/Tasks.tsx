@@ -1,12 +1,12 @@
-// @ts-nocheck
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
-import { useLocalization } from '../../context/LocaleContext/LocalizationProvider.tsx';
+import { useAuth } from '../../providers/AuthProvider.tsx';
+import { useData } from '../../providers/DataProvider.tsx';
+import { useLocalization } from '../../providers/LocalizationProvider.tsx'; 
 
 // Custom components;
-import Loading from '../../components/Loading/Loading.tsx';
+import Loading from '../../ui/Loading/Loading.tsx';
 import TasksList from './modules/TasksList/TasksList.tsx';
 
 // Custom API;
@@ -18,27 +18,27 @@ import './Tasks.scss';
 
 interface ComponentProps {}
 
-const Tasks = ({}: ComponentProps): JSX.Element => {
-	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
+const Tasks = ({}: ComponentProps): ReactNode => {
+	const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
-	const { webApp, token, contextData } = useAuth();
+	const { webApp, token } = useAuth();
+	const { contextData } = useData();
 	const { localization } = useLocalization();
+
+	useEffect(() => {
+    loadTasks();
+  }, [token]);
 
 	const loadTasks = async () => {
 		try {
 			const response = await API_TASKS_ALL(token, webApp);
 			contextData.tasks = response;
-			setTimeout(() => {
-				setLoadingStatus(false);
-			}, 600)
 		} catch(error) {
 			console.log(error);
+		} finally {
+			setLoadingStatus(false);
 		}
 	}
-
-	useEffect(() => {
-    loadTasks();
-  }, [token]);
 
 	if (loadingStatus) {
 		return <Loading />

@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../context/AuthContext/AuthProvider.tsx';
+import { useData } from '../../providers/DataProvider.tsx';
 
 // Custom modules;
-import Mining from './modules/Mining/Mining.tsx';
+import MiningCounter from './modules/MiningCounter/MiningCounter.tsx';
 import ActionButtons from './modules/ActionButtons/ActionButtons.tsx';
 import HomeCells from './modules/HomeCells/HomeCells.tsx';
 
 // Included styles;
 import '../Page.scss';
 
-const Home = ({}): JSX.Element => {
-	const { contextData } = useAuth()
+const Home = ({}): ReactNode => {
+	const { contextData } = useData()
 
 	return (
 		<div className="page" id="home">
-			<Mining appData={contextData.appData} />
+			<MiningCounter appData={ contextData.appData } />
 			<ActionButtons />
-			<HomeCells appData={contextData.appData} />
+			<HomeCells appData={ contextData.appData } />
 		</div>
 	)
 }

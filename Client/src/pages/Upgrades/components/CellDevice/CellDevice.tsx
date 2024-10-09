@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../../../context/AuthContext/AuthProvider.tsx';
-import { useLocalization } from '../../../../context/LocaleContext/LocalizationProvider.tsx';
-import { useNotification } from '../../../../context/NotificationContext/NotificationProvider.tsx';
+import { useAuth } from '../../../../providers/AuthProvider.tsx';
+import { useData } from '../../../../providers/DataProvider.tsx';
+import { useLocalization } from '../../../../providers/LocalizationProvider.tsx';
+import { useNotification } from '../../../../providers/NotificationProvider.tsx';
 
 // Custom components;
 import Button from '../../../../ui/Button/Button.tsx';
-import HorizontalLayout from '../../../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
 import VerticalLayout from '../../../../ui/Layout/VerticalLayout/VerticalLayout.tsx';
 
 // Custom API;
@@ -21,7 +21,9 @@ import IconParameter from '../../../../icons/IconParameter.tsx';
 
 // Included styles;
 import './CellDevice.scss';
-import { boolean } from '@telegram-apps/sdk';
+
+// Custom helpers;
+import formatUpgradeConfirm from '../../helpers/formatUpgradeConfirm.ts';
 
 interface ComponentProps {
   deviceId: string;
@@ -32,8 +34,9 @@ interface ComponentProps {
   price: number;
 }
 
-const CellDevice = ({ deviceId, title, description, level, parameter, price }: ComponentProps): JSX.Element => {
-  const { webApp, token, contextData, updateContextData } = useAuth();
+const CellDevice = ({ deviceId, title, description, level, parameter, price }: ComponentProps): ReactNode => {
+  const { webApp, token } = useAuth();
+  const { contextData, updateDataContext } = useData();
   const { localization } = useLocalization();
   const { showNotification } = useNotification();
 
@@ -52,7 +55,7 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
   const upgrade = () => {
 		API_MINING_UPGRADE(token, webApp, deviceId).then(responseData => {
 			API_MINING_CLAIM(token, webApp).then(responseData => {
-        updateContextData({ metaData: responseData.metaData, appData: responseData.appData })
+        updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
         successUpgradeNotification()
       }).catch(error => {
         errorUpgradeNotification()
@@ -65,7 +68,7 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
   const confirmUpgrade = () => {
     const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
     webApp.showConfirm(
-      `Upgrade ${title} for ${formattedPrice} $tINCH?`, 
+      formatUpgradeConfirm(localization.notifications.upgrades.confirm, title, formattedPrice),
       (callback: boolean) => {
         if (callback) {
           upgrade()

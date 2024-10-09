@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
 // Custom components;
@@ -11,7 +11,7 @@ interface ComponentProps {
 	loading: any;
 }
 
-const StepByStep = ({ loading }: ComponentProps): JSX.Element => {
+const StepByStep = ({ loading }: ComponentProps): ReactNode => {
 	const [step, setStep] = useState(0)
 	const [buttonText, setButtonText] = useState('Next step')
 

@@ -11,7 +11,7 @@ interface ComponentProps {
 	visible?: boolean;
 }
 
-const Notification = ({ type, title, text, visible }: ComponentProps): JSX.Element => {
+const Notification = ({ type, title, text, visible }: ComponentProps): ReactNode => {
 	return (
 		<div className={`notification ${type} visible-${visible}`}>
 			<IconNotification size={6} />

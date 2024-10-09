@@ -24,43 +24,55 @@ export class UserService {
             last_claim_time: DateTime.utc().setZone('utc').toISO(), 
             reactor: 1,
             storage: 1,
+            last_entry: new DateTime(DateTime.utc().setZone('utc')).minus({ days: 1 }).toISO(),
         }
 
-        const create = async () => {
-            await this.prisma.users_meta_data.create({ data: metaData })
-            await this.prisma.users_app_data.create({ data: appData })
+        const createUser = async () => {
+            const userExisting = await this.prisma.users_meta_data.findUnique({ where: { user_id: metaData.user_id }});
 
-            if (start_param != undefined) {
-                await this.prisma.users_app_data.update({
-                    where: { user_id: start_param },
-                    data: {
-                        balance: { increment: 100 },
-                        friends: { increment: 1 }
-                    }
-                })
+            if (userExisting === null) {
+                await this.prisma.users_meta_data.create({ data: metaData });
+                await this.prisma.users_app_data.create({ data: appData });
+
+                if (start_param != undefined) {
+                    await this.prisma.users_app_data.update({
+                        where: { user_id: start_param },
+                        data: {
+                            balance: { increment: 100 },
+                            friends: { increment: 1 }
+                        }
+                    })
+                }
+
+                return true
+            } else {
+                return false
             }
         }
         
-		return create().then(() => {
-            return this.allUserData(registrationData.metaData.user_id)
-        }).catch((error) => {
-            return false;
-        });
+        const result = await createUser();
+        if (result) {
+            return await this.allUserData(registrationData.metaData.user_id);
+        } else {
+            return false
+        }
+        
 	}
 
     async allUserData(userId: number) {
-        const _metaData = await this.prisma.users_meta_data.findUnique({ where: { user_id: userId }})
-        const _appData = await this.prisma.users_app_data.findUnique({ where: { user_id: userId }})
-        const _userTasks = await this.prisma.users_tasks_data.findMany({ where: { user_id: userId }})
+        const _metaData = await this.prisma.users_meta_data.findUnique({ where: { user_id: userId }});
+        const _appData = await this.prisma.users_app_data.findUnique({ where: { user_id: userId }});
+        const _userTasks = await this.prisma.users_tasks_data.findMany({ where: { user_id: userId }});
 
-        const metaData = convertBigIntToNumber(_metaData)
+        const metaData = convertBigIntToNumber(_metaData);
         const appData = {
             ...convertBigIntToNumber(_appData),
-            last_claim_time: _appData.last_claim_time.toISOString(),
-        }
-        const tasksData = convertBigIntToNumber(_userTasks)
+            last_claim_time: _appData.last_claim_time?.toISOString(),
+            last_entry: _appData.last_entry?.toISOString(),
+        };
+        const tasksData = convertBigIntToNumber(_userTasks);
 
-        return { metaData, appData, tasksData }
+        return { metaData, appData, tasksData };
     }
 
     async changeLocale(userId: number, locale: string) {

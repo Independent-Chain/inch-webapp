@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 interface ComponentProps {
 	size: number;
 }
 
-const IconProfile = ({ size }: ComponentProps): JSX.Element => {
+const IconProfile = ({ size }: ComponentProps): ReactNode => {
 	return (
 		<div className="icon">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={size+'vw'} height={size+'vw'} color="#000000" fill="none">

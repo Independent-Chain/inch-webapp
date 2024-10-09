@@ -11,7 +11,7 @@ interface ComponentProps {
 	text: string;
 }
 
-const NavigationElement = ({ path, icon, text }: ComponentProps): JSX.Element => {
+const NavigationElement = ({ path, icon, text }: ComponentProps): ReactNode => {
 	const [impactOccurred] = useHapticFeedback();
 
 	return (

@@ -1,27 +1,27 @@
-// @ts-nocheck
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../../../context/AuthContext/AuthProvider.tsx';
-import { useLocalization } from '../../../../context/LocaleContext/LocalizationProvider.tsx';
+import { useData } from '../../../../providers/DataProvider.tsx';
 
 // Custom components;
-import SingleTask from '../../components/SingleTask/SingleTask.tsx';
+import SingleTask from './components/SingleTask/SingleTask.tsx';
 
 // Included styles;
 import './TasksList.scss';
 
 interface ComponentProps {}
 
-const TasksList = ({}: ComponentProps): JSX.Element => {
-	const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([]);
-  const [completedTasks, setCompletedTasks] = useState<any[]>([]);
+const TasksList = ({}: ComponentProps): ReactNode => {
+	const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([ ]);
+  const [completedTasks, setCompletedTasks] = useState<any[]>([ ]);
 
-	const { contextData } = useAuth();
-	const { localization } = useLocalization();
-
+	const { contextData } = useData();
+  
 	useEffect(() => {
     if (contextData.tasks) {
+      type Task = any;
+      type TaskData = any;
+
       const tasksArray = Object.values(contextData.tasks) as Task[];
       const tasksDataArray = Object.values(contextData.tasksData) as TaskData[];
 
@@ -33,15 +33,15 @@ const TasksList = ({}: ComponentProps): JSX.Element => {
       setCompletedTasks(completed);
       setNotCompletedTasks(notCompleted);
     }
-  }, [contextData.tasks]);
+  }, [contextData.tasksData]);
 
   return (
     <>
       {notCompletedTasks.map((task) => (
-        <SingleTask key={task.task_id} taskData={task} completed={false} />
+        <SingleTask key={ task.task_id } taskData={ task } completed={ false } />
       ))}
       {completedTasks.map((task) => (
-        <SingleTask key={task.task_id} taskData={task} completed={true} />
+        <SingleTask key={ task.task_id } taskData={ task } completed={ true } />
       ))}
     </>
   );

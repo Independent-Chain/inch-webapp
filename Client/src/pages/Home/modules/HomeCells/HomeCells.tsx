@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
-import { useLocalization } from '../../../../context/LocaleContext/LocalizationProvider';
+import { useLocalization } from '../../../../providers/LocalizationProvider';
 
 // Custom components;
 import Cell from '../../../../ui/Cell/Cell';
@@ -16,7 +16,7 @@ interface ComponentProps {
 	appData: appData;
 }
 
-const HomeCells = ({ appData }: ComponentProps): JSX.Element => {
+const HomeCells = ({ appData }: ComponentProps): ReactNode => {
 	const { localization } = useLocalization()
 
 	return (

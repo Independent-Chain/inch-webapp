@@ -11,7 +11,7 @@ div.header {
 
 	padding: 2vh 4vw;
 
-	border-bottom: 1px solid var(--border-color);
+	border-bottom: 1.2px solid var(--border-color);
 }
 
 span.logo {
@@ -21,4 +21,23 @@ span.logo {
 	font-size: 2.4vh;
 	font-weight: 500;
 	color: var(--logo-color);
+}
+
+div.ton-connect {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+
+	padding: 0.8vh 4vw;
+
+	border-radius: 8px;
+	border: 1.2px solid var(--border-color);
+
+	span.ton-connect__text {
+		font-family: var(--font);
+		font-size: 1.6vh;
+		color: var(--text-1000);
+	}
 }

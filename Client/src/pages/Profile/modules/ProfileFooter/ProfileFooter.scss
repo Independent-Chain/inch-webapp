@@ -1,0 +1,18 @@
+div.profile-footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 6px;
+
+	span {
+		font-family: var(--font);
+		font-size: 1.6vh;
+		color: var(--text-500);
+	}
+
+	span.support, span.version {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+}

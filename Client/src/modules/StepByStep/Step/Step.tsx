@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 // Included styles;
 import './Step.scss';
@@ -8,7 +8,7 @@ interface StepProps {
 	imageNumber: number;
 }
 
-const Step = ({ title, imageNumber }: StepProps): JSX.Element => {
+const Step = ({ title, imageNumber }: StepProps): ReactNode => {
   useEffect(() => {
    
   }, [title, imageNumber]);

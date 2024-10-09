@@ -1,0 +1,73 @@
+:root {
+	--gold-marker: rgb(255, 215, 0);
+	--silver-marker: rgb(192, 192, 192);
+	--bronze-marker: rgb(205, 127, 50);
+	--default-marker: var(--text-500);
+}
+
+div.user-rating-card {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+
+	padding: var(--cell-vertical-padding) var(--cell-horizontal-padding);
+
+	border-radius: var(--cell-radius);
+
+	background-color: var(--background-900);
+
+	div.urc__avatar {
+		width: 4vh;
+		height: 4vh;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
+		border-radius: 100px;
+
+		font-family: var(--font);
+		font-size: 2vh;
+	}
+
+	div.urc__body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		flex-grow: 1;
+
+		p.urc__username {
+			font-family: var(--font);
+			font-size: 2vh;
+			color: var(--text-1000);
+		}
+
+		p.urc__balance {
+			font-family: var(--font);
+			font-size: 1.5vh;
+			color: var(--text-500);
+		}
+	}
+
+	p.urc__position {
+		font-family: var(--font);
+		font-size: 2vh;
+
+		&.gold {
+			color: var(--gold-marker);
+		}
+		&.silver {
+			color: var(--silver-marker);
+		}
+		&.bronze {
+			color: var(--bronze-marker);
+		}
+		&.default {
+			color: var(--default-marker);
+		}
+	}
+}

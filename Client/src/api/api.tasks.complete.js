@@ -1,5 +1,5 @@
 import axios from 'axios';
-import API_CONFIG from './api.config.js';
+import API_CONFIG from '../config/config.api.js';
 
 export const API_TASKS_COMPLETE = async (token, webApp, task_id) => {
 	const options = {

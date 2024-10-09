@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // Custom hooks;
-import { useLocalization } from '../../context/LocaleContext/LocalizationProvider';
+import { useLocalization } from '../../providers/LocalizationProvider';
 
 // Included styles;
 import '../Page.scss';
 import './HonorBoard.scss';
 
 // Honor board;
-import honorBoard from './honor_board.json'
+import honorBoard from './data/honor_board.json';
 
 interface ComponentProps {}
 
-const HonorRoll = ({}: ComponentProps): JSX.Element => {
+const HonorRoll = ({}: ComponentProps): ReactNode => {
 	const { localization } = useLocalization();
 
 	const generateMembersList = (users: Array<string>) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import './Image.scss';
 
@@ -10,7 +10,7 @@ interface ComponentProps {
 	size: Sizes;
 }
 
-const Image = ({ src, fallback, size }: ComponentProps): JSX.Element => {
+const Image = ({ src, fallback, size }: ComponentProps): ReactNode => {
 	const calculateStyle = (size: number) => {
 		switch(size) {
 			case 20:
