@@ -16,6 +16,7 @@ interface ComponentProps {
 	appData: appData;
 }
 
+
 const HomeCells = ({ appData }: ComponentProps): ReactNode => {
 	const { localization } = useLocalization()
 

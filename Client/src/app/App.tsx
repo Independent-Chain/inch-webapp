@@ -33,6 +33,7 @@ import NavigationPanel from '../modules/NavigationPanel/NavigationPanel.tsx';
 
 // Included styles;
 import '../main.scss';
+import '../main.tablet.scss';
 
 const App = (): ReactNode => {
   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);

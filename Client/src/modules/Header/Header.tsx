@@ -19,12 +19,12 @@ const Header = ({ }: ComponentProps): ReactNode => {
 
 	return (
 		<div className="header">
-			<IconStar premium={ contextData.appData.premium } size={6} />
+			<IconStar premium={ contextData.appData.premium } size={24} />
 			<span className="logo">
 				{ contextData.metaData.username}.inch
 			</span>
 			<div className="ton-connect">
-				<IconTon size={3} />
+				<IconTon size={12} />
 				<span className="ton-connect__text">{ localization.header.soon }</span>
 			</div>
 		</div>

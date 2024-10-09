@@ -19,7 +19,7 @@ interface ComponentProps {}
 
 const NavigationPanel = ({}: ComponentProps): ReactNode => {
 	const { localization } = useLocalization()
-	const navigationElementIconSize = 6.5;
+	const navigationElementIconSize = 26;
 
 	return (
 		<nav className="navigation-panel">

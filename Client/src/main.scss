@@ -67,9 +67,3 @@ html, body, #root {
   display: flex;
   flex-direction: column;
 }
-
-@media (orientation: landscape) {
-  body {
-    display: none;
-  }
-}

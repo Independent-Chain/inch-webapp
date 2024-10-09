@@ -22,7 +22,7 @@ const ProfileActionCell = ({ pagePath, title, description }: ComponentProps): JS
 					<p className="pac__information__description">{ description }</p>
 				</div>
 				<div className="pac__icon">
-					<IconDiagonalRightArrow size={5} />
+					<IconDiagonalRightArrow size={20} />
 				</div>
 			</div>
 		</NavLink>

@@ -3,9 +3,11 @@ export const configureLaunch = (debug, setDebug, setDevice) => {
 		const userAgent = navigator.userAgent;
 	
 		if (/mobile/i.test(userAgent)) {
-				return 'mobile';
+			return 'mobile';
+		} else if (/iPad|Android(?!.*Mobile)/i.test(userAgent)) {
+			return 'tablet';
 		} else {
-				return 'desktop';
+			return 'desktop';
 		}
 	}
 	

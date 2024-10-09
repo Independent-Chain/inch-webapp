@@ -40,7 +40,7 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
   const { localization } = useLocalization();
   const { showNotification } = useNotification();
 
-  const iconSize: number = 3;
+  const iconSize: number = 12;
   const balance: number = contextData.appData.balance;
   const upgradePrice: string = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
   const upgradeAvailable = balance >= price;

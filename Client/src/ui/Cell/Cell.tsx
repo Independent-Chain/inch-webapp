@@ -28,7 +28,7 @@ const Cell = ({ before, after, subhead, title, titleIcon, subtitle, description,
 			{after}
 			{url && (
 					<a className="cell__link" onClick={() => window.open(url)}>
-						<IconDiagonalRightArrow size={5} />
+						<IconDiagonalRightArrow size={20} />
 					</a>
 			)}
 		</div>
