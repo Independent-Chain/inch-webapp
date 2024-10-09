@@ -28,13 +28,20 @@ const Profile = ({}: ComponentProps): ReactNode => {
 	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
 
 	const { webApp, token } = useAuth();
-	const { contextData } = useData();
+	const { contextData, updateDataContext } = useData();
 	const { localization } = useLocalization();
 	const utils = initUtils();
 
 	const invite = {
 		text: localization.profile.invite,
 		url: `https://t.me/inch_ton_bot/app?startapp=${contextData.appData.user_id}`, 
+	}
+
+	const fetchData = async () => {
+		await getUserRating();
+		await getAllRating();
+		updateDataContext(contextData);
+		setLoadingStatus(false);
 	}
 
 	const getUserRating = async () => {
@@ -56,9 +63,7 @@ const Profile = ({}: ComponentProps): ReactNode => {
 	}
 
 	useEffect(() => {
-		getUserRating();
-		getAllRating();
-		setLoadingStatus(false);
+		fetchData();
 	}, [])
 
 	if (loadingStatus) {
