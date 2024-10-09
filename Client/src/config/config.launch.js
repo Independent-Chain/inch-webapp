@@ -12,7 +12,7 @@ export const configureLaunch = (debug, setDebug, setDevice) => {
 	if (import.meta.env.VITE_LAUNCH_MODE === 'DEVELOP') {
 		setDebug(true)
 	}
-
+	
 	if (debug) {
 		setDevice('mobile')
 		import('eruda').then(eruda => eruda.default.init());

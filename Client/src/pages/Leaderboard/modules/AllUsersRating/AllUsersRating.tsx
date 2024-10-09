@@ -28,6 +28,9 @@ const AllUsersRating = ({}: ComponentProps): JSX.Element => {
 		<div className="all-users-rating">
 			{
 				contextData.allRating.map((user: UserData, index: number) =>  {
+					if (user.username === null) {
+						user.username = 'incognito'
+					}
 					user.position = index;
 					user.marker = setMarker(index);
 					return <UserRatingCard key={ index } userData={ user } />

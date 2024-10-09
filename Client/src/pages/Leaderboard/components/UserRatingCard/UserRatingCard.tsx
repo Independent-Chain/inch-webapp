@@ -21,7 +21,7 @@ const UserRatingCard = ({ userData }: ComponentProps): JSX.Element => {
 	return (
 		<div className="user-rating-card">
 			<div className="urc__avatar" style={{backgroundColor: `var(--${userData.marker}-marker)`}}>
-				<span>{ userData.username[0] }{ userData.username[1] }</span>
+				<span>{ userData.username != null ? userData.username[0] : '' }{ userData.username[1] }</span>
 			</div>
 			<div className="urc__body">
 				<p className="urc__username">{ userData.username }</p>

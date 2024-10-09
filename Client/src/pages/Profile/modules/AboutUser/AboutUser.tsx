@@ -16,7 +16,7 @@ const AboutUser = ({}: ComponentProps): JSX.Element => {
 	return (
 		<div className="about-user">
 			<div className="au__avatar">
-				{ contextData.metaData.username.charAt(0).toUpperCase() }
+				{ contextData.metaData.username != null ? contextData.metaData.username.charAt(0).toUpperCase() : '' }
 			</div>
 			<p className="username">{ contextData.metaData.username }</p>
 			<div className="information">

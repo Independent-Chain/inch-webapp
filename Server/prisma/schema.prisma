@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DEVELOP_DATABASE_URL")
+  url      = env("BUILD_DATABASE_URL")
 }
 
 model users_app_data {
@@ -18,7 +18,7 @@ model users_app_data {
   reactor         Int
   storage         Int
   locale          String           @default("en")
-  last_entry      DateTime         @db.Timestamptz(6)
+  last_entry      DateTime         @db.Timestamptz(6) @default(now())
   streak_days     Int              @default(0)
   users_meta_data users_meta_data? @relation(fields: [user_id], references: [user_id]) 
 }
