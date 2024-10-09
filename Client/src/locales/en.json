@@ -65,7 +65,7 @@
 	"profile": {
 		"headline": "Profile",
 		"friends": "Friends",
-		"rating": "Рейтинг",
+		"rating": "Rating",
 		"invite_button": "Invite friend",
 		"invite": "Become a part of the Independent Chain history with me ⚡️\n\n🇬🇧 Channel: @inch_ton\n🇷🇺 CIS Channel: @inch_ton_cis\n💬 Chat: @inch_ton_chat",
 		"translate": "Change language",
@@ -78,7 +78,7 @@
 			"description": "List of honorary users of the project"
 		},
 		"support": "Support",
-		"version": "Version 2.1"
+		"version": "Version 1.2.1"
 	},
 
 	"leaderboard": {
