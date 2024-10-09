@@ -1,7 +1,10 @@
 import axios from 'axios';
-import API_CONFIG from '../config/config.api.js';
+import API_CONFIG from '@config/config.api.ts';
 
-export const API_USER_CREATE = async (token, webApp) => {
+// Custom types;
+import { WebAppType } from '@providers/AuthProvider.tsx';
+
+export const API_USER_CREATE = async (token: string, webApp: WebAppType) => {
 	const options = {
 		method: 'POST',
 		url: `${API_CONFIG.API_DOMAIN}/user/create`,

@@ -1,12 +1,16 @@
-import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 // Custom API;
 import { API_AUTH_TOKEN } from '../api/api.auth.token.js';
 
+export type WebAppType = {
+	[key: string]: any
+} 
+
 interface AuthContextType {
-	webApp: { [key: string]: any };
-	token: string | null;
+	webApp: WebAppType;
+	token: string;
 }
 
 interface ComponentProps {

@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
+// Included styles;
 import './Image.scss';
 
 type Sizes = 20 | 24 | 28 | 40 | 48 | 96;

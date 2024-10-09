@@ -1,7 +1,5 @@
-import React from 'react';
-
 // Custom helpers;
-import { setMarker } from '../../helpers/setMarker';
+import { setMarker } from '@p-leaderboard/helpers/setMarker.ts';
 
 // Included styles;
 import './UserRatingCard.scss';
@@ -25,8 +23,7 @@ const UserRatingCard = ({ userData }: ComponentProps): JSX.Element => {
 					{ 
 						userData.username === 'incognito' ? 
 							'?' :
-							userData.username[0] + userData.username[1]
-					 		 
+							userData.username[0] + userData.username[1] 
 					}
 				</span>
 			</div>

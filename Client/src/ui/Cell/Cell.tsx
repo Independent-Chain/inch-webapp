@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import IconDiagonalRightArrow from '../../icons/IconDiagonalRightArrow.tsx';
 
+// Included styles;
 import './Cell.scss';
 
 interface ComponentProps {

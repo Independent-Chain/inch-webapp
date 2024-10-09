@@ -1,19 +1,19 @@
-import React from 'react';
-
 // Custom hooks;
-import { useData } from '../../providers/DataProvider.tsx';
-import { useLocalization } from '../../providers/LocalizationProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Custom components;
-import Title from '../../ui/Typography/Title/Title.tsx';
-import SubHeadline from '../../ui/Typography/SubHeadline/SubHeadline.tsx';
+import Title from '@ui/Typography/Title/Title.tsx';
+import SubHeadline from '@ui/Typography/SubHeadline/SubHeadline.tsx';
 import UserRatingCard from './components/UserRatingCard/UserRatingCard.tsx';
 import AllUsersRating from './modules/AllUsersRating/AllUsersRating';
 
 // Included styles;
 import './Leaderboard.scss';
 
-interface ComponentProps {}
+interface ComponentProps {
+	
+}
 
 const Leaderboard = ({}: ComponentProps): JSX.Element => {
 	const { contextData } = useData();

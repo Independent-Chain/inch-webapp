@@ -1,4 +1,4 @@
-export const setMarker = (rating) => {
+export const setMarker = (rating: number) => {
 	let marker;
 	switch(rating) {
 		case 0: marker = 'gold'; break;

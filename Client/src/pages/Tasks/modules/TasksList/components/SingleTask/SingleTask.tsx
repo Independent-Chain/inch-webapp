@@ -1,22 +1,22 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../../../../../providers/AuthProvider.tsx';
-import { useData } from '../../../../../../providers/DataProvider.tsx';
-import { useLocalization } from '../../../../../../providers/LocalizationProvider.tsx';
-import { useNotification } from '../../../../../../providers/NotificationProvider.tsx';
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
+import { useNotification } from '@providers/NotificationProvider.tsx';
 
 // Custom API;
-import { API_TASKS_COMPLETE } from '../../../../../../api/api.tasks.complete.js';
-import { API_USER_GET } from '../../../../../../api/api.user.get.js';
+import { API_TASKS_COMPLETE } from '@API/api.tasks.complete.ts';
+import { API_USER_GET } from '@API/api.user.get.ts';
 
 // Custom components;
-import Button from '../../../../../../ui/Button/Button.tsx';
+import Button from '@ui/Button/Button.tsx';
 
 // Included styles;
 import './SingleTask.scss';
 
-type Icons = 'telegram';
+type Icons = 'telegram' | 'instagram' | 'youtube' | 'bingx';
 
 interface ComponentProps {
   taskData: {
@@ -37,8 +37,8 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
   const { updateDataContext } = useData();
   const { showNotification } = useNotification();
 
-  const [completeStatus, setCompleteStatus] = useState(completed);
-  const [buttonText, setButtonText] = useState(localization.tasks.buttons.start);
+  const [completeStatus, setCompleteStatus] = useState<boolean>(completed);
+  const [buttonText, setButtonText] = useState<string>(localization.tasks.buttons.start);
 
   useEffect(() => {
     setButtonText(localization.tasks.buttons.start);

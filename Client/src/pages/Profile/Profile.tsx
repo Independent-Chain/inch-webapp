@@ -1,28 +1,31 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
+// @ts-ignore
 import { initUtils } from '@telegram-apps/sdk';
 
 //  Custom hooks;
-import { useAuth } from '../../providers/AuthProvider.tsx';
-import { useData } from '../../providers/DataProvider.tsx';
-import { useLocalization } from '../../providers/LocalizationProvider.tsx';
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Custom API;
-import { API_RATING_USER } from '../../api/api.rating.user.js';
-import { API_RATING_HOLDERS } from '../../api/api.rating.holders.js';
+import { API_RATING_USER } from '@API/api.rating.user.ts';
+import { API_RATING_HOLDERS } from '@API/api.rating.holders.ts';
 
 // Custom components;
-import Loading from '../../ui/Loading/Loading.tsx';
+import Loading from '@ui/Loading/Loading.tsx';
+import Button from '@ui/Button/Button.tsx';
 import AboutUser from './modules/AboutUser/AboutUser.tsx';
-import TranslateCell from './components/TranslateCell/TranslateCell.tsx';
 import ProfileCells from './modules/ProfileCells/ProfileCells.tsx';
-import Button from '../../ui/Button/Button.tsx';
+import ProfileFooter from './modules/ProfileFooter/ProfileFooter.tsx';
+import TranslateCell from './components/TranslateCell/TranslateCell.tsx';
 
 // Included styles;
+import '@pages/page.scss';
 import './Profile.scss';
-import '../page.scss';
-import ProfileFooter from './modules/ProfileFooter/ProfileFooter.tsx';
 
-interface ComponentProps {}
+interface ComponentProps {
+	
+}
 
 const Profile = ({}: ComponentProps): ReactNode => {
 	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);

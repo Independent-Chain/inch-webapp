@@ -1,7 +1,7 @@
 import axios from 'axios';
-import API_CONFIG from '../config/config.api.js';
+import API_CONFIG from '@config/config.api.ts';
 
-export const API_AUTH_TOKEN = async (userId, initData) => {
+export const API_AUTH_TOKEN = async (userId: number, initData: string | undefined) => {
 	const options = {
 		method: 'POST',
 		url: `${API_CONFIG.API_DOMAIN}/auth/token`,

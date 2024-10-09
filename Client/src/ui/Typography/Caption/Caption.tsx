@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
+// Included styles;
 import './Caption.scss';
 
 type Levels = 1 | 2; // 13px, 11px;

@@ -1,17 +1,19 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 // Custom hooks;
-import { useData } from '../../providers/DataProvider.tsx';
-import { useLocalization } from '../../providers/LocalizationProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Custom components;
 import CellDevice from './components/CellDevice/CellDevice.tsx';
+import HorizontalLayout from '@ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
 
 // Included styles;
-import '../page.scss';
-import HorizontalLayout from '../../ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
+import '@pages/page.scss';
 
-interface ComponentProps {}
+interface ComponentProps {
+	
+}
 
 const Upgrades = ({}: ComponentProps): ReactNode => {
 	const { contextData } = useData();

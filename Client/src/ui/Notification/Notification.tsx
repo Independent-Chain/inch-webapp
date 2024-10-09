@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import IconNotification from '../../icons/IconNotification';
 
+// Included styles;
 import './Notification.scss';
 
 interface ComponentProps {

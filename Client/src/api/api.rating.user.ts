@@ -1,11 +1,14 @@
 import axios from 'axios';
-import API_CONFIG from '../config/config.api.js';
+import API_CONFIG from '@config/config.api.ts';
 
-export const API_DAILY_CHECK = async (token, webApp) => {
+// Custom types;
+import { WebAppType } from '@providers/AuthProvider.tsx';
+
+export const API_RATING_USER = async (token: string, webApp: WebAppType) => {
 	const userId = webApp.initDataUnsafe.user.id
 	const options = {
 		method: 'GET',
-		url: `${API_CONFIG.API_DOMAIN}/daily/check/${userId}`,
+		url: `${API_CONFIG.API_DOMAIN}/rating/user/${userId}`,
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`,

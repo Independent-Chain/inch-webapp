@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
+// Included styles;
 import './Title.scss';
 
 type Levels = 1 | 2 | 3; // 28px, 24px, 20px;

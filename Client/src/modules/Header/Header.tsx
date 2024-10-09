@@ -1,12 +1,12 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 // Custom hooks;
-import { useData } from '../../providers/DataProvider.tsx';
-import { useLocalization } from '../../providers/LocalizationProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Icons;
-import IconStar from '../../icons/IconPremium.tsx';
-import IconTon from '../../icons/IconTon.tsx';
+import IconStar from '@icons/IconPremium.tsx';
+import IconTon from '@icons/IconTon.tsx';
 
 // Included styles;
 import './Header.scss';

@@ -1,13 +1,13 @@
-import React from 'react';
-
 // Custom hooks;
-import { useData } from '../../../../providers/DataProvider';
-import { useLocalization } from '../../../../providers/LocalizationProvider';
+import { useData } from '@providers/DataProvider';
+import { useLocalization } from '@providers/LocalizationProvider';
 
 // Included styles;
 import './AboutUser.scss';
 
-interface ComponentProps {}
+interface ComponentProps {
+	
+}
 
 const AboutUser = ({}: ComponentProps): JSX.Element => {
 	const { contextData } = useData();

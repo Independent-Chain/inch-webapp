@@ -1,22 +1,24 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../providers/AuthProvider.tsx';
-import { useData } from '../../providers/DataProvider.tsx';
-import { useLocalization } from '../../providers/LocalizationProvider.tsx'; 
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx'; 
 
 // Custom components;
-import Loading from '../../ui/Loading/Loading.tsx';
+import Loading from '@ui/Loading/Loading.tsx';
 import TasksList from './modules/TasksList/TasksList.tsx';
 
 // Custom API;
-import { API_TASKS_ALL } from '../../api/api.tasks.all.js';
+import { API_TASKS_ALL } from '@API/api.tasks.all.ts';
 
 // Included styles;
-import '../Page.scss';
+import '@pages/page.scss';
 import './Tasks.scss';
 
-interface ComponentProps {}
+interface ComponentProps {
+	
+}
 
 const Tasks = ({}: ComponentProps): ReactNode => {
 	const [loadingStatus, setLoadingStatus] = useState<boolean>(true);

@@ -1,13 +1,13 @@
-import React from 'react';
-
 // Custom hooks;
-import { useAuth } from '../../../../providers/AuthProvider';
-import { useLocalization } from '../../../../providers/LocalizationProvider';
+import { useAuth } from '@providers/AuthProvider';
+import { useLocalization } from '@providers/LocalizationProvider';
 
 // Included styles;
 import './ProfileFooter.scss';
 
-interface ComponentProps {}
+interface ComponentProps {
+	
+}
 
 const ProfileFooter = ({}: ComponentProps): JSX.Element => {
 	const { webApp } = useAuth();
