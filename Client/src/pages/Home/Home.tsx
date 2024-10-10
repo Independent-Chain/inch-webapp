@@ -1,24 +1,22 @@
 import { ReactNode } from 'react';
 
-// Custom hooks;
-import { useData } from '@providers/DataProvider.tsx';
-
 // Custom modules;
-import MiningCounter from '@p-home/modules/MiningCounter/MiningCounter.tsx';
-import ActionButtons from '@p-home/modules/ActionButtons/ActionButtons.tsx';
-import HomeCells from '@p-home/modules/HomeCells/HomeCells.tsx';
+import HomeMining from '@pages/Home/components/HomeMining/HomeMining';
+import HomeButtons from '@p-home/components/HomeButtons/HomeButtons.tsx';
+import HomeCells from '@p-home/components/HomeCells/HomeCells.tsx';
 
 // Included styles;
 import '@pages/page.scss';
 
-const Home = ({}): ReactNode => {
-	const { contextData } = useData()
-;
+
+interface ComponentProps { }
+
+const Home = ({ }: ComponentProps): ReactNode => {
 	return (
 		<div className="page" id="home">
-			<MiningCounter appData={ contextData.appData } />
-			<ActionButtons />
-			<HomeCells appData={ contextData.appData } />
+			<HomeMining />
+			<HomeButtons />
+			<HomeCells />
 		</div>
 	)
 }

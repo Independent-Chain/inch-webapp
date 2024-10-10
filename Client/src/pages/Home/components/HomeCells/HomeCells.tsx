@@ -1,30 +1,27 @@
 import { ReactNode } from 'react';
 
 // Custom hooks;
-import { useLocalization } from '@providers/LocalizationProvider';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Custom components;
-import Cell from '@ui/Cell/Cell';
+import Cell from '@ui/Cell/Cell.tsx';
 
 // Included styles;
 import './HomeCells.scss';
 
-interface appData {
-	[key: string]: any;
-}
 
-interface ComponentProps {
-	appData: appData;
-}
+interface ComponentProps { }
 
-const HomeCells = ({ appData }: ComponentProps): ReactNode => {
+const HomeCells = ({ }: ComponentProps): ReactNode => {
+	const { contextData } = useData();
 	const { localization } = useLocalization();
 
 	return (
 		<div className="home-cells">
 			<Cell 
 				subhead={ localization.home.balance.subhead } 
-				title={ `${appData.balance.toLocaleString('en-US')}` } 
+				title={ `${contextData.appData.balance.toLocaleString('en-US')}` } 
 				titleIcon={<img src="/coin.png" alt="" style={{width: '2vh', marginRight: '4px'}} />}
 				description={ localization.home.balance.description }/>
 			<Cell 

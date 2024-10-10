@@ -3,13 +3,11 @@ import { useData } from '@providers/DataProvider';
 import { useLocalization } from '@providers/LocalizationProvider';
 
 // Included styles;
-import './AboutUser.scss';
+import './ProfileUser.scss';
 
-interface ComponentProps {
-	
-}
+interface ComponentProps { }
 
-const AboutUser = ({}: ComponentProps): JSX.Element => {
+const ProfileUser = ({ }: ComponentProps): JSX.Element => {
 	const { contextData } = useData();
 	const { localization } = useLocalization();
 
@@ -39,4 +37,4 @@ const AboutUser = ({}: ComponentProps): JSX.Element => {
 	)
 }
 
-export default AboutUser;
+export default ProfileUser;

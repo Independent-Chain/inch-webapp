@@ -5,7 +5,7 @@ import { useData } from '@providers/DataProvider.tsx';
 import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Custom components;
-import CellDevice from './components/CellDevice/CellDevice.tsx';
+import CellDevice from '@p-upgrades/components/UpgradesCell/UpgradesCell.tsx';
 import HorizontalLayout from '@ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
 
 // Included styles;

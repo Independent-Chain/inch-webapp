@@ -13,11 +13,12 @@ import Button from '@ui/Button/Button.tsx';
 import { API_MINING_CLAIM } from '@API/api.mining.claim.ts';
 
 // Included styles;
-import './ActionButtons.scss';
+import './HomeButtons.scss';
 
-interface ComponentProps {}
 
-const ActionButtons = ({}: ComponentProps): ReactNode => {
+interface ComponentProps { }
+
+const HomeButtons = ({ }: ComponentProps): ReactNode => {
 	const [claimButtonDisableStatus, setClaimButtonDisableStatus] = useState(false)
 
 	const { token, webApp } = useAuth();
@@ -26,8 +27,8 @@ const ActionButtons = ({}: ComponentProps): ReactNode => {
 	const { showNotification } = useNotification();
 
 	const claim = () => {
-		setClaimButtonDisableStatus(true)
-		setTimeout(() => setClaimButtonDisableStatus(false), 5000) // Claim timeout;
+		setClaimButtonDisableStatus(true);
+		setTimeout(() => setClaimButtonDisableStatus(false), 5000);
 		API_MINING_CLAIM(token, webApp).then(responseData => {
 			showNotification('success', localization.notifications.success, `+ ${responseData.loot.toLocaleString('en-US')} $tINCH`);
 			updateDataContext({ metaData: responseData.metaData, appData: responseData.appData });
@@ -70,4 +71,4 @@ const ActionButtons = ({}: ComponentProps): ReactNode => {
 	)
 }
 
-export default ActionButtons;
+export default HomeButtons;

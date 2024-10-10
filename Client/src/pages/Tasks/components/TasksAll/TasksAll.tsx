@@ -4,16 +4,15 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useData } from '@providers/DataProvider.tsx';
 
 // Custom components;
-import SingleTask from './components/SingleTask/SingleTask.tsx';
+import Task from '@p-tasks/components/Task/Task.tsx';
 
 // Included styles;
-import './TasksList.scss';
+import './TasksAll.scss';
 
-interface ComponentProps {
-  
-}
 
-const TasksList = ({}: ComponentProps): ReactNode => {
+interface ComponentProps { }
+
+const TasksAll = ({ }: ComponentProps): ReactNode => {
 	const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([ ]);
   const [completedTasks, setCompletedTasks] = useState<any[]>([ ]);
 
@@ -39,14 +38,18 @@ const TasksList = ({}: ComponentProps): ReactNode => {
 
   return (
     <>
-      {notCompletedTasks.map((task) => (
-        <SingleTask key={ task.task_id } taskData={ task } completed={ false } />
-      ))}
-      {completedTasks.map((task) => (
-        <SingleTask key={ task.task_id } taskData={ task } completed={ true } />
-      ))}
+      {
+        notCompletedTasks.map((task) => (
+          <Task key={ task.task_id } taskData={ task } completed={ false } />
+        ))
+      }
+      {
+        completedTasks.map((task) => (
+          <Task key={ task.task_id } taskData={ task } completed={ true } />
+        ))
+      }
     </>
   );
 };
 
-export default TasksList;
+export default TasksAll;

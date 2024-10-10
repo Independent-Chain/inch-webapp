@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
-// @ts-ignore
-import { initUtils } from '@telegram-apps/sdk';
+import { initUtils } from '@tma.js/sdk';
 
 //  Custom hooks;
 import { useAuth } from '@providers/AuthProvider.tsx';
@@ -12,12 +11,12 @@ import { API_RATING_USER } from '@API/api.rating.user.ts';
 import { API_RATING_HOLDERS } from '@API/api.rating.holders.ts';
 
 // Custom components;
+import ProfileUser from './components/ProfileUser/ProfileUser.tsx';
+import ProfileCells from './components/ProfileCells/ProfileCells.tsx';
+import ProfileFooter from './components/ProfileFooter/ProfileFooter.tsx';
+import TranslateCell from './components/TranslateCell/TranslateCell.tsx';
 import Loading from '@ui/Loading/Loading.tsx';
 import Button from '@ui/Button/Button.tsx';
-import AboutUser from './modules/AboutUser/AboutUser.tsx';
-import ProfileCells from './modules/ProfileCells/ProfileCells.tsx';
-import ProfileFooter from './modules/ProfileFooter/ProfileFooter.tsx';
-import TranslateCell from './components/TranslateCell/TranslateCell.tsx';
 
 // Included styles;
 import '@pages/page.scss';
@@ -75,7 +74,7 @@ const Profile = ({}: ComponentProps): ReactNode => {
 
 	return (
 		<div className="page" id="profile">
-			<AboutUser />
+			<ProfileUser />
 			<Button 
 				mode="white" 
 				size="medium" 

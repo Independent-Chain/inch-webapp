@@ -20,7 +20,7 @@ import Upgrades from '@p-upgrades/Upgrades.tsx';
 import Tasks from '@p-tasks/Tasks.tsx';
 import Profile from '@p-profile/Profile.tsx';
 import Leaderboard from '@p-leaderboard/Leaderboard.tsx';
-import HonorBoard from '@p-honorboard/HonorBoard.tsx';
+import Honorboard from '@p-honorboard/Honorboard.tsx';
 
 // Custom components;
 import MobileSplashScreen from '@ui/SplashScreen/MobileSplashScreen/MobileSplashScreen.tsx';
@@ -107,7 +107,7 @@ const App = (): ReactNode => {
         <Route path='/tasks' element={<Tasks />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/leaderboard' element={<Leaderboard />} />
-        <Route path='/honor-roll' element={<HonorBoard />} />
+        <Route path='/honor-roll' element={<Honorboard />} />
       </Routes>
       <NavigationPanel />
     </BrowserRouter>

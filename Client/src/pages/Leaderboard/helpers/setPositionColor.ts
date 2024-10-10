@@ -1,4 +1,4 @@
-export const setMarker = (rating: number) => {
+export const setPositionColor = (rating: number) => {
 	let marker;
 	switch(rating) {
 		case 0: marker = 'gold'; break;

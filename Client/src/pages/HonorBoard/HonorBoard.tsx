@@ -3,18 +3,17 @@ import { ReactNode } from 'react';
 // Custom hooks;
 import { useLocalization } from '@providers/LocalizationProvider';
 
-// Included styles;
-import '../Page.scss';
-import './HonorBoard.scss';
-
-// Honor board;
+// Custom components;
 import honorBoard from './data/honor_board.json';
 
-interface ComponentProps {
+// Included styles;
+import './Honorboard.scss';
+import '@pages/page.scss';
 
-}
 
-const HonorRoll = ({}: ComponentProps): ReactNode => {
+interface ComponentProps { }
+
+const Honorboard = ({ }: ComponentProps): ReactNode => {
 	const { localization } = useLocalization();
 
 	const generateMembersList = (users: Array<string>) => {
@@ -48,4 +47,4 @@ const HonorRoll = ({}: ComponentProps): ReactNode => {
 	)
 }
 
-export default HonorRoll;
+export default Honorboard;

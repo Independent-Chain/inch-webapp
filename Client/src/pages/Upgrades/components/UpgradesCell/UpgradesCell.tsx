@@ -23,7 +23,7 @@ import IconLevel from '@icons/IconLevel.tsx';
 import IconParameter from '@icons/IconParameter.tsx';
 
 // Included styles;
-import './CellDevice.scss';
+import './UpgradesCell.scss';
 
 interface ComponentProps {
   deviceId: string;
@@ -34,7 +34,7 @@ interface ComponentProps {
   price: number;
 }
 
-const CellDevice = ({ deviceId, title, description, level, parameter, price }: ComponentProps): ReactNode => {
+const UpgradesCell = ({ deviceId, title, description, level, parameter, price }: ComponentProps): ReactNode => {
   const { webApp, token } = useAuth();
   const { contextData, updateDataContext } = useData();
   const { localization } = useLocalization();
@@ -113,4 +113,4 @@ const CellDevice = ({ deviceId, title, description, level, parameter, price }: C
   );
 };
 
-export default CellDevice;
+export default UpgradesCell;

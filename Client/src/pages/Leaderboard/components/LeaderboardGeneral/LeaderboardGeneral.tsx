@@ -1,14 +1,12 @@
 // Custom hooks;
 import { useData } from '@providers/DataProvider';
 
-// Custom helpers;
-import { setMarker } from '@p-leaderboard/helpers/setMarker.ts';
-
 // Custom components;
-import UserRatingCard from '@p-leaderboard/components/UserRatingCard/UserRatingCard.tsx';
+import LeaderboardUser from '@p-leaderboard/components/LeaderboardUser/LeaderboardUser.tsx';
 
 // Included styles;
-import './AllUsersRating.scss';
+import './LeaderboardGeneral.scss';
+
 
 type UserData = { 
 	username: string;
@@ -17,9 +15,9 @@ type UserData = {
 	balance: number;
 }
 
-interface ComponentProps {}
+interface ComponentProps { }
 
-const AllUsersRating = ({}: ComponentProps): JSX.Element => {
+const LeaderboardGeneral = ({ }: ComponentProps): JSX.Element => {
 	const { contextData } = useData();
 
 	return (
@@ -30,9 +28,13 @@ const AllUsersRating = ({}: ComponentProps): JSX.Element => {
 						user.username = 'incognito';
 					}
 					user.position = index;
-					user.marker = setMarker(index);
 					return (
-						<UserRatingCard key={ index } userData={ user } />
+						<LeaderboardUser
+							key={ index }
+							username={ user.username } 
+							balance={ user.balance }
+							position={ user.position }	
+						/>
 					)
 				})
 			}
@@ -40,4 +42,4 @@ const AllUsersRating = ({}: ComponentProps): JSX.Element => {
 	)
 }
 
-export default AllUsersRating;
+export default LeaderboardGeneral;

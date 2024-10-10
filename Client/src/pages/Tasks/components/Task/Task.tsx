@@ -14,7 +14,8 @@ import { API_USER_GET } from '@API/api.user.get.ts';
 import Button from '@ui/Button/Button.tsx';
 
 // Included styles;
-import './SingleTask.scss';
+import './Task.scss';
+
 
 type Icons = 'telegram' | 'instagram' | 'youtube' | 'bingx';
 
@@ -31,7 +32,7 @@ interface ComponentProps {
   completed: boolean;
 }
 
-const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
+const Task = ({ taskData, completed }: ComponentProps): ReactNode => {
   const { localization } = useLocalization();
   const { webApp, token } = useAuth();
   const { updateDataContext } = useData();
@@ -98,4 +99,4 @@ const SingleTask = ({ taskData, completed }: ComponentProps): ReactNode => {
   );
 }
 
-export default SingleTask;
+export default Task;

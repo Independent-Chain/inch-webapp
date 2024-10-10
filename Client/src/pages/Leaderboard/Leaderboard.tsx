@@ -5,21 +5,21 @@ import { useLocalization } from '@providers/LocalizationProvider.tsx';
 // Custom components;
 import Title from '@ui/Typography/Title/Title.tsx';
 import SubHeadline from '@ui/Typography/SubHeadline/SubHeadline.tsx';
-import UserRatingCard from './components/UserRatingCard/UserRatingCard.tsx';
-import AllUsersRating from './modules/AllUsersRating/AllUsersRating';
+import LeaderboardUser from './components/LeaderboardUser/LeaderboardUser.tsx';
+import LeaderboardGeneral from './components/LeaderboardGeneral/LeaderboardGeneral.tsx';
 
 // Included styles;
 import './Leaderboard.scss';
+import '@pages/page.scss';
 
-interface ComponentProps {
-	
-}
 
-const Leaderboard = ({}: ComponentProps): JSX.Element => {
+interface ComponentProps { }
+
+const Leaderboard = ({ }: ComponentProps): JSX.Element => {
 	const { contextData } = useData();
 	const { localization } = useLocalization();
 	
-	const selfUserData = {
+	const userData = {
 		username: contextData.metaData.username,
 		balance: contextData.appData.balance,
 		position: contextData.appData.rating - 1,
@@ -28,12 +28,12 @@ const Leaderboard = ({}: ComponentProps): JSX.Element => {
 	return (
 		<div className="page" id="leaderboard">
 			<Title level={3} weight={2} color="white">{ localization.leaderboard.your_score }</Title>
-			<UserRatingCard userData={ selfUserData } />
+			<LeaderboardUser username={ userData.username } balance={ userData.balance } position={ userData.position } />
 			<div className="title-wrapper">
 				<Title level={3} weight={2} color="white">{ localization.leaderboard.general.title }</Title>
 				<SubHeadline color="gray">{ localization.leaderboard.general.description }</SubHeadline>
 			</div>
-			<AllUsersRating />
+			<LeaderboardGeneral />
 		</div>
 	)
 }

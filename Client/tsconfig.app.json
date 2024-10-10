@@ -35,7 +35,7 @@
       "@providers/*": ["src/providers/*"],
       "@ui/*": ["src/ui/*"],
       "@p-home/*": ["src/pages/Home/*"],
-      "@p-honorboard/*": ["src/pages/HonorBoard/*"],
+      "@p-honorboard/*": ["src/pages/Honorboard/*"],
       "@p-leaderboard/*": ["src/pages/Leaderboard/*"],
       "@p-profile/*": ["src/pages/Profile/*"],
       "@p-tasks/*": ["src/pages/Tasks/*"],
