@@ -11,11 +11,10 @@ import HorizontalLayout from '@ui/Layout/HorizontalLayout/HorizontalLayout.tsx';
 // Included styles;
 import '@pages/page.scss';
 
-interface ComponentProps {
-	
-}
 
-const Upgrades = ({}: ComponentProps): ReactNode => {
+interface ComponentProps { }
+
+const Upgrades = ({ }: ComponentProps): ReactNode => {
 	const { contextData } = useData();
 	const { localization } = useLocalization();
 

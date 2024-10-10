@@ -14,7 +14,7 @@ import { API_RATING_HOLDERS } from '@API/api.rating.holders.ts';
 import ProfileUser from './components/ProfileUser/ProfileUser.tsx';
 import ProfileCells from './components/ProfileCells/ProfileCells.tsx';
 import ProfileFooter from './components/ProfileFooter/ProfileFooter.tsx';
-import TranslateCell from './components/TranslateCell/TranslateCell.tsx';
+import ProfileTranslateCell from './components/ProfileTranslateCell/ProfileTranslateCell.tsx';
 import Loading from '@ui/Loading/Loading.tsx';
 import Button from '@ui/Button/Button.tsx';
 
@@ -84,7 +84,7 @@ const Profile = ({}: ComponentProps): ReactNode => {
 			>
 				{ localization.profile.invite_button }
 			</Button>
-			<TranslateCell />
+			<ProfileTranslateCell />
 			<ProfileCells />
 			<ProfileFooter />
 		</div>

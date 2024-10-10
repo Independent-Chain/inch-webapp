@@ -16,11 +16,10 @@ import Cell from '@ui/Cell/Cell.tsx';
 // Included styles;
 import './TranslateCell.scss';
 
-interface ComponentProps {
-	
-}
 
-const TranslateCell = ({}: ComponentProps): JSX.Element => {
+interface ComponentProps { }
+
+const ProfileTranslateCell = ({ }: ComponentProps): JSX.Element => {
 	const [isFirstRender, setIsFirstRender] = useState(true);
 
 	const [impactOccurred] = useHapticFeedback();
@@ -65,4 +64,4 @@ const TranslateCell = ({}: ComponentProps): JSX.Element => {
 	)
 }
 
-export default TranslateCell;
+export default ProfileTranslateCell;

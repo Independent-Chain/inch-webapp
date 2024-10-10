@@ -5,6 +5,7 @@ import { useLocalization } from '@providers/LocalizationProvider';
 // Included styles;
 import './ProfileUser.scss';
 
+
 interface ComponentProps { }
 
 const ProfileUser = ({ }: ComponentProps): JSX.Element => {

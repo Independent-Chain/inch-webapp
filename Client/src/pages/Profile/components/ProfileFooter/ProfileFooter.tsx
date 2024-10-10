@@ -5,11 +5,10 @@ import { useLocalization } from '@providers/LocalizationProvider';
 // Included styles;
 import './ProfileFooter.scss';
 
-interface ComponentProps {
-	
-}
 
-const ProfileFooter = ({}: ComponentProps): JSX.Element => {
+interface ComponentProps { }
+
+const ProfileFooter = ({ }: ComponentProps): JSX.Element => {
 	const { webApp } = useAuth();
 	const { localization } = useLocalization();
 

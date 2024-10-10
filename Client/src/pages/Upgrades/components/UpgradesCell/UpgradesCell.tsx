@@ -25,6 +25,7 @@ import IconParameter from '@icons/IconParameter.tsx';
 // Included styles;
 import './UpgradesCell.scss';
 
+
 interface ComponentProps {
   deviceId: string;
   title: string;
