@@ -22,7 +22,7 @@ const Leaderboard = ({ }: ComponentProps): JSX.Element => {
 	const userData = {
 		username: contextData.metaData.username,
 		balance: contextData.appData.balance,
-		position: contextData.appData.rating - 1,
+		position: contextData.appData.rating,
 	}
 
 	return (

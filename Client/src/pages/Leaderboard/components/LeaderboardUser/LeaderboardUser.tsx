@@ -29,7 +29,7 @@ const LeaderboardUser = ({ username, balance, position }: ComponentProps): JSX.E
 				<p className="urc__username">{ username }</p>
 				<p className="urc__balance">{ balance.toLocaleString('en-Us') } tINCH</p>
 			</div>
-			<p className={`urc__position ${marker}`}>#{ position + 1 } </p>
+			<p className={`urc__position ${marker}`}>#{ position } </p>
 		</div>
 	)
 }

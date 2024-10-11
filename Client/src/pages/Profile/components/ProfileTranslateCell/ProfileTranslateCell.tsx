@@ -14,7 +14,7 @@ import { API_USER_LOCALE } from '@API/api.user.locale.ts';
 import Cell from '@ui/Cell/Cell.tsx';
 
 // Included styles;
-import './TranslateCell.scss';
+import './ProfileTranslateCell.scss';
 
 
 interface ComponentProps { }

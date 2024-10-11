@@ -27,7 +27,7 @@ const LeaderboardGeneral = ({ }: ComponentProps): JSX.Element => {
 					if (user.username === null) {
 						user.username = 'incognito';
 					}
-					user.position = index;
+					user.position = index + 1;
 					return (
 						<LeaderboardUser
 							key={ index }

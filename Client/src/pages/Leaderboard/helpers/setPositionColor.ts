@@ -1,9 +1,9 @@
 export const setPositionColor = (rating: number) => {
 	let marker;
 	switch(rating) {
-		case 0: marker = 'gold'; break;
-		case 1: marker = 'silver'; break;
-		case 2: marker = 'bronze'; break;
+		case 1: marker = 'gold'; break;
+		case 2: marker = 'silver'; break;
+		case 3: marker = 'bronze'; break;
 		default: marker = 'default'; break;
 	}
 	return marker;
