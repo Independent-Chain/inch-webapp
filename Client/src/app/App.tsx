@@ -34,7 +34,7 @@ import NavigationPanel from '@modules/NavigationPanel/NavigationPanel.tsx';
 import '@/main.scss';
 
 const App = (): ReactNode => {
-  const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [dailyRewardData, setDailyRewardData] = useState(null);
   const [device, setDevice] = useState<string>('');
   const [debug, setDebug] = useState<boolean>(false)
@@ -48,40 +48,35 @@ const App = (): ReactNode => {
 
   useEffect(() => {
     configureLaunch(debug, setDebug, setDevice);
-    if (token) handleUserCreation();
+    if (token) fetchInitData();
   }, [token, debug, device]);
 
-  const stopLoading = async () => {
-    setTimeout(() => {
-      setLoadingStatus(device !== 'desktop' ? false : true);
-    }, debug ? 1 : 4000)
+  const fetchInitData = async () => {
+    await initializeUser();
+    await checkDailyReward();
   }
 
-  const handleUserCreation = async () => {
+  const initializeUser = async () => {
     try {
+      // Create user;
       const response = await API_USER_CREATE(token, webApp);
       updateDataContext(response);
       await stopLoading();
-      await fetchDailyReward();
     } catch (error) {
-      console.log(error)
-      await handleExistingUser();
+      console.log('[App] Create user error: ', error);
+      // Get user;
+      try {
+        const response = await API_USER_GET(token, webApp);
+        updateDataContext(response);
+        updateLocalization(response.appData.locale);
+        await stopLoading();
+      } catch (error) {
+        console.log('[App] Get user error: ', error);
+      }
     }
   };
 
-  const handleExistingUser = async () => {
-    try {
-      const response = await API_USER_GET(token, webApp);
-      updateDataContext(response);
-      updateLocalization(response.appData.locale);
-      await stopLoading();
-      await fetchDailyReward();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchDailyReward = async () => {
+  const checkDailyReward = async () => {
     try {
       const response = await API_DAILY_CHECK(token, webApp);
       setDailyRewardData(response);
@@ -90,12 +85,18 @@ const App = (): ReactNode => {
     }
   };
 
+  const stopLoading = async () => {
+    setTimeout(() => {
+      setLoading(device !== 'desktop' ? false : true);
+    }, debug ? 1 : 4000)
+  }
+
   const renderSplashScreen = () => {
     if (debug) return <Loading text="Debugging loading" />;
     return device === 'desktop' ? <DesktopSplashScreen /> : <MobileSplashScreen />;
   };
 
-  if (loadingStatus) return renderSplashScreen();
+  if (loading) return renderSplashScreen();
 
   return (
     <BrowserRouter>
