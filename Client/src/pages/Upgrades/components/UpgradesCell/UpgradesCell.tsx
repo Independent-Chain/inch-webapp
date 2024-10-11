@@ -7,6 +7,7 @@ import { useLocalization } from '@providers/LocalizationProvider.tsx';
 import { useNotification } from '@providers/NotificationProvider.tsx';
 
 // Custom components;
+import Icon from '@ui/Icon/Icon.tsx';
 import Button from '@ui/Button/Button.tsx';
 import VerticalLayout from '@ui/Layout/VerticalLayout/VerticalLayout.tsx';
 
@@ -16,11 +17,6 @@ import { API_MINING_CLAIM } from '@API/api.mining.claim.ts';
 
 // Custom helpers;
 import formatUpgradeConfirm from '@p-upgrades/helpers/formatUpgradeConfirm.ts';
-
-// Icons;
-import IconCoin from '@icons/IconCoin.tsx';
-import IconLevel from '@icons/IconLevel.tsx';
-import IconParameter from '@icons/IconParameter.tsx';
 
 // Included styles;
 import './UpgradesCell.scss';
@@ -41,7 +37,6 @@ const UpgradesCell = ({ deviceId, title, description, level, parameter, price }:
   const { localization } = useLocalization();
   const { showNotification } = useNotification();
 
-  const iconSize: number = 3;
   const balance: number = contextData.appData.balance;
   const upgradePrice: string = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
   const upgradeAvailable = balance >= price;
@@ -53,20 +48,20 @@ const UpgradesCell = ({ deviceId, title, description, level, parameter, price }:
     showNotification('error', localization.notifications.error, `${title} ${localization.notification.upgrades.not_upgraded}`)
   }
 
-  const upgrade = () => {
-		API_MINING_UPGRADE(token, webApp, deviceId).then((_responseData) => {
-			API_MINING_CLAIM(token, webApp).then((responseData) => {
-        updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
-        successUpgradeNotification()
-      }).catch((error) => {
-        console.log(error)
-        errorUpgradeNotification()
-      })
-		}).catch((error) => {
-      console.log(error)
-			errorUpgradeNotification()
-		})
-  }
+  const upgrade = async () => {
+    try {
+      await API_MINING_UPGRADE(token, webApp, deviceId);
+      const claimResponse = await API_MINING_CLAIM(token, webApp);
+      updateDataContext({
+        metaData: claimResponse.metaData,
+        appData: claimResponse.appData,
+      });
+      successUpgradeNotification();
+    } catch (error) {
+      console.log(error);
+      errorUpgradeNotification();
+    }
+  };
 
   const confirmUpgrade = () => {
     const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
@@ -86,15 +81,15 @@ const UpgradesCell = ({ deviceId, title, description, level, parameter, price }:
       <p className="device-description">{ description }</p>
       <VerticalLayout justify="center" align="start" gap={6}>
         <div className="device-attribute" id="level">
-          <IconLevel size={ iconSize } />
+          <Icon name="settings-stroke-rounded" size={2} unit="vh" color="gray" />
           <p className="device-attribute__text">{ level } { localization.upgrades.device.level }</p>
         </div>
         <div className="device-attribute" id="parameter">
-          <IconParameter size={ iconSize } />
+          <Icon name="flash-stroke-rounded" size={2} unit="vh" color="gray" />
           <p className="device-attribute__text">{ parameter }</p>
         </div>
         <div className={`device-attribute available-${upgradeAvailable}`} id="price">
-          <IconCoin size={ iconSize } />
+          <Icon name="coins-stroke-rounded" size={2} unit="vh" color="gray" />
           <p className="device-attribute__text">${ upgradePrice }</p>
         </div>
       </VerticalLayout>

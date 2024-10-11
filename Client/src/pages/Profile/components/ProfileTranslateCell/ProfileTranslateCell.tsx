@@ -12,6 +12,7 @@ import { API_USER_LOCALE } from '@API/api.user.locale.ts';
 
 // Custom components;
 import Cell from '@ui/Cell/Cell.tsx';
+import Icon from '@ui/Icon/Icon.tsx';
 
 // Included styles;
 import './ProfileTranslateCell.scss';
@@ -57,7 +58,7 @@ const ProfileTranslateCell = ({ }: ComponentProps): JSX.Element => {
 				}
 				title={ localization.profile.translate }
 				after={
-					<img className="tc__icon" id="arrow" src="/ui-icons/arrow-right-rounded.svg" alt="" />
+					<Icon name="arrow-right-stroke-rounded" size={3.25} unit="vh" color="white" />
 				}
 			/>
 		</div>

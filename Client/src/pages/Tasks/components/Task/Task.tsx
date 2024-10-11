@@ -15,6 +15,7 @@ import Button from '@ui/Button/Button.tsx';
 
 // Included styles;
 import './Task.scss';
+import Cell from '@ui/Cell/Cell';
 
 
 type Icons = 'telegram' | 'instagram' | 'youtube' | 'bingx';
@@ -74,28 +75,47 @@ const Task = ({ taskData, completed }: ComponentProps): ReactNode => {
   };
 
   return (
-    <div className="task">
-      <img className="task__icon" src={`/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
-      <div className="task__body">
-        <p className="task__name">
-          {taskData.name}
-          <span className={ completed ? "completed" : "not-completed" }>
-            { completed ? localization.tasks.labels.c : localization.tasks.labels.nc }
-          </span>
-        </p>
-        <p className="task__award">+{taskData.award} tINCH</p>
-      </div>
-      <Button
-        disabled={ completeStatus }
-        mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
-        size="medium"
-        haptic={["impact", "soft"]}
-        style={{ margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh' }}
-        onClick={() => !completed && handleButtonClick()}
-      >
-        { buttonText }
-      </Button>
-    </div>
+    <Cell
+      before={
+        <img className="task__icon" src={`/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
+      }
+      title={ taskData.name }
+      description={`+${taskData.award} tINCH`}
+      after={
+        <Button
+          disabled={ completeStatus }
+          mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
+          size="medium"
+          haptic={["impact", "soft"]}
+          style={{ margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh' }}
+          onClick={() => !completed && handleButtonClick()}
+        >
+          { buttonText }
+        </Button>
+      }
+    />
+    // <div className="task">
+    //   <img className="task__icon" src={`/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
+    //   <div className="task__body">
+    //     <p className="task__name">
+    //       {taskData.name}
+    //       <span className={ completed ? "completed" : "not-completed" }>
+    //         { completed ? localization.tasks.labels.c : localization.tasks.labels.nc }
+    //       </span>
+    //     </p>
+    //     <p className="task__award">+{taskData.award} tINCH</p>
+    //   </div>
+    //   <Button
+    //     disabled={ completeStatus }
+    //     mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
+    //     size="medium"
+    //     haptic={["impact", "soft"]}
+    //     style={{ margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh' }}
+    //     onClick={() => !completed && handleButtonClick()}
+    //   >
+    //     { buttonText }
+    //   </Button>
+    // </div>
   );
 }
 
