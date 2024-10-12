@@ -1,4 +1,8 @@
-export const configureLaunch = (debug: boolean, setDebug: Function, setDevice: Function) => {
+export const configureLaunch = (
+   debug: boolean,
+   setDebug: React.Dispatch<React.SetStateAction<boolean>>,
+   setDevice: React.Dispatch<React.SetStateAction<string>>
+) => {
    const detectDevice = () => {
       const userAgent = navigator.userAgent;
 	

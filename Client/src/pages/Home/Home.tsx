@@ -28,7 +28,7 @@ const Home = ({ }: ComponentProps): ReactNode => {
    const getUser = async () => {
       try {
          const response = await API_USER_GET(token, webApp);
-    	updateDataContext(response);
+         updateDataContext(response);
          setLoading(false);
       } catch (error) {
          console.log('[Home] Get user error: ', error);

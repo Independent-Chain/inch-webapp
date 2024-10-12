@@ -15,7 +15,7 @@ export const API_USER_CREATE = async (token: string, webApp: WebAppType) => {
       data: { 
          metaData: {
             user_id: webApp.initDataUnsafe.user.id,
-    		first_name: webApp.initDataUnsafe.user.first_name,
+            first_name: webApp.initDataUnsafe.user.first_name,
             last_name: webApp.initDataUnsafe.user.last_name,
             username: webApp.initDataUnsafe.user.username,
             language_code: webApp.initDataUnsafe.user.language_code,

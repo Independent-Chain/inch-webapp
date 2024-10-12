@@ -4,9 +4,8 @@ import { ReactNode } from 'react';
 import { useData } from '@providers/DataProvider.tsx';
 import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
-// Icons;
-import IconStar from '@icons/IconPremium.tsx';
-import IconTon from '@icons/IconTon.tsx';
+// Custom components;
+import Icon from '@ui/Icon/Icon.tsx';
 
 // Included styles;
 import './Header.scss';
@@ -19,12 +18,16 @@ const Header = ({ }: ComponentProps): ReactNode => {
 
    return (
       <div className="header">
-         <IconStar premium={ contextData.appData.premium } size={6} />
+         <Icon 
+            name={ contextData.appData.premium ? 'premium-true' : 'premium-false' }
+            size={3} 
+            unit="vh" 
+         />
          <span className="logo">
             { contextData.metaData.username}.inch
          </span>
          <div className="ton-connect">
-            <IconTon size={3} />
+            <Icon name="ton" size={2} unit="vh" />
             <span className="ton-connect__text">{ localization.header.soon }</span>
          </div>
       </div>

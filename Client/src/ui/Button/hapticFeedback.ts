@@ -1,3 +1,4 @@
+import { ImpactOccurredFunction, NotificationOccurredFunction, SelectionChangedFunction } from '@vkruglikov/react-telegram-web-app';
 // Custom types;
 import { Haptic } from '@ui/Button/Button.tsx';
 
@@ -18,7 +19,12 @@ import { Haptic } from '@ui/Button/Button.tsx';
 //     success, indicates that a task or action has completed successfully
 //     warning, indicates that a task or action produced a warning 
 
-export const createHapticFeedback = (haptic: Haptic, impactOccurred: Function, notificationOccurred: Function, selectionChanged: Function) => {
+export const createHapticFeedback = (
+   haptic: Haptic, 
+   impactOccurred: ImpactOccurredFunction, 
+   notificationOccurred: NotificationOccurredFunction, 
+   selectionChanged: SelectionChangedFunction
+) => {
    const hapticType = haptic[0]
    const hapticStyle = haptic[1] || null
 

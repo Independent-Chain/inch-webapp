@@ -2,10 +2,11 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 // Custom API;
-import { API_AUTH_TOKEN } from '../api/api.auth.token.js';
+import { API_AUTH_TOKEN } from '@API/api.auth.token.ts';
+
 
 export type WebAppType = {
-	[key: string]: any
+	[key: string]: any;
 } 
 
 interface AuthContextType {
@@ -20,12 +21,12 @@ interface ComponentProps {
 export const AuthContext = createContext<AuthContextType | null>(null)
 
 export const AuthProvider = ({ children }: ComponentProps): ReactNode => {
-   // @ts-ignore
-   const webApp = window.Telegram.WebApp;
-   const userId = webApp.initDataUnsafe.user.id;
+   const [token, setToken] = useState<string>('');
+
    const { initDataRaw } = retrieveLaunchParams();
 
-   const [token, setToken] = useState<string>('')
+   const webApp = window.Telegram.WebApp;
+   const userId = webApp.initDataUnsafe.user.id;
 
    API_AUTH_TOKEN(userId, initDataRaw).then(response => {
       setToken(response)

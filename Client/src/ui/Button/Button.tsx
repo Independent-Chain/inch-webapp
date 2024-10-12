@@ -25,7 +25,7 @@ interface ComponentProps {
 	onClick: () => void;
 	haptic?: Haptic;
 	children?: string;
-	style?: Object;
+	style?: React.CSSProperties;
 }
 
 const Button = ({ disabled, mode, before, size, children, after, haptic, onClick, style }: ComponentProps): ReactNode => {
@@ -49,7 +49,7 @@ const Button = ({ disabled, mode, before, size, children, after, haptic, onClick
                      top: position.y,
                   }}
                />
-      	)
+            )
          }
          { before }
          { children }
