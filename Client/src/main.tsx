@@ -11,15 +11,15 @@ import { NotificationProvider } from './providers/NotificationProvider.tsx';
 import App from './app/App.tsx'; // App - root component of application;
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <WebAppProvider>
-    <AuthProvider>
-      <DataProvider>
-        <LocalizationProvider>
-          <NotificationProvider>
-            <App />
-          </NotificationProvider>
-        </LocalizationProvider>
-      </DataProvider>
-    </AuthProvider>
-  </WebAppProvider>
+   <WebAppProvider>
+      <AuthProvider>
+         <DataProvider>
+            <LocalizationProvider>
+               <NotificationProvider>
+                  <App />
+               </NotificationProvider>
+            </LocalizationProvider>
+         </DataProvider>
+      </AuthProvider>
+   </WebAppProvider>
 )

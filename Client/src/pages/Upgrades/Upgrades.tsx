@@ -15,34 +15,34 @@ import '@pages/page.scss';
 interface ComponentProps { }
 
 const Upgrades = ({ }: ComponentProps): ReactNode => {
-	const { contextData } = useData();
-	const { localization } = useLocalization();
+   const { contextData } = useData();
+   const { localization } = useLocalization();
 
-	const reactorPrice = 150 * 2.2 ** (contextData.appData.reactor - 1);
-	const storagePrice = 75 * 2.2 ** (contextData.appData.storage - 1);
+   const reactorPrice = 150 * 2.2 ** (contextData.appData.reactor - 1);
+   const storagePrice = 75 * 2.2 ** (contextData.appData.storage - 1);
 
-	return (
-		<div className="page" id="upgrades">
-			<HorizontalLayout justify="center" align="center" gap={6}>
-				<CellDevice 
-					deviceId="reactor"
-					title={ localization.upgrades.reactor.headline }
-					description={ localization.upgrades.reactor.description }
-					level={ contextData.appData.reactor }
-					parameter={ `${(contextData.appData.reactor * 0.001 * 3600).toFixed(1)} (${localization.upgrades.reactor.attribute})` }
-					price={ reactorPrice }
-				/>
-				<CellDevice 
-					deviceId="storage"
-					title={ localization.upgrades.storage.headline } 
-					description={ localization.upgrades.storage.description }
-					level={ contextData.appData.storage }
-					parameter={ `${contextData.appData.storage} ${localization.upgrades.storage.attribute}` }
-					price={ storagePrice }
-				/>
-			</HorizontalLayout>
-		</div>
-	)
+   return (
+      <div className="page" id="upgrades">
+         <HorizontalLayout justify="center" align="center" gap={6}>
+            <CellDevice 
+               deviceId="reactor"
+               title={ localization.upgrades.reactor.headline }
+               description={ localization.upgrades.reactor.description }
+               level={ contextData.appData.reactor }
+               parameter={ `${(contextData.appData.reactor * 0.001 * 3600).toFixed(1)} (${localization.upgrades.reactor.attribute})` }
+               price={ reactorPrice }
+            />
+            <CellDevice 
+               deviceId="storage"
+               title={ localization.upgrades.storage.headline } 
+               description={ localization.upgrades.storage.description }
+               level={ contextData.appData.storage }
+               parameter={ `${contextData.appData.storage} ${localization.upgrades.storage.attribute}` }
+               price={ storagePrice }
+            />
+         </HorizontalLayout>
+      </div>
+   )
 }
 
 export default Upgrades;

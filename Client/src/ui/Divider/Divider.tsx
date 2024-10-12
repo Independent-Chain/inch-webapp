@@ -8,9 +8,9 @@ interface ComponentProps {
 }
 
 const Divider = ({  }: ComponentProps): ReactNode => {
-	return (
-		<div className="divider"></div>
-	)
+   return (
+      <div className="divider"></div>
+   )
 }
 
 export default Divider;

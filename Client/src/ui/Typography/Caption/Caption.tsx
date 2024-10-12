@@ -17,11 +17,11 @@ interface ComponentProps {
 }
 
 const Caption = ({ level=1, weight=1, color, center, caps, children }: ComponentProps): ReactNode => {
-	return (
-		<span className={`caption level-${level} weight-${weight} color-${color} center-${center}`}>
-			{ caps ? children.toUpperCase() : children }
-		</span>
-	)
+   return (
+      <span className={`caption level-${level} weight-${weight} color-${color} center-${center}`}>
+         { caps ? children.toUpperCase() : children }
+      </span>
+   )
 }
 
 export default Caption;

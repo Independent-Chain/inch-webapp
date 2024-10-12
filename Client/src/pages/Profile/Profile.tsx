@@ -27,68 +27,68 @@ interface ComponentProps {
 }
 
 const Profile = ({}: ComponentProps): ReactNode => {
-	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
+   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
-	const { webApp, token } = useAuth();
-	const { contextData, updateDataContext } = useData();
-	const { localization } = useLocalization();
-	const utils = initUtils();
+   const { webApp, token } = useAuth();
+   const { contextData, updateDataContext } = useData();
+   const { localization } = useLocalization();
+   const utils = initUtils();
 
-	const invite = {
-		text: localization.profile.invite,
-		url: `https://t.me/inch_ton_bot/app?startapp=${contextData.appData.user_id}`, 
-	}
+   const invite = {
+      text: localization.profile.invite,
+      url: `https://t.me/inch_ton_bot/app?startapp=${contextData.appData.user_id}`, 
+   }
 
-	const fetchData = async () => {
-		await getUserRating();
-		await getAllRating();
-		updateDataContext(contextData);
-		setLoadingStatus(false);
-	}
+   const fetchData = async () => {
+      await getUserRating();
+      await getAllRating();
+      updateDataContext(contextData);
+      setLoadingStatus(false);
+   }
 
-	const getUserRating = async () => {
-		try {
-			const response = await API_RATING_USER(token, webApp);
-			contextData.appData.rating = response;
-		} catch(error) {
-			console.log(error)
-		}
-	}
+   const getUserRating = async () => {
+      try {
+         const response = await API_RATING_USER(token, webApp);
+         contextData.appData.rating = response;
+      } catch(error) {
+         console.log(error)
+      }
+   }
 
-	const getAllRating = async () => {
-		try {
-			const response = await API_RATING_HOLDERS(token, webApp);
-			contextData.allRating = response;
-		} catch (error) {
-			console.log(error)
-		}
-	}
+   const getAllRating = async () => {
+      try {
+         const response = await API_RATING_HOLDERS(token, webApp);
+         contextData.allRating = response;
+      } catch (error) {
+         console.log(error)
+      }
+   }
 
-	useEffect(() => {
-		fetchData();
-	}, [])
+   useEffect(() => {
+      fetchData();
+   }, [])
 
-	if (loadingStatus) {
-		return <Loading />
-	}
+   if (loadingStatus) {
+      return <Loading />
+   }
 
-	return (
-		<div className="page" id="profile">
-			<ProfileUser />
-			<Button 
-				mode="white" 
-				size="medium" 
-				haptic={["notification", "success"]} 
-				style={{margin: '6px 0'}} 
-				onClick={() => utils.shareURL(invite.url, invite.text)}
-			>
-				{ localization.profile.invite_button }
-			</Button>
-			<ProfileTranslateCell />
-			<ProfileCells />
-			<ProfileFooter />
-		</div>
-	)
+   return (
+      <div className="page" id="profile">
+         <ProfileUser />
+         <Button 
+            mode="white" 
+            size="medium" 
+            haptic={["notification", "success"]} 
+            style={{margin: '6px 0'}} 
+            onClick={() => utils.shareURL(invite.url, invite.text)}
+         >
+            { localization.profile.invite_button }
+         </Button>
+         <ProfileTranslateCell />
+         <ProfileCells />
+         <ProfileFooter />
+      </div>
+   )
 }
 
 export default Profile;

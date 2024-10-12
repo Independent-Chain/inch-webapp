@@ -15,18 +15,18 @@ interface ComponentProps {
 }
 
 const HorizontalLayout = ({ justify, align, gap, grow, children }: ComponentProps): ReactNode => {
-	return (
-		<div className="horizontal-layout"
-			style={{
-				justifyContent: justify === 'center' ? justify : 'flex-' + justify,
-				alignItems: align === 'center' ? align : 'flex-' + align,
-				gap: `${gap}px`,
-				flexGrow: grow,
-			}}
-		>
-			{children}
-		</div>
-	)
+   return (
+      <div className="horizontal-layout"
+         style={{
+            justifyContent: justify === 'center' ? justify : 'flex-' + justify,
+            alignItems: align === 'center' ? align : 'flex-' + align,
+            gap: `${gap}px`,
+            flexGrow: grow,
+         }}
+      >
+         {children}
+      </div>
+   )
 }
 
 export default HorizontalLayout;

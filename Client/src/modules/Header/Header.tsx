@@ -14,21 +14,21 @@ import './Header.scss';
 interface ComponentProps {}
 
 const Header = ({ }: ComponentProps): ReactNode => {
-	const { contextData } = useData();
-	const { localization } = useLocalization();
+   const { contextData } = useData();
+   const { localization } = useLocalization();
 
-	return (
-		<div className="header">
-			<IconStar premium={ contextData.appData.premium } size={6} />
-			<span className="logo">
-				{ contextData.metaData.username}.inch
-			</span>
-			<div className="ton-connect">
-				<IconTon size={3} />
-				<span className="ton-connect__text">{ localization.header.soon }</span>
-			</div>
-		</div>
-	)
+   return (
+      <div className="header">
+         <IconStar premium={ contextData.appData.premium } size={6} />
+         <span className="logo">
+            { contextData.metaData.username}.inch
+         </span>
+         <div className="ton-connect">
+            <IconTon size={3} />
+            <span className="ton-connect__text">{ localization.header.soon }</span>
+         </div>
+      </div>
+   )
 }
 
 export default Header;

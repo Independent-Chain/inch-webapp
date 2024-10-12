@@ -20,24 +20,24 @@ interface ComponentProps {
 export const AuthContext = createContext<AuthContextType | null>(null)
 
 export const AuthProvider = ({ children }: ComponentProps): ReactNode => {
-	// @ts-ignore
-	const webApp = window.Telegram.WebApp;
-	const userId = webApp.initDataUnsafe.user.id;
-	const { initDataRaw } = retrieveLaunchParams();
+   // @ts-ignore
+   const webApp = window.Telegram.WebApp;
+   const userId = webApp.initDataUnsafe.user.id;
+   const { initDataRaw } = retrieveLaunchParams();
 
-	const [token, setToken] = useState<string>('')
+   const [token, setToken] = useState<string>('')
 
-	API_AUTH_TOKEN(userId, initDataRaw).then(response => {
-		setToken(response)
-	}).catch(error => {
-		throw error
-	})
+   API_AUTH_TOKEN(userId, initDataRaw).then(response => {
+      setToken(response)
+   }).catch(error => {
+      throw error
+   })
 
-	return (
-		<AuthContext.Provider value={{ webApp, token }}>
-			{ children }
-		</AuthContext.Provider>
-	)
+   return (
+      <AuthContext.Provider value={{ webApp, token }}>
+         { children }
+      </AuthContext.Provider>
+   )
 }
 
 /* 
@@ -46,9 +46,9 @@ Example of use useAuth hook:
 const { webApp, token, contextData, updateContextData } = useAuth();
 */
 export const useAuth = (): AuthContextType => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+   const context = useContext(AuthContext);
+   if (!context) {
+      throw new Error('useAuth must be used within an AuthProvider');
+   }
+   return context;
 };

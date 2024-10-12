@@ -13,11 +13,11 @@ interface ComponentProps {
 }
 
 const Icon = ({ name, size, unit, color }: ComponentProps): JSX.Element => {
-	return (
-		<div className="icon">
-			<img className={`icon__image ${color}`} src={`/ui-icons/${name}.svg`} alt={name} style={{ width: size + unit }} />
-		</div>
-	)
+   return (
+      <div className="icon">
+         <img className={`icon__image ${color}`} src={`/ui-icons/${name}.svg`} alt={name} style={{ width: size + unit }} />
+      </div>
+   )
 }
 
 export default Icon;

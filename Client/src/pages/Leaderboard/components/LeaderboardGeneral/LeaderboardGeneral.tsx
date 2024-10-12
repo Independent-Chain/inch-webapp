@@ -18,28 +18,28 @@ type UserData = {
 interface ComponentProps { }
 
 const LeaderboardGeneral = ({ }: ComponentProps): JSX.Element => {
-	const { contextData } = useData();
+   const { contextData } = useData();
 
-	return (
-		<div className="all-users-rating">
-			{
-				contextData.allRating.map((user: UserData, index: number) =>  {
-					if (user.username === null) {
-						user.username = 'incognito';
-					}
-					user.position = index + 1;
-					return (
-						<LeaderboardUser
-							key={ index }
-							username={ user.username } 
-							balance={ user.balance }
-							position={ user.position }	
-						/>
-					)
-				})
-			}
-		</div>
-	)
+   return (
+      <div className="all-users-rating">
+         {
+            contextData.allRating.map((user: UserData, index: number) =>  {
+               if (user.username === null) {
+                  user.username = 'incognito';
+               }
+               user.position = index + 1;
+               return (
+                  <LeaderboardUser
+                     key={ index }
+                     username={ user.username } 
+                     balance={ user.balance }
+                     position={ user.position }	
+                  />
+               )
+            })
+         }
+      </div>
+   )
 }
 
 export default LeaderboardGeneral;

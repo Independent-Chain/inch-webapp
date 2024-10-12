@@ -32,81 +32,81 @@ interface ComponentProps {
 }
 
 const UpgradesCell = ({ deviceId, title, description, level, parameter, price }: ComponentProps): ReactNode => {
-  const { webApp, token } = useAuth();
-  const { contextData, updateDataContext } = useData();
-  const { localization } = useLocalization();
-  const { showNotification } = useNotification();
+   const { webApp, token } = useAuth();
+   const { contextData, updateDataContext } = useData();
+   const { localization } = useLocalization();
+   const { showNotification } = useNotification();
 
-  const balance: number = contextData.appData.balance;
-  const upgradePrice: string = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
-  const upgradeAvailable = balance >= price;
+   const balance: number = contextData.appData.balance;
+   const upgradePrice: string = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+   const upgradeAvailable = balance >= price;
 
-  const successUpgradeNotification = () => {
-    showNotification('success', localization.notifications.success, `${title} ${localization.notifications.upgrades.upgraded}`)
-  }
-  const errorUpgradeNotification = () => {
-    showNotification('error', localization.notifications.error, `${title} ${localization.notification.upgrades.not_upgraded}`)
-  }
+   const successUpgradeNotification = () => {
+      showNotification('success', localization.notifications.success, `${title} ${localization.notifications.upgrades.upgraded}`)
+   }
+   const errorUpgradeNotification = () => {
+      showNotification('error', localization.notifications.error, `${title} ${localization.notification.upgrades.not_upgraded}`)
+   }
 
-  const upgrade = async () => {
-    try {
-      await API_MINING_UPGRADE(token, webApp, deviceId);
-      const claimResponse = await API_MINING_CLAIM(token, webApp);
-      updateDataContext({
-        metaData: claimResponse.metaData,
-        appData: claimResponse.appData,
-      });
-      successUpgradeNotification();
-    } catch (error) {
-      console.log(error);
-      errorUpgradeNotification();
-    }
-  };
-
-  const confirmUpgrade = () => {
-    const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
-    webApp.showConfirm(
-      formatUpgradeConfirm(localization.notifications.upgrades.confirm, title, formattedPrice),
-      (callback: boolean) => {
-        if (callback) {
-          upgrade()
-        }
+   const upgrade = async () => {
+      try {
+         await API_MINING_UPGRADE(token, webApp, deviceId);
+         const claimResponse = await API_MINING_CLAIM(token, webApp);
+         updateDataContext({
+            metaData: claimResponse.metaData,
+            appData: claimResponse.appData,
+         });
+         successUpgradeNotification();
+      } catch (error) {
+         console.log(error);
+         errorUpgradeNotification();
       }
-    )
-  }
+   };
 
-  return (
-    <div className="cell-device">
-      <p className="device-headline">{ title }</p>
-      <p className="device-description">{ description }</p>
-      <VerticalLayout justify="center" align="start" gap={6}>
-        <div className="device-attribute" id="level">
-          <Icon name="settings-stroke-rounded" size={2} unit="vh" color="gray" />
-          <p className="device-attribute__text">{ level } { localization.upgrades.device.level }</p>
-        </div>
-        <div className="device-attribute" id="parameter">
-          <Icon name="flash-stroke-rounded" size={2} unit="vh" color="gray" />
-          <p className="device-attribute__text">{ parameter }</p>
-        </div>
-        <div className={`device-attribute available-${upgradeAvailable}`} id="price">
-          <Icon name="coins-stroke-rounded" size={2} unit="vh" color="gray" />
-          <p className="device-attribute__text">${ upgradePrice }</p>
-        </div>
-      </VerticalLayout>
-      <div className="device__button-container">
-        <Button 
-            disabled={price > balance ? true : false} 
-            mode="white" 
-            size="medium" 
-            haptic={["impact", "soft"]} 
-            style={ {marginTop: '8px', padding: '10px', fontSize: '2vh', flexGrow: 1} }
-            onClick={ confirmUpgrade }
-          >
-            { localization.upgrades.device.upgrade }
-        </Button>
+   const confirmUpgrade = () => {
+      const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
+      webApp.showConfirm(
+         formatUpgradeConfirm(localization.notifications.upgrades.confirm, title, formattedPrice),
+         (callback: boolean) => {
+            if (callback) {
+               upgrade()
+            }
+         }
+      )
+   }
+
+   return (
+      <div className="cell-device">
+         <p className="device-headline">{ title }</p>
+         <p className="device-description">{ description }</p>
+         <VerticalLayout justify="center" align="start" gap={6}>
+            <div className="device-attribute" id="level">
+               <Icon name="settings-stroke-rounded" size={2} unit="vh" color="gray" />
+               <p className="device-attribute__text">{ level } { localization.upgrades.device.level }</p>
+            </div>
+            <div className="device-attribute" id="parameter">
+               <Icon name="flash-stroke-rounded" size={2} unit="vh" color="gray" />
+               <p className="device-attribute__text">{ parameter }</p>
+            </div>
+            <div className={`device-attribute available-${upgradeAvailable}`} id="price">
+               <Icon name="coins-stroke-rounded" size={2} unit="vh" color="gray" />
+               <p className="device-attribute__text">${ upgradePrice }</p>
+            </div>
+         </VerticalLayout>
+         <div className="device__button-container">
+            <Button 
+               disabled={price > balance ? true : false} 
+               mode="white" 
+               size="medium" 
+               haptic={["impact", "soft"]} 
+               style={ {marginTop: '8px', padding: '10px', fontSize: '2vh', flexGrow: 1} }
+               onClick={ confirmUpgrade }
+            >
+               { localization.upgrades.device.upgrade }
+            </Button>
+         </div>
       </div>
-    </div>
-  );
+   );
 };
 
 export default UpgradesCell;

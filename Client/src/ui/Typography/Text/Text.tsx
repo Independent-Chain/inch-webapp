@@ -15,11 +15,11 @@ interface ComponentProps {
 }
 
 const Text = ({ weight=1, color, center, caps, children }: ComponentProps): ReactNode => {
-	return (
-		<span className={`text weight-${weight} color-${color} center-${center}`}>
-			{ caps ? children.toUpperCase() : children }
-		</span>
-	)
+   return (
+      <span className={`text weight-${weight} color-${color} center-${center}`}>
+         { caps ? children.toUpperCase() : children }
+      </span>
+   )
 }
 
 export default Text;

@@ -16,34 +16,34 @@ import Loading from '@ui/Loading/Loading';
 interface ComponentProps { }
 
 const Home = ({ }: ComponentProps): ReactNode => {
-	const [loading, setLoading] = useState(true);
+   const [loading, setLoading] = useState(true);
 
-	const { webApp, token } = useAuth();
-	const { updateDataContext } = useData();
+   const { webApp, token } = useAuth();
+   const { updateDataContext } = useData();
 
-	useEffect(() => {
-		getUser();
-	}, [])
+   useEffect(() => {
+      getUser();
+   }, [])
 
-	const getUser = async () => {
-		try {
-			const response = await API_USER_GET(token, webApp);
+   const getUser = async () => {
+      try {
+         const response = await API_USER_GET(token, webApp);
     	updateDataContext(response);
-			setLoading(false);
-		} catch (error) {
-			console.log('[Home] Get user error: ', error);
-		}
-	}
+         setLoading(false);
+      } catch (error) {
+         console.log('[Home] Get user error: ', error);
+      }
+   }
 
-	if (loading) return <Loading />
+   if (loading) return <Loading />
 
-	return (
-		<div className="page" id="home">
-			<HomeMining />
-			<HomeButtons />
-			<HomeCells />
-		</div>
-	)
+   return (
+      <div className="page" id="home">
+         <HomeMining />
+         <HomeButtons />
+         <HomeCells />
+      </div>
+   )
 }
 
 export default Home;

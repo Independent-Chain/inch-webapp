@@ -20,39 +20,39 @@ import '@pages/page.scss';
 interface ComponentProps { }
 
 const Tasks = ({ }: ComponentProps): ReactNode => {
-	const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
+   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
-	const { webApp, token } = useAuth();
-	const { contextData } = useData();
-	const { localization } = useLocalization();
+   const { webApp, token } = useAuth();
+   const { contextData } = useData();
+   const { localization } = useLocalization();
 
-	useEffect(() => {
-    loadTasks();
-  }, [token]);
+   useEffect(() => {
+      loadTasks();
+   }, [token]);
 
-	const loadTasks = async () => {
-		try {
-			const response = await API_TASKS_ALL(token, webApp);
-			contextData.tasks = response;
-		} catch(error) {
-			console.log(error);
-		} finally {
-			setLoadingStatus(false);
-		}
-	}
+   const loadTasks = async () => {
+      try {
+         const response = await API_TASKS_ALL(token, webApp);
+         contextData.tasks = response;
+      } catch(error) {
+         console.log(error);
+      } finally {
+         setLoadingStatus(false);
+      }
+   }
 
-	if (loadingStatus) {
-		return <Loading />
-	}
+   if (loadingStatus) {
+      return <Loading />
+   }
 
-	return (
-		<div className="page" id="tasks">
-			<TasksAll />
-			<p className="tasks__information">
-				{ localization.tasks.description }<a href="https://t.me/inch_support" style={{color: 'var(--accent-1000'}}>@inch_support</a>
-			</p>
-		</div>
-	)
+   return (
+      <div className="page" id="tasks">
+         <TasksAll />
+         <p className="tasks__information">
+            { localization.tasks.description }<a href="https://t.me/inch_support" style={{color: 'var(--accent-1000'}}>@inch_support</a>
+         </p>
+      </div>
+   )
 }
 
 export default Tasks;

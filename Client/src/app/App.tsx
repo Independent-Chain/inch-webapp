@@ -34,85 +34,85 @@ import NavigationPanel from '@modules/NavigationPanel/NavigationPanel.tsx';
 import '@/main.scss';
 
 const App = (): ReactNode => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [dailyRewardData, setDailyRewardData] = useState(null);
-  const [device, setDevice] = useState<string>('');
-  const [debug, setDebug] = useState<boolean>(false)
+   const [loading, setLoading] = useState<boolean>(true);
+   const [dailyRewardData, setDailyRewardData] = useState(null);
+   const [device, setDevice] = useState<string>('');
+   const [debug, setDebug] = useState<boolean>(false)
   
-  const { token, webApp } = useAuth();
-  const { updateDataContext } = useData();
-  const { updateLocalization } = useLocalization();
+   const { token, webApp } = useAuth();
+   const { updateDataContext } = useData();
+   const { updateLocalization } = useLocalization();
 
-  webApp.setHeaderColor('#0e0e0e')
-  webApp.expand();
+   webApp.setHeaderColor('#0e0e0e')
+   webApp.expand();
 
-  useEffect(() => {
-    configureLaunch(debug, setDebug, setDevice);
-    if (token) fetchInitData();
-  }, [token, debug, device]);
+   useEffect(() => {
+      configureLaunch(debug, setDebug, setDevice);
+      if (token) fetchInitData();
+   }, [token, debug, device]);
 
-  const fetchInitData = async () => {
-    await initializeUser();
-    await checkDailyReward();
-  }
+   const fetchInitData = async () => {
+      await initializeUser();
+      await checkDailyReward();
+   }
 
-  const initializeUser = async () => {
-    try {
-      // Create user;
-      const response = await API_USER_CREATE(token, webApp);
-      updateDataContext(response);
-      await stopLoading();
-    } catch (error) {
-      console.log('[App] Create user error: ', error);
-      // Get user;
+   const initializeUser = async () => {
       try {
-        const response = await API_USER_GET(token, webApp);
-        updateDataContext(response);
-        updateLocalization(response.appData.locale);
-        await stopLoading();
+      // Create user;
+         const response = await API_USER_CREATE(token, webApp);
+         updateDataContext(response);
+         await stopLoading();
       } catch (error) {
-        console.log('[App] Get user error: ', error);
+         console.log('[App] Create user error: ', error);
+         // Get user;
+         try {
+            const response = await API_USER_GET(token, webApp);
+            updateDataContext(response);
+            updateLocalization(response.appData.locale);
+            await stopLoading();
+         } catch (error) {
+            console.log('[App] Get user error: ', error);
+         }
       }
-    }
-  };
+   };
 
-  const checkDailyReward = async () => {
-    try {
-      const response = await API_DAILY_CHECK(token, webApp);
-      setDailyRewardData(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+   const checkDailyReward = async () => {
+      try {
+         const response = await API_DAILY_CHECK(token, webApp);
+         setDailyRewardData(response);
+      } catch (error) {
+         console.error(error);
+      }
+   };
 
-  const stopLoading = async () => {
-    setTimeout(() => {
-      setLoading(device !== 'desktop' ? false : true);
-    }, debug ? 1 : 4000)
-  }
+   const stopLoading = async () => {
+      setTimeout(() => {
+         setLoading(device !== 'desktop' ? false : true);
+      }, debug ? 1 : 4000)
+   }
 
-  const renderSplashScreen = () => {
-    if (debug) return <Loading text="Debugging loading" />;
-    return device === 'desktop' ? <DesktopSplashScreen /> : <MobileSplashScreen />;
-  };
+   const renderSplashScreen = () => {
+      if (debug) return <Loading text="Debugging loading" />;
+      return device === 'desktop' ? <DesktopSplashScreen /> : <MobileSplashScreen />;
+   };
 
-  if (loading) return renderSplashScreen();
+   if (loading) return renderSplashScreen();
 
-  return (
-    <BrowserRouter>
-      { dailyRewardData && <DailyReward dailyInformation={ dailyRewardData } stateController={ setDailyRewardData } /> }
-      <Header /> 
-      <Routes>
-        <Route index path='/' element={<Home />} />
-        <Route path='/upgrades' element={<Upgrades />} />
-        <Route path='/tasks' element={<Tasks />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/leaderboard' element={<Leaderboard />} />
-        <Route path='/honor-roll' element={<Honorboard />} />
-      </Routes>
-      <NavigationPanel />
-    </BrowserRouter>
-  );
+   return (
+      <BrowserRouter>
+         { dailyRewardData && <DailyReward dailyInformation={ dailyRewardData } stateController={ setDailyRewardData } /> }
+         <Header /> 
+         <Routes>
+            <Route index path='/' element={<Home />} />
+            <Route path='/upgrades' element={<Upgrades />} />
+            <Route path='/tasks' element={<Tasks />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/leaderboard' element={<Leaderboard />} />
+            <Route path='/honor-roll' element={<Honorboard />} />
+         </Routes>
+         <NavigationPanel />
+      </BrowserRouter>
+   );
 };
 
 export default App;

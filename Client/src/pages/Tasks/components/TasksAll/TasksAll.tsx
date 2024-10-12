@@ -13,13 +13,13 @@ import './TasksAll.scss';
 interface ComponentProps { }
 
 const TasksAll = ({ }: ComponentProps): ReactNode => {
-	const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([ ]);
-  const [completedTasks, setCompletedTasks] = useState<any[]>([ ]);
+   const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([ ]);
+   const [completedTasks, setCompletedTasks] = useState<any[]>([ ]);
 
-	const { contextData } = useData();
+   const { contextData } = useData();
   
-	useEffect(() => {
-    if (contextData.tasks) {
+   useEffect(() => {
+      if (contextData.tasks) {
       type Task = any;
       type TaskData = any;
 
@@ -33,23 +33,23 @@ const TasksAll = ({ }: ComponentProps): ReactNode => {
 
       setCompletedTasks(completed);
       setNotCompletedTasks(notCompleted);
-    }
-  }, [contextData.tasksData]);
+      }
+   }, [contextData.tasksData]);
 
-  return (
-    <>
-      {
-        notCompletedTasks.map((task) => (
-          <Task key={ task.task_id } taskData={ task } completed={ false } />
-        ))
-      }
-      {
-        completedTasks.map((task) => (
-          <Task key={ task.task_id } taskData={ task } completed={ true } />
-        ))
-      }
-    </>
-  );
+   return (
+      <>
+         {
+            notCompletedTasks.map((task) => (
+               <Task key={ task.task_id } taskData={ task } completed={ false } />
+            ))
+         }
+         {
+            completedTasks.map((task) => (
+               <Task key={ task.task_id } taskData={ task } completed={ true } />
+            ))
+         }
+      </>
+   );
 };
 
 export default TasksAll;
