@@ -20,7 +20,7 @@ const Header = ({ }: ComponentProps): ReactNode => {
       <div className="header">
          <Icon 
             name={ contextData.appData.premium ? 'premium-true' : 'premium-false' }
-            size={3} 
+            size={3.3} 
             unit="vh" 
          />
          <span className="logo">
