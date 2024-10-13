@@ -42,10 +42,10 @@ const UpgradesCell = ({ deviceId, title, description, level, parameter, price }:
    const upgradeAvailable = balance >= price;
 
    const successUpgradeNotification = () => {
-      showNotification('success', localization.notifications.success, `${title} ${localization.notifications.upgrades.upgraded}`)
+      showNotification('success', `${title} ${localization.notifications.upgrades.upgraded}`)
    }
    const errorUpgradeNotification = () => {
-      showNotification('error', localization.notifications.error, `${title} ${localization.notification.upgrades.not_upgraded}`)
+      showNotification('error', `${title} ${localization.notification.upgrades.not_upgraded}`)
    }
 
    const upgrade = async () => {

@@ -9,7 +9,7 @@ type Colors = 'white' | 'gray' | 'black';
 
 interface ComponentProps {
 	level: Levels;
-	weight: Weights;
+	weight?: Weights;
 	color: Colors;
 	center?: boolean;
 	plain?: boolean;
