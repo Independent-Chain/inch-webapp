@@ -19,13 +19,11 @@ export default defineConfig({
          '@providers': path.resolve(__dirname, './src/providers'),
          '@ui': path.resolve(__dirname, './src/ui'),
          '@p-home': path.resolve(__dirname, './src/pages/Home'),
-         '@p-honorboard': path.resolve(__dirname, './src/pages/HonorBoard'),
+         '@p-honorboard': path.resolve(__dirname, './src/pages/Honorboard'),
          '@p-leaderboard': path.resolve(__dirname, './src/pages/Leaderboard'),
          '@p-profile': path.resolve(__dirname, './src/pages/Profile'),
          '@p-tasks': path.resolve(__dirname, './src/pages/Tasks'),
          '@p-upgrades': path.resolve(__dirname, './src/pages/Upgrades'),
-
-
       },
    },
 })

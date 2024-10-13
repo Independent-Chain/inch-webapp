@@ -23,10 +23,10 @@ import Leaderboard from '@p-leaderboard/Leaderboard.tsx';
 import Honorboard from '@p-honorboard/Honorboard.tsx';
 
 // Custom components;
-import PreloadImages from '@modules/PreloadImages/PreloadImages.tsx';
 import MobileSplashScreen from '@ui/SplashScreen/MobileSplashScreen/MobileSplashScreen.tsx';
 import DesktopSplashScreen from '@ui/SplashScreen/DesktopSplashScreen/DesktopSplashScreen.tsx';
 import Loading from '@ui/Loading/Loading.tsx';
+import PreloadImages from '@modules/PreloadImages/PreloadImages.tsx';
 import DailyReward from '@modules/DailyReward/DailyReward.tsx';
 import Header from '@modules/Header/Header.tsx';
 import NavigationPanel from '@modules/NavigationPanel/NavigationPanel.tsx';

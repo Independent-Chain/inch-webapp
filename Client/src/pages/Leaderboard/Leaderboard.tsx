@@ -4,7 +4,7 @@ import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Custom components;
 import Title from '@ui/Typography/Title/Title.tsx';
-import SubHeadline from '@ui/Typography/SubHeadline/SubHeadline.tsx';
+import Text from '@ui/Typography/Text/Text.tsx';
 import LeaderboardUser from './components/LeaderboardUser/LeaderboardUser.tsx';
 import LeaderboardGeneral from './components/LeaderboardGeneral/LeaderboardGeneral.tsx';
 
@@ -31,7 +31,7 @@ const Leaderboard = ({ }: ComponentProps): JSX.Element => {
          <LeaderboardUser username={ userData.username } balance={ userData.balance } position={ userData.position } />
          <div className="title-wrapper">
             <Title level={3} weight={2} color="white">{ localization.leaderboard.general.title }</Title>
-            <SubHeadline color="gray">{ localization.leaderboard.general.description }</SubHeadline>
+            <Text color="gray">{ localization.leaderboard.general.description }</Text>
          </div>
          <LeaderboardGeneral />
       </div>
