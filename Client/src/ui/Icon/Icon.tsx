@@ -3,7 +3,7 @@ import './Icon.scss';
 
 
 type Units = 'px' | 'vh' | 'vw';
-type Colors = 'white' | 'gray' | 'black' | 'accent';
+type Colors = 'white' | 'gray' | 'black' | 'accent' | 'error' | string;
 
 interface ComponentProps {
 	name: string;

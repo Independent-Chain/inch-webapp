@@ -30,7 +30,7 @@ const HomeButtons = ({ }: ComponentProps): ReactNode => {
       setClaimButtonDisableStatus(true);
       setTimeout(() => setClaimButtonDisableStatus(false), 5000);
       API_MINING_CLAIM(token, webApp).then(responseData => {
-         showNotification('success', localization.notifications.success, `+ ${responseData.loot.toLocaleString('en-US')} $tINCH`);
+         showNotification('success', `+${responseData.loot.toLocaleString('en-US')} $tINCH`);
          updateDataContext({ metaData: responseData.metaData, appData: responseData.appData });
       }).catch(error => {
          console.log(error);

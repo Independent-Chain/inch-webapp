@@ -10,6 +10,8 @@ const iconsOtherPreload: string[] = [
 const iconsUiPreload: string[] = [
    '/ui-icons/arrow-right-stroke-rounded.svg',
    '/ui-icons/arrow-up-right-stroke-rounded.svg',
+   '/ui-icons/cancel-circle-stroke-rounded.svg',
+   '/ui-icons/checkmark-circle-stroke-rounded.svg',
    '/ui-icons/coins-stroke-rounded.svg',
    '/ui-icons/en.svg',
    '/ui-icons/flash-stroke-rounded.svg',

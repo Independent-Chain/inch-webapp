@@ -7,7 +7,7 @@ type Weights = 1 | 2 | 3; // 400, 600, 700;
 type Colors = 'white' | 'gray' | 'black';
 
 interface ComponentProps {
-	weight: Weights;
+	weight?: Weights;
 	color: Colors;
 	center?: boolean;
 	caps?: boolean;

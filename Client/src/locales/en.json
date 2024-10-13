@@ -97,8 +97,6 @@
  },
 	
 	"notifications": {
-	   "success": "Success",
-	   "error": "Error",
 	   "upgrades": {
 		  "upgraded": "- level upgraded",
 		  "not_upgraded": "- level not upgraded",
@@ -108,6 +106,6 @@
 			"c": "Task successfully completed. Accrued",
 			"nc": "Task not completed"
 		 },
-	   "translated": "Now the application will be in English"
+	   "translated": "Application language successfully changed"
 	}
 }

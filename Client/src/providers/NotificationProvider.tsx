@@ -5,15 +5,13 @@ import Notification from '@ui/Notification/Notification.tsx';
 
 interface NotificationType {
 	type: 'success' | 'error' | string;
-	title: string;
 	text: string;
-	visible?: boolean;
+	visible: boolean;
 }
 
 interface NotificationContextType {
 	showNotification: (
-		type: NotificationType['type'], 
-		title: NotificationType['title'], 
+		type: NotificationType['type'],
 		text: NotificationType['text']
 	) => void;
 }
@@ -25,46 +23,34 @@ interface ComponentProps {
 const NotificationContext = createContext<NotificationContextType | null>(null)
 
 export const NotificationProvider = ({ children }: ComponentProps): ReactNode => {
-   const basicNotificationProps: NotificationType = { type: '', title: '', text: '', visible: false }
+   const basicNotificationProps: NotificationType = { type: '', text: '', visible: false }
    const [notification, setNotification] = useState<NotificationType>(basicNotificationProps);
 
-   // Data for hide notification (Empty data);
-   const hiddenNotificationData = {
-      type: '',
-      title: '',
-      text: '',
-      visible: false
-   }
-
-   const showNotification: NotificationContextType['showNotification'] = (type, title, text) => {
+   const showNotification: NotificationContextType['showNotification'] = (type, text) => {
       const notificationData: NotificationType = {
-         type: type, 
-         title: title,
+         type: type,
          text: text,
          visible: true
       }
 
-      const hideNotification = () => {
-         setTimeout(() => {
-            setNotification(hiddenNotificationData);
-         }, 3300);
-      }
-
       setNotification(notificationData);
-      setTimeout(() => {
-         setNotification(hiddenNotificationData);
-      }, 3000);
-		
-      hideNotification()
+      setTimeout(hideNotification, 3000);
    };
+
+   const hideNotification = () => {
+      setNotification(prev => ({ ...prev, visible: false }));
+      setTimeout(() => {
+         setNotification({ type: '', text: '', visible: false });
+      }, 300);
+   }
 
    return (
       <NotificationContext.Provider value={{ showNotification }}>
-         <Notification 
+         <Notification
             type={ notification.type }
-            title={ notification.title }
             text={ notification.text }
-            visible={ notification.visible } 
+            visible={ notification.visible }
+            onHide={ hideNotification }
          />
          { children }
       </NotificationContext.Provider>

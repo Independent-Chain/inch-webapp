@@ -18,5 +18,8 @@ div.icon {
 		&.accent {
 			filter: brightness(0) saturate(100%) invert(91%) sepia(22%) saturate(259%) hue-rotate(53deg) brightness(84%) contrast(94%);
 		}
+		&.error {
+			filter: brightness(0) saturate(100%) invert(79%) sepia(5%) saturate(2066%) hue-rotate(314deg) brightness(87%) contrast(104%);
+		}
 	}
 }
