@@ -11,11 +11,12 @@ import { API_TASKS_COMPLETE } from '@API/api.tasks.complete.ts';
 import { API_USER_GET } from '@API/api.user.get.ts';
 
 // Custom components;
+import Cell from '@ui/Cell/Cell';
+import Icon from '@ui/Icon/Icon';
 import Button from '@ui/Button/Button.tsx';
 
 // Included styles;
 import './Task.scss';
-import Cell from '@ui/Cell/Cell';
 
 
 type Icons = 'telegram' | 'instagram' | 'youtube' | 'bingx';
@@ -66,11 +67,11 @@ const Task = ({ taskData, completed }: ComponentProps): ReactNode => {
             const newContextData = await API_USER_GET(token, webApp);
             updateDataContext(newContextData);
             setCompleteStatus(true);
-            showNotification("success", localization.notifications.success, `${localization.tasks.c} ${taskData.award} tINCH`);
+            showNotification("success", `${localization.tasks.c} ${taskData.award} tINCH`);
          }
       } catch (error) {
          console.error(error);
-         showNotification("error", localization.notifications.error, localization.tasks.nc);
+         showNotification("error", localization.tasks.nc);
       }
    };
 
@@ -89,8 +90,15 @@ const Task = ({ taskData, completed }: ComponentProps): ReactNode => {
                haptic={["impact", "soft"]}
                style={{ margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh' }}
                onClick={() => !completed && handleButtonClick()}
+               after={
+                  completeStatus ? (
+                     <Icon name="checkmark-circle-stroke-rounded" size={2.5} unit="vh" color="black" />
+                  ) : (
+                     null
+                  )
+               }
             >
-               { buttonText }
+               { completeStatus ? ('') : (buttonText)}
             </Button>
          }
       />
