@@ -13,6 +13,7 @@
 div.cell {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	align-items: center;
 	gap: 16px;
 
@@ -23,6 +24,15 @@ div.cell {
 	background-color: var(--background-900);
 }
 
+a.cell__link {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: flex-start;
+	align-self: stretch;
+	flex-grow: 1;
+}
+
 div.cell__body {
 	display: flex;
 	flex-direction: column;
@@ -30,41 +40,40 @@ div.cell__body {
 	align-items: flex-start;
 	flex-grow: 1;
 	gap: 3px;
-}
 
-a.cell__link {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-end;
-	align-self: stretch;
-	flex-grow: 1;
-}
-
-span {
-	&.cell__subhead {
-		font-family: var(--font);
-		font-size: 1.5vh;
-		color: var(--cell-subhead-color);
+	span {
+		&.cell__subhead {
+			font-family: var(--font);
+			font-size: 1.5vh;
+			color: var(--cell-subhead-color);
+		}
+		&.cell__title {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			
+			font-family: var(--font);
+			font-size: 2vh;
+			color: var(--cell-title-color);
+		}
+		&.cell__subtitle {
+			font-family: var(--font);
+			font-size: 1.7vh;
+			color: var(--cell-subtitle-color);
+		}
+		&.cell__description {
+			font-family: var(--font);
+			font-size: 1.5vh;
+			color: var(--cell-description-color);
+		}
 	}
-	&.cell__title {
+	
+	div.cell__icon {
 		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		
-		font-family: var(--font);
-		font-size: 2vh;
-		color: var(--cell-title-color);
-	}
-	&.cell__subtitle {
-		font-family: var(--font);
-		font-size: 1.7vh;
-		color: var(--cell-subtitle-color);
-	}
-	&.cell__description {
-		font-family: var(--font);
-		font-size: 1.5vh;
-		color: var(--cell-description-color);
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		align-self: stretch;
 	}
 }

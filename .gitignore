@@ -1,6 +1,4 @@
 .vscode
-.eslintrc.cjs
-.eslintrc.js
 .env
 .prettierrc
 .$API.drawio.bkp

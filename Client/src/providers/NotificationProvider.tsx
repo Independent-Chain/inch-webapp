@@ -1,15 +1,23 @@
-import React, { ReactNode, createContext, useContext, useState } from 'react';
-import Notification from '../ui/Notification/Notification';
+import { ReactNode, createContext, useContext, useState } from 'react';
 
-interface NotificationContextType {
-	showNotification: (type: Notification['type'], title: string, text: string) => void;
-}
-interface Notification {
-	type: 'success' | 'error' | '';
+// Custom components;
+import Notification from '@ui/Notification/Notification.tsx';
+
+interface NotificationType {
+	type: 'success' | 'error' | string;
 	title: string;
 	text: string;
 	visible?: boolean;
 }
+
+interface NotificationContextType {
+	showNotification: (
+		type: NotificationType['type'], 
+		title: NotificationType['title'], 
+		text: NotificationType['text']
+	) => void;
+}
+
 interface ComponentProps {
 	children: ReactNode;
 }
@@ -17,40 +25,56 @@ interface ComponentProps {
 const NotificationContext = createContext<NotificationContextType | null>(null)
 
 export const NotificationProvider = ({ children }: ComponentProps): ReactNode => {
-	const basicNotificationProps: Notification = { type: '', title: '', text: '', visible: false }
-	const [notification, setNotification] = useState<Notification>(basicNotificationProps);
+   const basicNotificationProps: NotificationType = { type: '', title: '', text: '', visible: false }
+   const [notification, setNotification] = useState<NotificationType>(basicNotificationProps);
 
-	const showNotification = (type: Notification['type'], title: string, text: string) => {
-		const hideNotification = () => {
-			setTimeout(() => {
-				setNotification({ type: '', title: '', text: '', visible: false });
-			}, 3300);
-		}
+   // Data for hide notification (Empty data);
+   const hiddenNotificationData = {
+      type: '',
+      title: '',
+      text: '',
+      visible: false
+   }
 
-		setNotification({ type: type, title: title, text: text, visible: true });
-		setTimeout(() => {
-			setNotification({ type: type, title: title, text: text, visible: false });
-		}, 3000);
-		hideNotification()
-	};
+   const showNotification: NotificationContextType['showNotification'] = (type, title, text) => {
+      const notificationData: NotificationType = {
+         type: type, 
+         title: title,
+         text: text,
+         visible: true
+      }
 
-	return (
-			<NotificationContext.Provider value={{ showNotification }}>
-					<Notification 
-						type={ notification.type }
-						title={ notification.title }
-						text={ notification.text }
-						visible={ notification.visible } 
-					/>
-					{ children }
-			</NotificationContext.Provider>
-	);
+      const hideNotification = () => {
+         setTimeout(() => {
+            setNotification(hiddenNotificationData);
+         }, 3300);
+      }
+
+      setNotification(notificationData);
+      setTimeout(() => {
+         setNotification(hiddenNotificationData);
+      }, 3000);
+		
+      hideNotification()
+   };
+
+   return (
+      <NotificationContext.Provider value={{ showNotification }}>
+         <Notification 
+            type={ notification.type }
+            title={ notification.title }
+            text={ notification.text }
+            visible={ notification.visible } 
+         />
+         { children }
+      </NotificationContext.Provider>
+   );
 };
 
 export const useNotification = () => {
-	const context = useContext(NotificationContext);
-	if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+   const context = useContext(NotificationContext);
+   if (!context) {
+      throw new Error('useAuth must be used within an AuthProvider');
+   }
+   return context;
 };

@@ -1,57 +1,58 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 // Custom hooks;
-import { useAuth } from '../../providers/AuthProvider.tsx';
-import { useData } from '../../providers/DataProvider.tsx';
-import { useLocalization } from '../../providers/LocalizationProvider.tsx'; 
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx'; 
 
 // Custom components;
-import Loading from '../../ui/Loading/Loading.tsx';
-import TasksList from './modules/TasksList/TasksList.tsx';
+import TasksAll from '@p-tasks/components/TasksAll/TasksAll.tsx';
+import Loading from '@ui/Loading/Loading.tsx';
 
 // Custom API;
-import { API_TASKS_ALL } from '../../api/api.tasks.all.js';
+import { API_TASKS_ALL } from '@API/api.tasks.all.ts';
 
 // Included styles;
-import '../Page.scss';
 import './Tasks.scss';
+import '@pages/page.scss';
 
-interface ComponentProps {}
 
-const Tasks = ({}: ComponentProps): ReactNode => {
-	const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
+interface ComponentProps { }
 
-	const { webApp, token } = useAuth();
-	const { contextData } = useData();
-	const { localization } = useLocalization();
+const Tasks = ({ }: ComponentProps): ReactNode => {
+   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
-	useEffect(() => {
-    loadTasks();
-  }, [token]);
+   const { webApp, token } = useAuth();
+   const { contextData } = useData();
+   const { localization } = useLocalization();
 
-	const loadTasks = async () => {
-		try {
-			const response = await API_TASKS_ALL(token, webApp);
-			contextData.tasks = response;
-		} catch(error) {
-			console.log(error);
-		} finally {
-			setLoadingStatus(false);
-		}
-	}
+   useEffect(() => {
+      loadTasks();
+   }, [token]);
 
-	if (loadingStatus) {
-		return <Loading />
-	}
+   const loadTasks = async () => {
+      try {
+         const response = await API_TASKS_ALL(token, webApp);
+         contextData.tasks = response;
+      } catch(error) {
+         console.log(error);
+      } finally {
+         setLoadingStatus(false);
+      }
+   }
 
-	return (
-		<div className="page" id="tasks">
-			<TasksList />
-			<p className="tasks__information">
-				{ localization.tasks.description }<a href="https://t.me/inch_support" style={{color: 'var(--accent-1000'}}>@inch_support</a>
-			</p>
-		</div>
-	)
+   if (loadingStatus) {
+      return <Loading />
+   }
+
+   return (
+      <div className="page" id="tasks">
+         <TasksAll />
+         <p className="tasks__information">
+            { localization.tasks.description }<a href="https://t.me/inch_support" style={{color: 'var(--accent-1000'}}>@inch_support</a>
+         </p>
+      </div>
+   )
 }
 
 export default Tasks;

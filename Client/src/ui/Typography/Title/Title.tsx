@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
+// Included styles;
 import './Title.scss';
 
 type Levels = 1 | 2 | 3; // 28px, 24px, 20px;
@@ -17,11 +18,11 @@ interface ComponentProps {
 }
 
 const Title = ({ level=1, weight=1, color, center, plain, caps, children }: ComponentProps): ReactNode => {
-	return (
-		<h2 className={`title level-${level} weight-${weight} color-${color} plain-${plain} center-${center}`}>
-			{ caps ? children.toUpperCase() : children }
-		</h2>
-	)
+   return (
+      <h2 className={`title level-${level} weight-${weight} color-${color} plain-${plain} center-${center}`}>
+         { caps ? children.toUpperCase() : children }
+      </h2>
+   )
 }
 
 export default Title;

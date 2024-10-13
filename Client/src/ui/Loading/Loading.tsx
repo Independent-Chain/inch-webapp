@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
+
+// Included styles;
 import './Loading.scss';
 
 interface ComponentProps {
@@ -6,12 +8,12 @@ interface ComponentProps {
 }
 
 const Loading = ({ text }: ComponentProps): ReactNode => {
-	return (
-		<div className="loading">
-			<p className="loading-text">{ text }</p>
-			<span className="loader"></span>
-		</div>
-	)
+   return (
+      <div className="loading">
+         <p className="loading-text">{ text }</p>
+         <span className="loader"></span>
+      </div>
+   )
 }
 
 export default Loading;
