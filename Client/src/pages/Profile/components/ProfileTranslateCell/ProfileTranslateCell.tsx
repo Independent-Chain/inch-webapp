@@ -26,7 +26,7 @@ const ProfileTranslateCell = ({ }: ComponentProps): JSX.Element => {
    const [impactOccurred] = useHapticFeedback();
 
    const { webApp, token } = useAuth();
-   const { contextData, updateDataContext } = useData();
+   const { data, updateExistingField } = useData();
    const { language, localization, updateLocalization } = useLocalization();
    const { showNotification } = useNotification();
 
@@ -38,13 +38,15 @@ const ProfileTranslateCell = ({ }: ComponentProps): JSX.Element => {
       }
    }, [localization])
 
-   const translateApp = () => {
-      API_USER_LOCALE(token, webApp, contextData.appData.locale).then(responseData => {
-         updateDataContext({ metaData: responseData.metaData, appData: responseData.appData })
-         updateLocalization(responseData.appData.locale)
-      }).catch(error => {
+   const translateApp = async () => {
+      try {
+         const response = await API_USER_LOCALE(token, webApp, data.appData.locale);
+         updateExistingField('metaData', response.metaData);
+         updateExistingField('appData', response.appData);
+         updateLocalization(response.appData.locale);
+      } catch (error) {
          console.log(error)
-      })
+      }
    }
 
    return (

@@ -26,7 +26,7 @@ interface ComponentProps {
 
 const DailyReward = ({ dailyInformation, stateController }: ComponentProps): ReactNode => {
    const { token, webApp } = useAuth();
-   const { updateDataContext } = useData();
+   const { overwriteData } = useData();
    const { localization } = useLocalization();
 
    const lcl = localization.daily_reward;
@@ -34,8 +34,8 @@ const DailyReward = ({ dailyInformation, stateController }: ComponentProps): Rea
    const handleRewardFetch = async () => {
       try {
          await API_DAILY_TAKE(token, webApp);
-         const userData = await API_USER_GET(token, webApp);
-         updateDataContext(userData);
+         const response = await API_USER_GET(token, webApp);
+         overwriteData(response);
          stateController(null);
       } catch (error) {
          console.error("Error fetching reward or user data:", error);

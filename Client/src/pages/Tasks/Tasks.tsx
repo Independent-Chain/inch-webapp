@@ -23,7 +23,7 @@ const Tasks = ({ }: ComponentProps): ReactNode => {
    const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
    const { webApp, token } = useAuth();
-   const { contextData } = useData();
+   const { addParentField } = useData();
    const { localization } = useLocalization();
 
    useEffect(() => {
@@ -33,7 +33,7 @@ const Tasks = ({ }: ComponentProps): ReactNode => {
    const loadTasks = async () => {
       try {
          const response = await API_TASKS_ALL(token, webApp);
-         contextData.tasks = response;
+         addParentField('tasks', response);
       } catch(error) {
          console.log(error);
       } finally {

@@ -16,13 +16,13 @@ import '@pages/page.scss';
 interface ComponentProps { }
 
 const Leaderboard = ({ }: ComponentProps): JSX.Element => {
-   const { contextData } = useData();
+   const { data } = useData();
    const { localization } = useLocalization();
 	
    const userData = {
-      username: contextData.metaData.username,
-      balance: contextData.appData.balance,
-      position: contextData.appData.rating,
+      username: data.metaData.username,
+      balance: data.appData.balance,
+      position: data.appData.rating,
    }
 
    return (

@@ -18,12 +18,12 @@ type UserData = {
 interface ComponentProps { }
 
 const LeaderboardGeneral = ({ }: ComponentProps): JSX.Element => {
-   const { contextData } = useData();
+   const { data } = useData();
 
    return (
       <div className="all-users-rating">
          {
-            contextData.allRating.map((user: UserData, index: number) =>  {
+            data.allRating.map((user: UserData, index: number) =>  {
                if (user.username === null) {
                   user.username = 'incognito';
                }

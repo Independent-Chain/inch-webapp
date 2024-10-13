@@ -19,17 +19,17 @@ const Mining = ({ }: ComponentProps): ReactNode => {
    const [loot, setLoot] = useState<number>(0);
    const [time, setTime] = useState<string>('loading');
 
-   const { contextData } = useData();
+   const { data } = useData();
 
    useEffect(() => {
       updateMining();
       const miningIntervalId = setInterval(updateMining, 1000); 
       return () => clearInterval(miningIntervalId);
-   }, [contextData.appData]);
+   }, [data.appData]);
 
    const updateMining = () => {
-      const newLoot = calculateLoot(contextData.appData.last_claim_time, contextData.appData.reactor, contextData.appData.storage);
-      const newTimer = calculateLootTimer(contextData.appData.last_claim_time, contextData.appData.storage);
+      const newLoot = calculateLoot(data.appData.last_claim_time, data.appData.reactor, data.appData.storage);
+      const newTimer = calculateLootTimer(data.appData.last_claim_time, data.appData.storage);
 
       if (newLoot !== loot) setLoot(newLoot);
       if (newTimer !== time) setTime(newTimer);

@@ -14,14 +14,14 @@ import './HomeCells.scss';
 interface ComponentProps { }
 
 const HomeCells = ({ }: ComponentProps): ReactNode => {
-   const { contextData } = useData();
+   const { data } = useData();
    const { localization } = useLocalization();
 
    return (
       <div className="home-cells">
          <Cell 
             subhead={ localization.home.balance.subhead } 
-            title={ `${contextData.appData.balance.toLocaleString('en-US')}` } 
+            title={ `${data.appData.balance.toLocaleString('en-US')}` } 
             titleIcon={<img src="/coin.png" alt="" style={{width: '2vh', marginRight: '4px'}} />}
             description={ localization.home.balance.description }/>
          <Cell 

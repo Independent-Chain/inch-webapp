@@ -22,19 +22,20 @@ const HomeButtons = ({ }: ComponentProps): ReactNode => {
    const [claimButtonDisableStatus, setClaimButtonDisableStatus] = useState(false)
 
    const { token, webApp } = useAuth();
-   const { updateDataContext } = useData();
+   const { overwriteData } = useData();
    const { localization } = useLocalization();
    const { showNotification } = useNotification();
 
-   const claim = () => {
+   const claim = async () => {
       setClaimButtonDisableStatus(true);
       setTimeout(() => setClaimButtonDisableStatus(false), 5000);
-      API_MINING_CLAIM(token, webApp).then(responseData => {
-         showNotification('success', `+${responseData.loot.toLocaleString('en-US')} $tINCH`);
-         updateDataContext({ metaData: responseData.metaData, appData: responseData.appData });
-      }).catch(error => {
+      try {
+         const response = await API_MINING_CLAIM(token, webApp)
+         showNotification('success', `+${response.loot.toLocaleString('en-US')} $tINCH`);
+         overwriteData(response);
+      } catch (error) {
          console.log(error);
-      })
+      }
    }
 
    return (

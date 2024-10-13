@@ -41,7 +41,7 @@ const App = (): ReactNode => {
    const [debug, setDebug] = useState<boolean>(false)
   
    const { token, webApp } = useAuth();
-   const { updateDataContext } = useData();
+   const { overwriteData } = useData();
    const { updateLocalization } = useLocalization();
 
    webApp.setHeaderColor('#0e0e0e')
@@ -61,14 +61,14 @@ const App = (): ReactNode => {
       try {
       // Create user;
          const response = await API_USER_CREATE(token, webApp);
-         updateDataContext(response);
+         overwriteData(response);
          await stopLoading();
       } catch (error) {
          console.log('[App] Create user error: ', error);
          // Get user;
          try {
             const response = await API_USER_GET(token, webApp);
-            updateDataContext(response);
+            overwriteData(response);
             updateLocalization(response.appData.locale);
             await stopLoading();
          } catch (error) {

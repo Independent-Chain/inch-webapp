@@ -15,11 +15,11 @@ import '@pages/page.scss';
 interface ComponentProps { }
 
 const Upgrades = ({ }: ComponentProps): ReactNode => {
-   const { contextData } = useData();
+   const { data } = useData();
    const { localization } = useLocalization();
 
-   const reactorPrice = 150 * 2.2 ** (contextData.appData.reactor - 1);
-   const storagePrice = 75 * 2.2 ** (contextData.appData.storage - 1);
+   const reactorPrice = 150 * 2.2 ** (data.appData.reactor - 1);
+   const storagePrice = 75 * 2.2 ** (data.appData.storage - 1);
 
    return (
       <div className="page" id="upgrades">
@@ -28,16 +28,16 @@ const Upgrades = ({ }: ComponentProps): ReactNode => {
                deviceId="reactor"
                title={ localization.upgrades.reactor.headline }
                description={ localization.upgrades.reactor.description }
-               level={ contextData.appData.reactor }
-               parameter={ `${(contextData.appData.reactor * 0.001 * 3600).toFixed(1)} (${localization.upgrades.reactor.attribute})` }
+               level={ data.appData.reactor }
+               parameter={ `${(data.appData.reactor * 0.001 * 3600).toFixed(1)} (${localization.upgrades.reactor.attribute})` }
                price={ reactorPrice }
             />
             <CellDevice 
                deviceId="storage"
                title={ localization.upgrades.storage.headline } 
                description={ localization.upgrades.storage.description }
-               level={ contextData.appData.storage }
-               parameter={ `${contextData.appData.storage} ${localization.upgrades.storage.attribute}` }
+               level={ data.appData.storage }
+               parameter={ `${data.appData.storage} ${localization.upgrades.storage.attribute}` }
                price={ storagePrice }
             />
          </HorizontalLayout>

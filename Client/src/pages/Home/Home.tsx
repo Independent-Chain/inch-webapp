@@ -19,7 +19,7 @@ const Home = ({ }: ComponentProps): ReactNode => {
    const [loading, setLoading] = useState(true);
 
    const { webApp, token } = useAuth();
-   const { updateDataContext } = useData();
+   const { overwriteData } = useData();
 
    useEffect(() => {
       getUser();
@@ -28,7 +28,7 @@ const Home = ({ }: ComponentProps): ReactNode => {
    const getUser = async () => {
       try {
          const response = await API_USER_GET(token, webApp);
-         updateDataContext(response);
+         overwriteData(response);
          setLoading(false);
       } catch (error) {
          console.log('[Home] Get user error: ', error);

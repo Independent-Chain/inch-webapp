@@ -13,18 +13,18 @@ import './Header.scss';
 interface ComponentProps {}
 
 const Header = ({ }: ComponentProps): ReactNode => {
-   const { contextData } = useData();
+   const { data } = useData();
    const { localization } = useLocalization();
 
    return (
       <div className="header">
          <Icon 
-            name={ contextData.appData.premium ? 'premium-true' : 'premium-false' }
+            name={ data.appData.premium ? 'premium-true' : 'premium-false' }
             size={3.3} 
             unit="vh" 
          />
          <span className="logo">
-            { contextData.metaData.username}.inch
+            { data.metaData.username}.inch
          </span>
          <div className="ton-connect">
             <Icon name="ton" size={2} unit="vh" />

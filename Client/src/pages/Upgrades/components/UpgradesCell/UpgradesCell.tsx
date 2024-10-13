@@ -33,11 +33,11 @@ interface ComponentProps {
 
 const UpgradesCell = ({ deviceId, title, description, level, parameter, price }: ComponentProps): ReactNode => {
    const { webApp, token } = useAuth();
-   const { contextData, updateDataContext } = useData();
+   const { data, updateExistingField } = useData();
    const { localization } = useLocalization();
    const { showNotification } = useNotification();
 
-   const balance: number = contextData.appData.balance;
+   const balance: number = data.appData.balance;
    const upgradePrice: string = price.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
    const upgradeAvailable = balance >= price;
 
@@ -51,11 +51,9 @@ const UpgradesCell = ({ deviceId, title, description, level, parameter, price }:
    const upgrade = async () => {
       try {
          await API_MINING_UPGRADE(token, webApp, deviceId);
-         const claimResponse = await API_MINING_CLAIM(token, webApp);
-         updateDataContext({
-            metaData: claimResponse.metaData,
-            appData: claimResponse.appData,
-         });
+         const response = await API_MINING_CLAIM(token, webApp);
+         updateExistingField('metaData', response.metaData);
+         updateExistingField('appData', response.appData);
          successUpgradeNotification();
       } catch (error) {
          console.log(error);

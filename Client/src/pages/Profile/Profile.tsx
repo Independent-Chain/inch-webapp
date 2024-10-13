@@ -22,34 +22,32 @@ import Button from '@ui/Button/Button.tsx';
 import '@pages/page.scss';
 import './Profile.scss';
 
-interface ComponentProps {
-	
-}
 
-const Profile = ({}: ComponentProps): ReactNode => {
+interface ComponentProps { }
+
+const Profile = ({ }: ComponentProps): ReactNode => {
    const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
    const { webApp, token } = useAuth();
-   const { contextData, updateDataContext } = useData();
+   const { data, addParentField, addField } = useData();
    const { localization } = useLocalization();
    const utils = initUtils();
 
    const invite = {
       text: localization.profile.invite,
-      url: `https://t.me/inch_ton_bot/app?startapp=${contextData.appData.user_id}`, 
+      url: `https://t.me/inch_ton_bot/app?startapp=${data.appData.user_id}`, 
    }
 
    const fetchData = async () => {
       await getUserRating();
       await getAllRating();
-      updateDataContext(contextData);
       setLoadingStatus(false);
    }
 
    const getUserRating = async () => {
       try {
          const response = await API_RATING_USER(token, webApp);
-         contextData.appData.rating = response;
+         addField('appData.rating', response);
       } catch(error) {
          console.log(error)
       }
@@ -58,9 +56,9 @@ const Profile = ({}: ComponentProps): ReactNode => {
    const getAllRating = async () => {
       try {
          const response = await API_RATING_HOLDERS(token, webApp);
-         contextData.allRating = response;
+         addParentField('allRating', response);
       } catch (error) {
-         console.log(error)
+         console.log(error);
       }
    }
 
@@ -79,7 +77,7 @@ const Profile = ({}: ComponentProps): ReactNode => {
             mode="white" 
             size="medium" 
             haptic={["notification", "success"]} 
-            style={{margin: '6px 0'}} 
+            style={{margin: '6px 0'}}
             onClick={() => utils.shareURL(invite.url, invite.text)}
          >
             { localization.profile.invite_button }
