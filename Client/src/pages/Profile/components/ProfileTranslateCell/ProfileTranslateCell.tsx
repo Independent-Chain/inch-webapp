@@ -32,7 +32,7 @@ const ProfileTranslateCell = ({ }: ComponentProps): JSX.Element => {
 
    useEffect(() => {
       if (!isFirstRender) {
-         showNotification('success', localization.notifications.translated)
+         showNotification('success', `${localization.notifications.translated}.`)
       } else {
          setIsFirstRender(false)
       }

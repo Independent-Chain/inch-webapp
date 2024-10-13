@@ -20,7 +20,7 @@ import '@pages/page.scss';
 interface ComponentProps { }
 
 const Tasks = ({ }: ComponentProps): ReactNode => {
-   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
+   const [loading, setLoading] = useState<boolean>(true);
 
    const { webApp, token } = useAuth();
    const { addParentField } = useData();
@@ -37,11 +37,11 @@ const Tasks = ({ }: ComponentProps): ReactNode => {
       } catch(error) {
          console.log(error);
       } finally {
-         setLoadingStatus(false);
+         setLoading(false);
       }
    }
 
-   if (loadingStatus) {
+   if (loading) {
       return <Loading />
    }
 

@@ -37,7 +37,7 @@ interface ComponentProps {
 const Task = ({ taskData, completed }: ComponentProps): ReactNode => {
    const { localization } = useLocalization();
    const { webApp, token } = useAuth();
-   const { updateDataContext } = useData();
+   const { overwriteData } = useData();
    const { showNotification } = useNotification();
 
    const [completeStatus, setCompleteStatus] = useState<boolean>(completed);
@@ -64,10 +64,10 @@ const Task = ({ taskData, completed }: ComponentProps): ReactNode => {
       try {
          const result = await API_TASKS_COMPLETE(token, webApp, taskData.task_id);
          if (result) {
-            const newContextData = await API_USER_GET(token, webApp);
-            updateDataContext(newContextData);
+            const response = await API_USER_GET(token, webApp);
+            overwriteData(response);
             setCompleteStatus(true);
-            showNotification("success", `${localization.tasks.c} ${taskData.award} tINCH`);
+            showNotification("success", `${localization.notifications.tasks.c} ${taskData.award} tINCH.`);
          }
       } catch (error) {
          console.error(error);
@@ -85,14 +85,14 @@ const Task = ({ taskData, completed }: ComponentProps): ReactNode => {
          after={
             <Button
                disabled={ completeStatus }
-               mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
+               mode={ completeStatus || buttonText != localization.tasks.buttons.start ? "bezeled" : "white" }
                size="medium"
                haptic={["impact", "soft"]}
                style={{ margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh' }}
                onClick={() => !completed && handleButtonClick()}
                after={
                   completeStatus ? (
-                     <Icon name="checkmark-circle-stroke-rounded" size={2.5} unit="vh" color="black" />
+                     <Icon name="checkmark-circle-stroke-rounded" size={2.5} unit="vh" color="accent" />
                   ) : (
                      null
                   )
@@ -102,28 +102,6 @@ const Task = ({ taskData, completed }: ComponentProps): ReactNode => {
             </Button>
          }
       />
-   // <div className="task">
-   //   <img className="task__icon" src={`/tasks-icons/${taskData.icon}.svg`} alt="task-icon" />
-   //   <div className="task__body">
-   //     <p className="task__name">
-   //       {taskData.name}
-   //       <span className={ completed ? "completed" : "not-completed" }>
-   //         { completed ? localization.tasks.labels.c : localization.tasks.labels.nc }
-   //       </span>
-   //     </p>
-   //     <p className="task__award">+{taskData.award} tINCH</p>
-   //   </div>
-   //   <Button
-   //     disabled={ completeStatus }
-   //     mode={ buttonText === localization.tasks.buttons.start ? "white" : "bezeled" }
-   //     size="medium"
-   //     haptic={["impact", "soft"]}
-   //     style={{ margin: '0.3vh 0', padding: '0 6vw', fontSize: '2vh' }}
-   //     onClick={() => !completed && handleButtonClick()}
-   //   >
-   //     { buttonText }
-   //   </Button>
-   // </div>
    );
 }
 

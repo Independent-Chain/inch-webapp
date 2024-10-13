@@ -5,6 +5,12 @@ import { retrieveLaunchParams } from '@telegram-apps/sdk';
 import { API_AUTH_TOKEN } from '@API/api.auth.token.ts';
 
 
+declare global {
+   interface Window {
+       Telegram: any;
+   }
+}
+
 export type WebAppType = {
 	[key: string]: any;
 } 

@@ -33,7 +33,7 @@ interface ComponentProps {
 
 const UpgradesCell = ({ deviceId, title, description, level, parameter, price }: ComponentProps): ReactNode => {
    const { webApp, token } = useAuth();
-   const { data, updateExistingField } = useData();
+   const { data, overwriteData } = useData();
    const { localization } = useLocalization();
    const { showNotification } = useNotification();
 
@@ -42,18 +42,17 @@ const UpgradesCell = ({ deviceId, title, description, level, parameter, price }:
    const upgradeAvailable = balance >= price;
 
    const successUpgradeNotification = () => {
-      showNotification('success', `${title} ${localization.notifications.upgrades.upgraded}`)
+      showNotification('success', `${title} ${localization.notifications.upgrades.upgraded}.`)
    }
    const errorUpgradeNotification = () => {
-      showNotification('error', `${title} ${localization.notification.upgrades.not_upgraded}`)
+      showNotification('error', `${title} ${localization.notification.upgrades.not_upgraded}.`)
    }
 
    const upgrade = async () => {
       try {
          await API_MINING_UPGRADE(token, webApp, deviceId);
          const response = await API_MINING_CLAIM(token, webApp);
-         updateExistingField('metaData', response.metaData);
-         updateExistingField('appData', response.appData);
+         overwriteData(response);
          successUpgradeNotification();
       } catch (error) {
          console.log(error);

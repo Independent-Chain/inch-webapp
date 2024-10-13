@@ -31,7 +31,7 @@ const HomeButtons = ({ }: ComponentProps): ReactNode => {
       setTimeout(() => setClaimButtonDisableStatus(false), 5000);
       try {
          const response = await API_MINING_CLAIM(token, webApp)
-         showNotification('success', `+${response.loot.toLocaleString('en-US')} $tINCH`);
+         showNotification('success', `${localization.notifications.home.claimed} +${response.loot.toLocaleString('en-US')} $tINCH.`);
          overwriteData(response);
       } catch (error) {
          console.log(error);
