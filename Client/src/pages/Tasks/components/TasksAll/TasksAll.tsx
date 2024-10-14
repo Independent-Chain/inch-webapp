@@ -13,13 +13,13 @@ import './TasksAll.scss';
 interface ComponentProps { }
 
 const TasksAll = ({ }: ComponentProps): ReactNode => {
-   const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([ ]);
-   const [completedTasks, setCompletedTasks] = useState<any[]>([ ]);
+   const [notCompletedTasks, setNotCompletedTasks] = useState<any[]>([]);
+   const [completedTasks, setCompletedTasks] = useState<any[]>([]);
 
    const { data } = useData();
   
    useEffect(() => {
-      if (data.tasks) {
+      if (data.tasks && data.tasksData) {
          type Task = any;
          type TaskData = any;
 
@@ -34,7 +34,7 @@ const TasksAll = ({ }: ComponentProps): ReactNode => {
          setCompletedTasks(completed);
          setNotCompletedTasks(notCompleted);
       }
-   }, [data.tasksData]);
+   }, [data.tasksData, data.tasks]);
 
    return (
       <>

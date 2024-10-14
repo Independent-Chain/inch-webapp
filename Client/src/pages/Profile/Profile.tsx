@@ -38,6 +38,10 @@ const Profile = ({ }: ComponentProps): ReactNode => {
       url: `https://t.me/inch_ton_bot/app?startapp=${data.appData.user_id}`, 
    }
 
+   useEffect(() => {
+      fetchData();
+   }, [])
+
    const fetchData = async () => {
       await getUserRating();
       await getAllRating();
@@ -61,10 +65,6 @@ const Profile = ({ }: ComponentProps): ReactNode => {
          console.log(error);
       }
    }
-
-   useEffect(() => {
-      fetchData();
-   }, [])
 
    if (loadingStatus) {
       return <Loading />

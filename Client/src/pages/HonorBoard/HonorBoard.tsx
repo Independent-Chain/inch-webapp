@@ -17,8 +17,8 @@ const Honorboard = ({ }: ComponentProps): ReactNode => {
    const { localization } = useLocalization();
 
    const generateMembersList = (users: Array<string>) => {
-      return users.map((user) => (
-         <a href={`https://t.me/${user}`} className="member">@{ user }</a>
+      return users.map((user, index) => (
+         <a href={`https://t.me/${user}`} className="member" id={`member-${index}`}>@{ user }</a>
       ))
    }
 

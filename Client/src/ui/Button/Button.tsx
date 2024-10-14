@@ -8,6 +8,7 @@ import { buttonAnimation } from './buttonAnimation.js';
 // Included styles;
 import './Button.scss';
 
+
 type Modes = 'bezeled' | 'filled' | 'gray' | 'outline' | 'plain' | 'white';
 type Sizes = 'small' | 'medium' | 'large';
 

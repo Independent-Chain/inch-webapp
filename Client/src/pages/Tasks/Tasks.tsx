@@ -27,8 +27,13 @@ const Tasks = ({ }: ComponentProps): ReactNode => {
    const { localization } = useLocalization();
 
    useEffect(() => {
-      loadTasks();
-   }, [token]);
+      fetchData();
+   }, []);
+
+   const fetchData = async () => {
+      await loadTasks();
+      setLoading(false);
+   }
 
    const loadTasks = async () => {
       try {
@@ -36,8 +41,6 @@ const Tasks = ({ }: ComponentProps): ReactNode => {
          addParentField('tasks', response);
       } catch(error) {
          console.log(error);
-      } finally {
-         setLoading(false);
       }
    }
 
