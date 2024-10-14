@@ -1,92 +1,92 @@
-import React, { ReactNode, useEffect, useState } from 'react';
-import { initUtils } from '@telegram-apps/sdk';
+import { ReactNode, useEffect, useState } from 'react';
+import { initUtils } from '@tma.js/sdk';
 
 //  Custom hooks;
-import { useAuth } from '../../providers/AuthProvider.tsx';
-import { useData } from '../../providers/DataProvider.tsx';
-import { useLocalization } from '../../providers/LocalizationProvider.tsx';
+import { useAuth } from '@providers/AuthProvider.tsx';
+import { useData } from '@providers/DataProvider.tsx';
+import { useLocalization } from '@providers/LocalizationProvider.tsx';
 
 // Custom API;
-import { API_RATING_USER } from '../../api/api.rating.user.js';
-import { API_RATING_HOLDERS } from '../../api/api.rating.holders.js';
+import { API_RATING_USER } from '@API/api.rating.user.ts';
+import { API_RATING_HOLDERS } from '@API/api.rating.holders.ts';
 
 // Custom components;
-import Loading from '../../ui/Loading/Loading.tsx';
-import AboutUser from './modules/AboutUser/AboutUser.tsx';
-import TranslateCell from './components/TranslateCell/TranslateCell.tsx';
-import ProfileCells from './modules/ProfileCells/ProfileCells.tsx';
-import Button from '../../ui/Button/Button.tsx';
+import ProfileUser from './components/ProfileUser/ProfileUser.tsx';
+import ProfileCells from './components/ProfileCells/ProfileCells.tsx';
+import ProfileFooter from './components/ProfileFooter/ProfileFooter.tsx';
+import ProfileTranslateCell from './components/ProfileTranslateCell/ProfileTranslateCell.tsx';
+import Loading from '@ui/Loading/Loading.tsx';
+import Button from '@ui/Button/Button.tsx';
 
 // Included styles;
+import '@pages/page.scss';
 import './Profile.scss';
-import '../page.scss';
-import ProfileFooter from './modules/ProfileFooter/ProfileFooter.tsx';
 
-interface ComponentProps {}
 
-const Profile = ({}: ComponentProps): ReactNode => {
-	const [loadingStatus, setLoadingStatus] = useState<Boolean>(true);
+interface ComponentProps { }
 
-	const { webApp, token } = useAuth();
-	const { contextData, updateDataContext } = useData();
-	const { localization } = useLocalization();
-	const utils = initUtils();
+const Profile = ({ }: ComponentProps): ReactNode => {
+   const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
-	const invite = {
-		text: localization.profile.invite,
-		url: `https://t.me/inch_ton_bot/app?startapp=${contextData.appData.user_id}`, 
-	}
+   const { webApp, token } = useAuth();
+   const { data, addParentField, addField } = useData();
+   const { localization } = useLocalization();
+   const utils = initUtils();
 
-	const fetchData = async () => {
-		await getUserRating();
-		await getAllRating();
-		updateDataContext(contextData);
-		setLoadingStatus(false);
-	}
+   const invite = {
+      text: localization.profile.invite,
+      url: `https://t.me/inch_ton_bot/app?startapp=${data.appData.user_id}`, 
+   }
 
-	const getUserRating = async () => {
-		try {
-			const response = await API_RATING_USER(token, webApp);
-			contextData.appData.rating = response;
-		} catch(error) {
-			console.log(error)
-		}
-	}
+   useEffect(() => {
+      fetchData();
+   }, [localization])
 
-	const getAllRating = async () => {
-		try {
-			const response = await API_RATING_HOLDERS(token, webApp);
-			contextData.allRating = response;
-		} catch (error) {
-			console.log(error)
-		}
-	}
+   const fetchData = async () => {
+      await getUserRating();
+      await getAllRating();
+      setLoadingStatus(false);
+   }
 
-	useEffect(() => {
-		fetchData();
-	}, [])
+   const getUserRating = async () => {
+      try {
+         const response = await API_RATING_USER(token, webApp);
+         addField('appData.rating', response);
+      } catch(error) {
+         console.log(error)
+      }
+   }
 
-	if (loadingStatus) {
-		return <Loading />
-	}
+   const getAllRating = async () => {
+      try {
+         const response = await API_RATING_HOLDERS(token, webApp);
+         addParentField('allRating', response);
+      } catch (error) {
+         console.log(error);
+      }
+   }
 
-	return (
-		<div className="page" id="profile">
-			<AboutUser />
-			<Button 
-				mode="white" 
-				size="medium" 
-				haptic={["notification", "success"]} 
-				style={{margin: '6px 0'}} 
-				onClick={() => utils.shareURL(invite.url, invite.text)}
-			>
-				{ localization.profile.invite_button }
-			</Button>
-			<TranslateCell />
-			<ProfileCells />
-			<ProfileFooter />
-		</div>
-	)
+   if (loadingStatus) {
+      return <Loading />
+   }
+
+   return (
+      <div className="page" id="profile">
+         <ProfileUser />
+         <Button 
+            mode="white" 
+            size="medium" 
+            haptic={["notification", "success"]} 
+            style={{margin: '6px 0'}}
+            onClick={() => utils.shareURL(invite.url, invite.text)}
+         >
+            { localization.profile.invite_button }
+         </Button>
+         <ProfileTranslateCell />
+         <ProfileCells />
+         <ProfileFooter />
+      </div>
+   )
 }
 
 export default Profile;

@@ -1,0 +1,42 @@
+:root {
+	--loot-color: rgb(255, 255, 255, 0.9);
+
+	--loot-timer-radius: 1000px;
+	--loot-timer-size: 1.8vh;
+	--loot-timer-background: rgba(183, 207, 174, 0.3);
+	--loot-timer-color: rgba(183, 207, 174, 0.9);
+}
+
+div.mining {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+	flex-grow: 1;
+}
+
+span.mining__timer {
+	padding: 3px 14px;
+
+	border-radius: var(--loot-timer-radius);
+
+	font-family: var(--font);
+	font-size: var(--loot-timer-size);
+	color: var(--loot-timer-color);
+
+	background-color: var(--loot-timer-background);
+
+	animation: loot-timer-blink 2s ease infinite;
+}
+
+@keyframes loot-timer-blink {
+	0% {
+		filter: opacity(100%);
+	}
+	50% {
+		filter: opacity(50%);
+	}
+	100% {
+		filter: opacity(100%);
+	}
+}

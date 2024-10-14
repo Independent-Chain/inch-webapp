@@ -5,6 +5,10 @@
 
 div.navigation-element {
 
+	&:active {
+		background-color: transparent;
+	}
+
 	a {
 		display: flex;
 		flex-direction: column;

@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": "./",
+    "paths": {
+      "@API/*": ["src/api/*"],
+      "@app/*": ["src/app/*"],
+      "@config/*": ["src/config/*"],
+      "@icons/*": ["src/icons/*"],
+      "@locales/*": ["src/locales/*"],
+      "@modules/*": ["src/modules/*"],
+      "@pages/*": ["src/pages/*"],
+      "@providers/*": ["src/providers/*"],
+      "@ui/*": ["src/ui/*"],
+      "@p-home/*": ["src/pages/Home/*"],
+      "@p-honorboard/*": ["src/pages/Honorboard/*"],
+      "@p-leaderboard/*": ["src/pages/Leaderboard/*"],
+      "@p-profile/*": ["src/pages/Profile/*"],
+      "@p-tasks/*": ["src/pages/Tasks/*"],
+      "@p-upgrades/*": ["src/pages/Upgrades/*"],
+    }
+  },
+  "include": ["src"]
+}

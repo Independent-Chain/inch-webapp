@@ -78,7 +78,7 @@
 			"description": "List of honorary users of the project"
 		},
 		"support": "Support",
-		"version": "Version 1.2.1"
+		"version": "Version 1.2.3"
 	},
 
 	"leaderboard": {
@@ -97,17 +97,18 @@
  },
 	
 	"notifications": {
-	   "success": "Success",
-	   "error": "Error",
+		"home": {
+			"claimed": "Received"
+		},
 	   "upgrades": {
 		  "upgraded": "- level upgraded",
 		  "not_upgraded": "- level not upgraded",
 		  "confirm": "Upgrade for $tINCH?"
 	   },
 		 "tasks": {
-			"c": "Task successfully completed. Accrued",
+			"c": "Task completed. Accrued",
 			"nc": "Task not completed"
 		 },
-	   "translated": "Now the application will be in English"
+	   "translated": "Application language successfully changed"
 	}
 }

@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
+
+// Included styles;
 import './Divider.scss';
 
 interface ComponentProps {
@@ -6,9 +8,9 @@ interface ComponentProps {
 }
 
 const Divider = ({  }: ComponentProps): ReactNode => {
-	return (
-		<div className="divider"></div>
-	)
+   return (
+      <div className="divider"></div>
+   )
 }
 
 export default Divider;
