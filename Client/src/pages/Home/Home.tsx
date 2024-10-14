@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 
 // Custom modules;
+import Loading from '@ui/Loading/Loading';
 import HomeMining from '@pages/Home/components/HomeMining/HomeMining';
 import HomeButtons from '@p-home/components/HomeButtons/HomeButtons.tsx';
 import HomeCells from '@p-home/components/HomeCells/HomeCells.tsx';
@@ -10,7 +11,7 @@ import '@pages/page.scss';
 import { API_USER_GET } from '@API/api.user.get';
 import { useAuth } from '@providers/AuthProvider';
 import { useData } from '@providers/DataProvider';
-import Loading from '@ui/Loading/Loading';
+import { useLocalization } from '@providers/LocalizationProvider';
 
 
 interface ComponentProps { }
@@ -20,10 +21,11 @@ const Home = ({ }: ComponentProps): ReactNode => {
 
    const { webApp, token } = useAuth();
    const { overwriteData } = useData();
+   const { localization } = useLocalization();
 
    useEffect(() => {
       getUser();
-   }, [])
+   }, [localization])
 
    const getUser = async () => {
       try {

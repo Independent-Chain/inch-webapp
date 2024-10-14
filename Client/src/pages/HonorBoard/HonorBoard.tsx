@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { useEffect, ReactNode } from 'react';
 
 // Custom hooks;
 import { useLocalization } from '@providers/LocalizationProvider';
@@ -15,6 +15,8 @@ interface ComponentProps { }
 
 const Honorboard = ({ }: ComponentProps): ReactNode => {
    const { localization } = useLocalization();
+
+   useEffect(() => {}, [localization])
 
    const generateMembersList = (users: Array<string>) => {
       return users.map((user, index) => (

@@ -11,6 +11,7 @@ import LeaderboardGeneral from './components/LeaderboardGeneral/LeaderboardGener
 // Included styles;
 import './Leaderboard.scss';
 import '@pages/page.scss';
+import { useEffect } from 'react';
 
 
 interface ComponentProps { }
@@ -24,6 +25,8 @@ const Leaderboard = ({ }: ComponentProps): JSX.Element => {
       balance: data.appData.balance,
       position: data.appData.rating,
    }
+
+   useEffect(() => {}, [localization])
 
    return (
       <div className="page" id="leaderboard">

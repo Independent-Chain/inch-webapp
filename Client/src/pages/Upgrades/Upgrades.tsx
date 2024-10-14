@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 // Custom hooks;
 import { useData } from '@providers/DataProvider.tsx';
@@ -20,6 +20,8 @@ const Upgrades = ({ }: ComponentProps): ReactNode => {
 
    const reactorPrice = 150 * 2.2 ** (data.appData.reactor - 1);
    const storagePrice = 75 * 2.2 ** (data.appData.storage - 1);
+
+   useEffect(() => {}, [localization])
 
    return (
       <div className="page" id="upgrades">

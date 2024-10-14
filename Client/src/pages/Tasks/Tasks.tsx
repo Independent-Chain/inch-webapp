@@ -28,7 +28,7 @@ const Tasks = ({ }: ComponentProps): ReactNode => {
 
    useEffect(() => {
       fetchData();
-   }, []);
+   }, [localization]);
 
    const fetchData = async () => {
       await loadTasks();
