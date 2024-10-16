@@ -4,22 +4,25 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("BUILD_DATABASE_URL")
+  url      = env("DEVELOP_DATABASE_URL")
 }
 
 model users_app_data {
-  user_id         BigInt           @unique
-  premium         Boolean          @default(false)
-  uid             Int              @id @default(autoincrement())
-  inviter_id      BigInt?  
-  friends         Int
-  balance         Float
-  last_claim_time DateTime         @db.Timestamptz(6)
-  reactor         Int
-  storage         Int
-  locale          String           @default("en")
-  last_entry      DateTime         @db.Timestamptz(6) @default(now())
-  streak_days     Int              @default(0)
+  user_id               BigInt           @unique
+  premium               Boolean          @default(false)
+  uid                   Int              @id @default(autoincrement())
+  inviter_id            BigInt?
+  friends               Int              @default(0)
+  referral_deduction    Float            @default(0)
+  referral_income       Float            @default(0)
+  balance               Float            @default(0)
+  last_claim_time       DateTime         @db.Timestamptz(6)
+  reactor               Int              @default(1)
+  storage               Int              @default(1)
+  transmitter           Int              @default(10)
+  locale                String           @default("en")
+  last_entry            DateTime         @db.Timestamptz(6) @default(now())
+  streak_days           Int              @default(0)
   users_meta_data users_meta_data? @relation(fields: [user_id], references: [user_id]) 
 }
 
