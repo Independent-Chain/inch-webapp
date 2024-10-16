@@ -17,13 +17,8 @@ export class UserService {
         
         const appData = {
             user_id: metaData.user_id,
-            premium: false,
             inviter_id: start_param,
-            friends: 0,
-            balance: 0,
             last_claim_time: DateTime.utc().setZone('utc').toISO(), 
-            reactor: 1,
-            storage: 1,
             last_entry: new DateTime(DateTime.utc().setZone('utc')).minus({ days: 1 }).toISO(),
         }
 

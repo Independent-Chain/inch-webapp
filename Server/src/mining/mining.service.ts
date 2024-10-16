@@ -9,20 +9,39 @@ export class MiningService {
 	constructor(private prisma: PrismaService) {}
 
 	async claim(userId: number) {
-		const { last_claim_time, reactor, storage } = await this.prisma.users_app_data.findUnique({
+		const { inviter_id, last_claim_time, reactor, storage } = await this.prisma.users_app_data.findUnique({
 			where: { user_id: userId },
-			select: {last_claim_time: true, reactor: true, storage: true}
+			select: {
+				inviter_id: true,
+				last_claim_time: true,
+				reactor: true,
+				storage: true
+			}
 		})
 
 		const loot = calculateLoot(last_claim_time.toISOString(), reactor, storage)
 		
+		// Update user balance;
 		await this.prisma.users_app_data.update({
 			where: { user_id: userId },
 			data: { 
-				balance: { increment: loot } ,
+				referral_deduction: { increment: loot / 100 * 15 },
+				balance: { increment: loot },
 				last_claim_time: DateTime.utc().setZone('utc').toISO(),
 			}
 		})
+
+		// Update inviter balance;
+		if (inviter_id) {
+			await this.prisma.users_app_data.update({
+				where: { user_id: inviter_id },
+				data: {
+					referral_income: { increment: loot / 100 * 15 },
+					balance: { increment: loot / 100 * 15 }
+				}
+			})
+		}
+
 		return loot
 	}
 
